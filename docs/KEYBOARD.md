@@ -65,3 +65,11 @@ with mujoco.viewer.launch_passive(
         key_callback.auto_key_move()
         ...
 ```
+
+---
+
+## Bottlenecks
+`Mink` uses the `mujoco.viewer` for visualization and maintaining the simulation loop. However, it has several limitations:
+- Only being able to register one key press at a time.
+- Can only register a key press; can't register key holds or releases, etc.
+- Viewer has a lot of default keybinds, which limits the amount of free keys to use for movement.
