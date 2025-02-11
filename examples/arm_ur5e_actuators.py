@@ -4,6 +4,7 @@ import mujoco
 import mujoco.viewer
 import numpy as np
 from loop_rate_limiters import RateLimiter
+from functools import partial
 
 import mink
 
@@ -65,9 +66,12 @@ if __name__ == "__main__":
     pos_threshold = 1e-4
     ori_threshold = 1e-4
     max_iters = 20
+    
+    # Initialize key_callback function.
+    key_callback = mink.KeyCallback(data)
 
     with mujoco.viewer.launch_passive(
-        model=model, data=data, show_left_ui=False, show_right_ui=False
+        model=model, data=data, show_left_ui=False, show_right_ui=False, key_callback=key_callback.key_callback_data
     ) as viewer:
         mujoco.mjv_defaultFreeCamera(model, viewer.cam)
 
@@ -78,11 +82,15 @@ if __name__ == "__main__":
         # Initialize the mocap target at the end-effector site.
         mink.move_mocap_to_frame(model, data, "target", "attachment_site", "site")
 
+
         rate = RateLimiter(frequency=500.0, warn=False)
         while viewer.is_running():
             # Update task target.
             T_wt = mink.SE3.from_mocap_name(model, data, "target")
             end_effector_task.set_target(T_wt)
+
+            # Continuously check for autonomous key movement.
+            key_callback.auto_key_move()
 
             # Compute velocity and integrate into the next configuration.
             for i in range(max_iters):
