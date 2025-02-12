@@ -4,7 +4,6 @@ import mujoco
 import mujoco.viewer
 import numpy as np
 from loop_rate_limiters import RateLimiter
-from functools import partial
 
 import mink
 
@@ -68,7 +67,7 @@ if __name__ == "__main__":
     max_iters = 20
     
     # Initialize key_callback function.
-    key_callback = mink.KeyCallback(data)
+    key_callback = mink.TeleopMocap(data)
 
     with mujoco.viewer.launch_passive(
         model=model, data=data, show_left_ui=False, show_right_ui=False, key_callback=key_callback.key_callback_data

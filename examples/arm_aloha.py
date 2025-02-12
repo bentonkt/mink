@@ -122,7 +122,7 @@ if __name__ == "__main__":
     max_iters = 5
 
     # Initialize key_callback function.
-    key_callback = mink.KeyCallback(data)
+    key_callback = mink.TeleopMocap(data)
 
     with mujoco.viewer.launch_passive(
         model=model, data=data,

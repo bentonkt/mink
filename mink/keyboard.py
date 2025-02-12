@@ -2,8 +2,9 @@ import numpy as np
 import pyquaternion as pyq
 from functools import partial
 from scipy.spatial.transform import Rotation as R
+from dm_control.viewer import user_input
 
-class KeyCallback:
+class TeleopMocap:
     """
     Class to handle keyboard input for teleoperation.
     The class provides methods to toggle teleoperation on/off,
@@ -17,33 +18,33 @@ class KeyCallback:
         self.data = data
         self.reset_state()
         self.actions = {
-            78: self.toggle_manual,  # n: toggle non-manual mode
-            46: self.toggle_rotation,  # .: toggle rotation mode
-            56: self.toggle_mocap,  # m: toggle mocap data
-            61: partial(self.toggle_speed, 1),  # +: increase speed
-            45: partial(self.toggle_speed, -1),  # -: decrease speed
-            265: partial(self.movement_select, 265, 0, 1),  # Up arrow
-            264: partial(self.movement_select, 264, 0, -1),  # Down arrow
-            262: partial(self.movement_select, 262, 1, 1),  # Right arrow
-            263: partial(self.movement_select, 263, 1, -1),  # Left arrow
-            55: partial(self.movement_select, 55, 2, 1),  # 6
-            54: partial(self.movement_select, 54, 2, -1),  # 7
+            user_input.KEY_N: self.toggle_manual,  # n: toggle non-manual mode
+            user_input.KEY_PERIOD: self.toggle_rotation,  # .: toggle rotation mode
+            user_input.KEY_M: self.toggle_mocap,  # m: toggle mocap data
+            user_input.KEY_EQUAL: partial(self.toggle_speed, 1),  # =/+: increase speed
+            user_input.KEY_MINUS: partial(self.toggle_speed, -1),  # -: decrease speed
+            user_input.KEY_UP: partial(self.movement_select, user_input.KEY_UP, 0, 1),  # Up arrow
+            user_input.KEY_DOWN: partial(self.movement_select, user_input.KEY_DOWN, 0, -1),  # Down arrow
+            user_input.KEY_RIGHT: partial(self.movement_select, user_input.KEY_RIGHT, 1, 1),  # Right arrow
+            user_input.KEY_LEFT: partial(self.movement_select, user_input.KEY_LEFT, 1, -1),  # Left arrow
+            user_input.KEY_7: partial(self.movement_select, user_input.KEY_7, 2, 1),  # 6
+            user_input.KEY_6: partial(self.movement_select, user_input.KEY_6, 2, -1),  # 7
         }
         self.movements = {
-            265: partial(self.movement_select, -1, 0, 1),  # Up arrow
-            264: partial(self.movement_select, -1, 0, -1),  # Down arrow
-            262: partial(self.movement_select, -1, 1, 1),  # Right arrow
-            263: partial(self.movement_select, -1, 1, -1),  # Left arrow
-            55: partial(self.movement_select, -1, 2, 1),  # 6
-            54: partial(self.movement_select, -1, 2, -1),  # 7
+            user_input.KEY_UP: partial(self.movement_select, -1, 0, 1),  # Up arrow
+            user_input.KEY_DOWN: partial(self.movement_select, -1, 0, -1),  # Down arrow
+            user_input.KEY_RIGHT: partial(self.movement_select, -1, 1, 1),  # Right arrow
+            user_input.KEY_LEFT: partial(self.movement_select, -1, 1, -1),  # Left arrow
+            user_input.KEY_7: partial(self.movement_select, -1, 2, 1),  # 6
+            user_input.KEY_6: partial(self.movement_select, -1, 2, -1),  # 7
         }
         self.opposite_keys = {
-            265: 264,
-            264: 265,
-            262: 263,
-            263: 262,
-            55: 54,
-            54: 55,
+            user_input.KEY_UP: user_input.KEY_DOWN,
+            user_input.KEY_DOWN: user_input.KEY_UP,
+            user_input.KEY_RIGHT: user_input.KEY_LEFT,
+            user_input.KEY_LEFT: user_input.KEY_RIGHT,
+            user_input.KEY_7: user_input.KEY_6,
+            user_input.KEY_6: user_input.KEY_7,
         }
 
 
@@ -199,12 +200,12 @@ class KeyCallback:
 
     def reset_keys(self):
         self.keys = {
-            265: False,
-            264: False,
-            262: False,
-            263: False,
-            55: False,
-            54: False,
+            user_input.KEY_UP: False,
+            user_input.KEY_DOWN: False,
+            user_input.KEY_RIGHT: False,
+            user_input.KEY_LEFT: False,
+            user_input.KEY_7: False,
+            user_input.KEY_6: False,
         }
 
 
