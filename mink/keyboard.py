@@ -1,7 +1,6 @@
+import mujoco
 import numpy as np
-import pyquaternion as pyq
 from functools import partial
-from scipy.spatial.transform import Rotation as R
 from dm_control.viewer import user_input
 
 class TeleopMocap:
@@ -48,7 +47,7 @@ class TeleopMocap:
         }
 
 
-    def key_callback_data(self, key):
+    def __call__(self, key):
         # Toggle teleop on/off
         if key == 57:  # 9
             self.toggle_on()
@@ -106,13 +105,10 @@ class TeleopMocap:
         based on the axis and step size.
         """
 
-        # reorder from (w, x, y, z) to (x, y, z, w)
         q = self.data.mocap_quat[self.mocap_idx].copy()
-        temp = q[0]
-        q[:3] = q[1:]
-        q[3] = temp
-
-        rot = R.from_quat(q).as_matrix()
+        rot = np.zeros(shape=(9,), dtype=np.float64)
+        mujoco.mju_quat2Mat(rot, q)
+        rot = rot.reshape((3, 3))
         unit_vec = rot[:, axis]
         step_size = self.m_step_size if self.manual else self.nm_step_size
         self.data.mocap_pos[self.mocap_idx] += direction * step_size * unit_vec
@@ -134,17 +130,22 @@ class TeleopMocap:
         """
         Rotate a quaternion by an angle around an axis.
         """
+        rot = np.zeros(shape=(4,), dtype=np.float64)
+        result = np.zeros(shape=(4,), dtype=np.float64)
 
-        unit_axis = [1, 0, 0]
-        if axis == 1:
-            unit_axis = [0, 1, 0]
+        unit_axis = np.zeros(shape=(3,), dtype=np.float64)
+        if axis == 0:
+            unit_axis[0] = 1.0
+        elif axis == 1:
+            unit_axis[1] = 1.0
         elif axis == 2:
-            unit_axis = [0, 0, 1]
+            unit_axis[2] = 1.0 
 
         angle_rad = np.deg2rad(angle)
         unit_axis = unit_axis / np.linalg.norm(unit_axis)
-        q = pyq.Quaternion(quat)
-        return (q * pyq.Quaternion(axis=unit_axis, angle=angle_rad)).elements
+        mujoco.mju_axisAngle2Quat(rot, unit_axis, angle_rad)
+        mujoco.mju_mulQuat(result, rot, quat)
+        return result
     
     
     def toggle_on(self):
