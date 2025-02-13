@@ -19,7 +19,7 @@ class TeleopMocap:
         self.actions = {
             user_input.KEY_N: self.toggle_manual,  # n: toggle non-manual mode
             user_input.KEY_PERIOD: self.toggle_rotation,  # .: toggle rotation mode
-            user_input.KEY_M: self.toggle_mocap,  # m: toggle mocap data
+            user_input.KEY_8: self.toggle_mocap,  # 8: toggle mocap data
             user_input.KEY_EQUAL: partial(self.toggle_speed, 1),  # =/+: increase speed
             user_input.KEY_MINUS: partial(self.toggle_speed, -1),  # -: decrease speed
             user_input.KEY_UP: partial(self.movement_select, user_input.KEY_UP, 0, 1),  # Up arrow
