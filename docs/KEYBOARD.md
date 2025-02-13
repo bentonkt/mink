@@ -69,7 +69,8 @@ with mujoco.viewer.launch_passive(
 ---
 
 ## Bottlenecks
-`Mink` uses the `mujoco.viewer` for visualization and maintaining the simulation loop. However, it has several limitations:
+`Mink` uses the `mujoco.viewer.launch_passive()` for visualization and maintaining the simulation loop. To pass keyboard callbacks, we have to pass a callback function `key_callback(key)` as an argument to the `launch_passive()`. However, this has several limitations:
 - Only being able to register one key press at a time.
-- Can only register a key press; can't register key holds or releases, etc.
+- It can only register one key action (which is the action PRESS); can't register key holds (act.HOLD) or releases (act.RELEASE).
+- Doesn't support key + modifier combinations in (e.g., Ctrl + Arrow keys).
 - Viewer has a lot of default keybinds, which limits the amount of free keys to use for movement.
