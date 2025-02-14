@@ -1,10 +1,12 @@
 # Keyboard Controls for Teleoperation
-This document explains the keyboard input handling system implemented in the `TeleopMocap` class for teleoperation. The system allows users to toggle different movement modes, adjust speeds, and control the movement of a mocap body in a simulation.
+This document explains the keyboard input handling system implemented in the `TeleopMocap` class for teleoperation.  
+The system allows users to toggle different movement modes, adjust speeds, and control the movement of a mocap body in a simulation.
 
 ---
 
 ## Overview
-The `TeleopMocap` class provides keyboard-based control for moving and rotating the mocap body in a Mujoco simulation. It supports:
+The `TeleopMocap` class provides keyboard-based control for moving and rotating the mocap body in a Mujoco simulation.  
+Features:
 - 6 degrees of freedom (DOF) movement
 - Toggling between manual and non-manual movement
 - Switching between rotation and translation
@@ -44,7 +46,9 @@ The `TeleopMocap` class provides keyboard-based control for moving and rotating 
 ---
 
 ## Example Usage
-To use the `TeleopMocap` class, instantiate it and pass the `mjData`. Pass the `key_callback_data` method as a `key_callback` in the mujoco viewer. Call the `auto_key_move()` in the viewer loop.
+To use the `TeleopMocap` class, instantiate it and pass the `mjData`.  
+Pass the `key_callback_data` method as a `key_callback` in the mujoco viewer.  
+Call the `auto_key_move()` in the viewer loop.
 
 ```python
 import mink
@@ -69,7 +73,9 @@ with mujoco.viewer.launch_passive(
 ---
 
 ## Bottlenecks
-`Mink` uses the `mujoco.viewer.launch_passive()` for visualization and maintaining the simulation loop. To pass keyboard callbacks, we have to pass a callback function `key_callback(key)` as an argument to the `launch_passive()`. However, this has several limitations:
+`Mink` uses the `mujoco.viewer.launch_passive()` for visualization and maintaining the simulation loop.  
+To pass keyboard callbacks, we have to pass a callback function `key_callback(key)` as an argument to the `launch_passive()`.  
+However, this has several limitations:
 - Only being able to register one key press at a time.
 - It can only register one key action (which is the action PRESS); can't register key holds (act.HOLD) or releases (act.RELEASE).
 - Doesn't support key + modifier combinations in (e.g., Ctrl + Arrow keys).
