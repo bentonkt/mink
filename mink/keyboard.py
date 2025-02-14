@@ -1,7 +1,7 @@
 import mujoco
 import numpy as np
 from functools import partial
-from dm_control.viewer import user_input
+from mujoco import KeyCode as keycode
 
 class TeleopMocap:
     """
@@ -17,33 +17,33 @@ class TeleopMocap:
         self.data = data
         self.reset_state()
         self.actions = {
-            user_input.KEY_N: self.toggle_manual,  # n: toggle non-manual mode
-            user_input.KEY_PERIOD: self.toggle_rotation,  # .: toggle rotation mode
-            user_input.KEY_8: self.toggle_mocap,  # 8: toggle mocap data
-            user_input.KEY_EQUAL: partial(self.toggle_speed, 1),  # =/+: increase speed
-            user_input.KEY_MINUS: partial(self.toggle_speed, -1),  # -: decrease speed
-            user_input.KEY_UP: partial(self.movement_select, user_input.KEY_UP, 0, 1),  # Up arrow
-            user_input.KEY_DOWN: partial(self.movement_select, user_input.KEY_DOWN, 0, -1),  # Down arrow
-            user_input.KEY_RIGHT: partial(self.movement_select, user_input.KEY_RIGHT, 1, 1),  # Right arrow
-            user_input.KEY_LEFT: partial(self.movement_select, user_input.KEY_LEFT, 1, -1),  # Left arrow
-            user_input.KEY_7: partial(self.movement_select, user_input.KEY_7, 2, 1),  # 6
-            user_input.KEY_6: partial(self.movement_select, user_input.KEY_6, 2, -1),  # 7
+            keycode.KEY_N: self.toggle_manual,  # n: toggle non-manual mode
+            keycode.KEY_PERIOD: self.toggle_rotation,  # .: toggle rotation mode
+            keycode.KEY_8: self.toggle_mocap,  # 8: toggle mocap data
+            keycode.KEY_EQUAL: partial(self.toggle_speed, 1),  # =/+: increase speed
+            keycode.KEY_MINUS: partial(self.toggle_speed, -1),  # -: decrease speed
+            keycode.KEY_UP: partial(self.movement_select, keycode.KEY_UP, 0, 1),  # Up arrow
+            keycode.KEY_DOWN: partial(self.movement_select, keycode.KEY_DOWN, 0, -1),  # Down arrow
+            keycode.KEY_RIGHT: partial(self.movement_select, keycode.KEY_RIGHT, 1, 1),  # Right arrow
+            keycode.KEY_LEFT: partial(self.movement_select, keycode.KEY_LEFT, 1, -1),  # Left arrow
+            keycode.KEY_7: partial(self.movement_select, keycode.KEY_7, 2, 1),  # 6
+            keycode.KEY_6: partial(self.movement_select, keycode.KEY_6, 2, -1),  # 7
         }
         self.movements = {
-            user_input.KEY_UP: partial(self.movement_select, -1, 0, 1),  # Up arrow
-            user_input.KEY_DOWN: partial(self.movement_select, -1, 0, -1),  # Down arrow
-            user_input.KEY_RIGHT: partial(self.movement_select, -1, 1, 1),  # Right arrow
-            user_input.KEY_LEFT: partial(self.movement_select, -1, 1, -1),  # Left arrow
-            user_input.KEY_7: partial(self.movement_select, -1, 2, 1),  # 6
-            user_input.KEY_6: partial(self.movement_select, -1, 2, -1),  # 7
+            keycode.KEY_UP: partial(self.movement_select, -1, 0, 1),  # Up arrow
+            keycode.KEY_DOWN: partial(self.movement_select, -1, 0, -1),  # Down arrow
+            keycode.KEY_RIGHT: partial(self.movement_select, -1, 1, 1),  # Right arrow
+            keycode.KEY_LEFT: partial(self.movement_select, -1, 1, -1),  # Left arrow
+            keycode.KEY_7: partial(self.movement_select, -1, 2, 1),  # 6
+            keycode.KEY_6: partial(self.movement_select, -1, 2, -1),  # 7
         }
         self.opposite_keys = {
-            user_input.KEY_UP: user_input.KEY_DOWN,
-            user_input.KEY_DOWN: user_input.KEY_UP,
-            user_input.KEY_RIGHT: user_input.KEY_LEFT,
-            user_input.KEY_LEFT: user_input.KEY_RIGHT,
-            user_input.KEY_7: user_input.KEY_6,
-            user_input.KEY_6: user_input.KEY_7,
+            keycode.KEY_UP: keycode.KEY_DOWN,
+            keycode.KEY_DOWN: keycode.KEY_UP,
+            keycode.KEY_RIGHT: keycode.KEY_LEFT,
+            keycode.KEY_LEFT: keycode.KEY_RIGHT,
+            keycode.KEY_7: keycode.KEY_6,
+            keycode.KEY_6: keycode.KEY_7,
         }
 
 
@@ -201,12 +201,12 @@ class TeleopMocap:
 
     def reset_keys(self):
         self.keys = {
-            user_input.KEY_UP: False,
-            user_input.KEY_DOWN: False,
-            user_input.KEY_RIGHT: False,
-            user_input.KEY_LEFT: False,
-            user_input.KEY_7: False,
-            user_input.KEY_6: False,
+            keycode.KEY_UP: False,
+            keycode.KEY_DOWN: False,
+            keycode.KEY_RIGHT: False,
+            keycode.KEY_LEFT: False,
+            keycode.KEY_7: False,
+            keycode.KEY_6: False,
         }
 
 
