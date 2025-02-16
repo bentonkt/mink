@@ -1,7 +1,7 @@
 import mujoco
 import numpy as np
+from . import keycodes
 from functools import partial
-from mujoco import KeyCode as keycode
 
 class TeleopMocap:
     """
@@ -17,39 +17,39 @@ class TeleopMocap:
         self.data = data
         self.reset_state()
         self.actions = {
-            keycode.KEY_N: self.toggle_manual,  # n: toggle non-manual mode
-            keycode.KEY_PERIOD: self.toggle_rotation,  # .: toggle rotation mode
-            keycode.KEY_8: self.toggle_mocap,  # 8: toggle mocap data
-            keycode.KEY_EQUAL: partial(self.toggle_speed, 1),  # =/+: increase speed
-            keycode.KEY_MINUS: partial(self.toggle_speed, -1),  # -: decrease speed
-            keycode.KEY_UP: partial(self.movement_select, keycode.KEY_UP, 0, 1),  # Up arrow
-            keycode.KEY_DOWN: partial(self.movement_select, keycode.KEY_DOWN, 0, -1),  # Down arrow
-            keycode.KEY_RIGHT: partial(self.movement_select, keycode.KEY_RIGHT, 1, 1),  # Right arrow
-            keycode.KEY_LEFT: partial(self.movement_select, keycode.KEY_LEFT, 1, -1),  # Left arrow
-            keycode.KEY_7: partial(self.movement_select, keycode.KEY_7, 2, 1),  # 6
-            keycode.KEY_6: partial(self.movement_select, keycode.KEY_6, 2, -1),  # 7
+            keycodes.KEY_N: self.toggle_manual,  # n: toggle non-manual mode
+            keycodes.KEY_PERIOD: self.toggle_rotation,  # .: toggle rotation mode
+            keycodes.KEY_8: self.toggle_mocap,  # 8: toggle mocap data
+            keycodes.KEY_EQUAL: partial(self.toggle_speed, 1),  # =/+: increase speed
+            keycodes.KEY_MINUS: partial(self.toggle_speed, -1),  # -: decrease speed
+            keycodes.KEY_UP: partial(self.movement_select, keycodes.KEY_UP, 0, 1),  # Up arrow
+            keycodes.KEY_DOWN: partial(self.movement_select, keycodes.KEY_DOWN, 0, -1),  # Down arrow
+            keycodes.KEY_RIGHT: partial(self.movement_select, keycodes.KEY_RIGHT, 1, 1),  # Right arrow
+            keycodes.KEY_LEFT: partial(self.movement_select, keycodes.KEY_LEFT, 1, -1),  # Left arrow
+            keycodes.KEY_7: partial(self.movement_select, keycodes.KEY_7, 2, 1),  # 6
+            keycodes.KEY_6: partial(self.movement_select, keycodes.KEY_6, 2, -1),  # 7
         }
         self.movements = {
-            keycode.KEY_UP: partial(self.movement_select, -1, 0, 1),  # Up arrow
-            keycode.KEY_DOWN: partial(self.movement_select, -1, 0, -1),  # Down arrow
-            keycode.KEY_RIGHT: partial(self.movement_select, -1, 1, 1),  # Right arrow
-            keycode.KEY_LEFT: partial(self.movement_select, -1, 1, -1),  # Left arrow
-            keycode.KEY_7: partial(self.movement_select, -1, 2, 1),  # 6
-            keycode.KEY_6: partial(self.movement_select, -1, 2, -1),  # 7
+            keycodes.KEY_UP: partial(self.movement_select, -1, 0, 1),  # Up arrow
+            keycodes.KEY_DOWN: partial(self.movement_select, -1, 0, -1),  # Down arrow
+            keycodes.KEY_RIGHT: partial(self.movement_select, -1, 1, 1),  # Right arrow
+            keycodes.KEY_LEFT: partial(self.movement_select, -1, 1, -1),  # Left arrow
+            keycodes.KEY_7: partial(self.movement_select, -1, 2, 1),  # 6
+            keycodes.KEY_6: partial(self.movement_select, -1, 2, -1),  # 7
         }
         self.opposite_keys = {
-            keycode.KEY_UP: keycode.KEY_DOWN,
-            keycode.KEY_DOWN: keycode.KEY_UP,
-            keycode.KEY_RIGHT: keycode.KEY_LEFT,
-            keycode.KEY_LEFT: keycode.KEY_RIGHT,
-            keycode.KEY_7: keycode.KEY_6,
-            keycode.KEY_6: keycode.KEY_7,
+            keycodes.KEY_UP: keycodes.KEY_DOWN,
+            keycodes.KEY_DOWN: keycodes.KEY_UP,
+            keycodes.KEY_RIGHT: keycodes.KEY_LEFT,
+            keycodes.KEY_LEFT: keycodes.KEY_RIGHT,
+            keycodes.KEY_7: keycodes.KEY_6,
+            keycodes.KEY_6: keycodes.KEY_7,
         }
 
 
     def __call__(self, key):
         # Toggle teleop on/off
-        if key == 57:  # 9
+        if key == keycodes.KEY_9:  # 9
             self.toggle_on()
             return
 
@@ -201,12 +201,12 @@ class TeleopMocap:
 
     def reset_keys(self):
         self.keys = {
-            keycode.KEY_UP: False,
-            keycode.KEY_DOWN: False,
-            keycode.KEY_RIGHT: False,
-            keycode.KEY_LEFT: False,
-            keycode.KEY_7: False,
-            keycode.KEY_6: False,
+            keycodes.KEY_UP: False,
+            keycodes.KEY_DOWN: False,
+            keycodes.KEY_RIGHT: False,
+            keycodes.KEY_LEFT: False,
+            keycodes.KEY_7: False,
+            keycodes.KEY_6: False,
         }
 
 

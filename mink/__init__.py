@@ -43,8 +43,8 @@ from .utils import (
     get_subtree_geom_ids,
     move_mocap_to_frame,
 )
-from .keyboard import TeleopMocap
-from .keycodes import KeyCode
+from .teleop_mocap import TeleopMocap
+from . import keycodes
 __all__ = (
     "ComTask",
     "Configuration",
@@ -85,5 +85,5 @@ __all__ = (
     "get_body_geom_ids",
     "get_subtree_body_ids",
     "TeleopMocap",
-    "KeyCode",
+    "keycodes",
 )

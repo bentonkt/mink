@@ -81,7 +81,6 @@ if __name__ == "__main__":
         # Initialize the mocap target at the end-effector site.
         mink.move_mocap_to_frame(model, data, "target", "attachment_site", "site")
 
-
         rate = RateLimiter(frequency=500.0, warn=False)
         while viewer.is_running():
             # Update task target.
