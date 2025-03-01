@@ -13,6 +13,7 @@ from .frame_task import FrameTask
 from .posture_task import PostureTask
 from .relative_frame_task import RelativeFrameTask
 from .task import Objective, Task
+from .constraint_task import ConstraintsTask
 
 __all__ = (
     "ComTask",
@@ -27,4 +28,5 @@ __all__ = (
     "TaskDefinitionError",
     "InvalidGain",
     "InvalidDamping",
+    "ConstraintsTask",
 )
