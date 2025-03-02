@@ -3,6 +3,7 @@ from typing import Optional, Sequence
 
 import mujoco
 import mujoco.viewer
+import contrib
 import numpy as np
 from loop_rate_limiters import RateLimiter
 
@@ -122,7 +123,7 @@ if __name__ == "__main__":
     max_iters = 5
 
     # Initialize key_callback function.
-    key_callback = mink.TeleopMocap(data)
+    key_callback = contrib.TeleopMocap(data)
 
     with mujoco.viewer.launch_passive(
         model=model, data=data,

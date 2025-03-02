@@ -43,8 +43,7 @@ from .utils import (
     get_subtree_geom_ids,
     move_mocap_to_frame,
 )
-from .teleop_mocap import TeleopMocap
-from . import keycodes
+
 __all__ = (
     "ComTask",
     "Configuration",
