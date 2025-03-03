@@ -66,12 +66,16 @@ if __name__ == "__main__":
     pos_threshold = 1e-4
     ori_threshold = 1e-4
     max_iters = 20
-    
+
     # Initialize key_callback function.
     key_callback = TeleopMocap(data)
 
     with mujoco.viewer.launch_passive(
-        model=model, data=data, show_left_ui=False, show_right_ui=False, key_callback=key_callback
+        model=model,
+        data=data,
+        show_left_ui=False,
+        show_right_ui=False,
+        key_callback=key_callback,
     ) as viewer:
         mujoco.mjv_defaultFreeCamera(model, viewer.cam)
 

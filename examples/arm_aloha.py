@@ -126,9 +126,11 @@ if __name__ == "__main__":
     key_callback = TeleopMocap(data)
 
     with mujoco.viewer.launch_passive(
-        model=model, data=data,
-        show_left_ui=False, show_right_ui=False, 
-        key_callback=key_callback
+        model=model,
+        data=data,
+        show_left_ui=False,
+        show_right_ui=False,
+        key_callback=key_callback,
     ) as viewer:
         mujoco.mjv_defaultFreeCamera(model, viewer.cam)
 

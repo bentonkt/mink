@@ -8,6 +8,10 @@ from .constants import (
     FRAME_TO_XMAT_ATTR,
     SUPPORTED_FRAMES,
 )
+from .contrib import (
+    TeleopMocap,
+    keycodes,
+)
 from .exceptions import (
     InvalidFrame,
     InvalidKeyframe,
@@ -43,7 +47,6 @@ from .utils import (
     get_subtree_geom_ids,
     move_mocap_to_frame,
 )
-import mink.contrib
 
 __all__ = (
     "ComTask",
