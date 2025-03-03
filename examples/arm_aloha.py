@@ -3,11 +3,11 @@ from typing import Optional, Sequence
 
 import mujoco
 import mujoco.viewer
-import contrib
 import numpy as np
 from loop_rate_limiters import RateLimiter
 
 import mink
+from mink.contrib import TeleopMocap
 
 _HERE = Path(__file__).parent
 _XML = _HERE / "aloha" / "scene.xml"
@@ -123,7 +123,7 @@ if __name__ == "__main__":
     max_iters = 5
 
     # Initialize key_callback function.
-    key_callback = contrib.TeleopMocap(data)
+    key_callback = TeleopMocap(data)
 
     with mujoco.viewer.launch_passive(
         model=model, data=data,

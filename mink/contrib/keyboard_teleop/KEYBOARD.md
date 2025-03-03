@@ -72,7 +72,7 @@ with mujoco.viewer.launch_passive(
 
 ---
 
-## Bottlenecks
+## Limitations
 `Mink` uses the `mujoco.viewer.launch_passive()` for visualization and maintaining the simulation loop.  
 To pass keyboard callbacks, we have to pass a callback function `key_callback(key)` as an argument to the `launch_passive()`.  
 However, this has several limitations:

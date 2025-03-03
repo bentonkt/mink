@@ -43,6 +43,7 @@ from .utils import (
     get_subtree_geom_ids,
     move_mocap_to_frame,
 )
+import mink.contrib
 
 __all__ = (
     "ComTask",
@@ -83,6 +84,4 @@ __all__ = (
     "get_subtree_geom_ids",
     "get_body_geom_ids",
     "get_subtree_body_ids",
-    "TeleopMocap",
-    "keycodes",
 )

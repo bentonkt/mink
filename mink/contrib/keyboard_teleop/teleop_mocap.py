@@ -1,17 +1,20 @@
+from functools import partial
+
 import mujoco
 import numpy as np
+
 from . import keycodes
-from functools import partial
+
 
 class TeleopMocap:
     """
     Class to handle keyboard input for teleoperation.
     The class provides methods to toggle teleoperation on/off,
     switch between manual and non-manual modes,
-    adjust step sizes / speed for movement and rotation, 
+    adjust step sizes / speed for movement and rotation,
     and select movements based on key presses.
     """
-    
+
     def __init__(self, data):
         self.on = False
         self.data = data
@@ -22,10 +25,18 @@ class TeleopMocap:
             keycodes.KEY_8: self.toggle_mocap,  # 8: toggle mocap data
             keycodes.KEY_EQUAL: partial(self.toggle_speed, 1),  # =/+: increase speed
             keycodes.KEY_MINUS: partial(self.toggle_speed, -1),  # -: decrease speed
-            keycodes.KEY_UP: partial(self.movement_select, keycodes.KEY_UP, 0, 1),  # Up arrow
-            keycodes.KEY_DOWN: partial(self.movement_select, keycodes.KEY_DOWN, 0, -1),  # Down arrow
-            keycodes.KEY_RIGHT: partial(self.movement_select, keycodes.KEY_RIGHT, 1, 1),  # Right arrow
-            keycodes.KEY_LEFT: partial(self.movement_select, keycodes.KEY_LEFT, 1, -1),  # Left arrow
+            keycodes.KEY_UP: partial(
+                self.movement_select, keycodes.KEY_UP, 0, 1
+            ),  # Up arrow
+            keycodes.KEY_DOWN: partial(
+                self.movement_select, keycodes.KEY_DOWN, 0, -1
+            ),  # Down arrow
+            keycodes.KEY_RIGHT: partial(
+                self.movement_select, keycodes.KEY_RIGHT, 1, 1
+            ),  # Right arrow
+            keycodes.KEY_LEFT: partial(
+                self.movement_select, keycodes.KEY_LEFT, 1, -1
+            ),  # Left arrow
             keycodes.KEY_7: partial(self.movement_select, keycodes.KEY_7, 2, 1),  # 6
             keycodes.KEY_6: partial(self.movement_select, keycodes.KEY_6, 2, -1),  # 7
         }
@@ -46,7 +57,6 @@ class TeleopMocap:
             keycodes.KEY_6: keycodes.KEY_7,
         }
 
-
     def __call__(self, key):
         # Toggle teleop on/off
         if key == keycodes.KEY_9:  # 9
@@ -60,7 +70,6 @@ class TeleopMocap:
         if key in self.actions:
             self.actions[key]()
 
-
     def auto_key_move(self):
         """
         Automatically move the mocap body based on key presses.
@@ -72,7 +81,6 @@ class TeleopMocap:
         for key, action in self.movements.items():
             if self.keys[key]:
                 action()
-
 
     def movement_select(self, key, axis, direction):
         """
@@ -87,7 +95,6 @@ class TeleopMocap:
         elif self.manual:
             self.rot_or_trans(key, axis, direction)
 
-
     def rot_or_trans(self, key, axis, direction):
         """
         Adjust the position or rotation of the mocap body based on rotation mode.
@@ -97,7 +104,6 @@ class TeleopMocap:
             self.adjust_rotation(key, axis, direction)
         else:
             self.adjust_position(key, axis, direction)
-
 
     def adjust_position(self, key, axis, direction):
         """
@@ -113,7 +119,6 @@ class TeleopMocap:
         step_size = self.m_step_size if self.manual else self.nm_step_size
         self.data.mocap_pos[self.mocap_idx] += direction * step_size * unit_vec
 
-
     def adjust_rotation(self, key, axis, direction):
         """
         Adjust the rotation of the mocap body in the specified direction
@@ -121,10 +126,9 @@ class TeleopMocap:
         """
 
         step_size = self.m_rotation_step if self.manual else self.nm_rotation_step
-        self.data.mocap_quat[self.mocap_idx] = self.rotate_quaternion(self.data.mocap_quat[self.mocap_idx], 
-                                                         axis, 
-                                                         direction * step_size)
-
+        self.data.mocap_quat[self.mocap_idx] = self.rotate_quaternion(
+            self.data.mocap_quat[self.mocap_idx], axis, direction * step_size
+        )
 
     def rotate_quaternion(self, quat, axis, angle):
         """
@@ -139,22 +143,20 @@ class TeleopMocap:
         elif axis == 1:
             unit_axis[1] = 1.0
         elif axis == 2:
-            unit_axis[2] = 1.0 
+            unit_axis[2] = 1.0
 
         angle_rad = np.deg2rad(angle)
         unit_axis = unit_axis / np.linalg.norm(unit_axis)
         mujoco.mju_axisAngle2Quat(rot, unit_axis, angle_rad)
         mujoco.mju_mulQuat(result, rot, quat)
         return result
-    
-    
+
     def toggle_on(self):
         self.on = not self.on
         state = "On" if self.on else "Off"
         print(f"Keyboard Teleoperation toggled: {state}!")
         self.reset_state()
         print()
-
 
     def toggle_manual(self):
         self.manual = not self.manual
@@ -163,14 +165,12 @@ class TeleopMocap:
         self.reset_keys()
         print()
 
-
     def toggle_rotation(self):
         self.rotation = not self.rotation
         state = "On" if self.rotation else "Off"
         print(f"Rotation mode toggled: {state}!")
         self.reset_keys()
         print()
-
 
     def toggle_speed(self, direction):
         factor = 1.10 if direction == 1 else 0.9
@@ -184,7 +184,7 @@ class TeleopMocap:
                 self.nm_rotation_step *= factor
             else:
                 self.nm_step_size *= factor
-        
+
         output = "Manual" if self.manual else "Non-manual"
         mode = "Rotation" if self.rotation else "Translation"
         if self.manual:
@@ -193,11 +193,11 @@ class TeleopMocap:
             step_size = self.nm_rotation_step if self.rotation else self.nm_step_size
         print(f"{output} {mode} step size: {step_size:.8f}")
 
-    
     def toggle_mocap(self):
-        self.mocap_idx = (self.mocap_idx + 1) % self.data.mocap_pos.shape[0] # cycle through mocap data
+        self.mocap_idx = (self.mocap_idx + 1) % self.data.mocap_pos.shape[
+            0
+        ]  # cycle through mocap data
         print(f"Current mocap index: {self.mocap_idx}")
-
 
     def reset_keys(self):
         self.keys = {
@@ -209,14 +209,12 @@ class TeleopMocap:
             keycodes.KEY_6: False,
         }
 
-
     def reset_step_size(self):
         self.m_step_size = 0.01  # manual step size
         self.m_rotation_step = 10  # manual rotation step
         self.nm_step_size = 1e-4  # non-manual step size
         self.nm_rotation_step = 5e-2  # non-manual rotation step
         print("Step sizes have been reset!")
-
 
     def reset_state(self):
         self.reset_keys()
