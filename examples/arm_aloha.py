@@ -7,6 +7,7 @@ import numpy as np
 from loop_rate_limiters import RateLimiter
 
 import mink
+from mink.contrib import TeleopMocap
 
 _HERE = Path(__file__).parent
 _XML = _HERE / "aloha" / "scene.xml"
@@ -121,8 +122,15 @@ if __name__ == "__main__":
     ori_threshold = 5e-3
     max_iters = 5
 
+    # Initialize key_callback function.
+    key_callback = TeleopMocap(data)
+
     with mujoco.viewer.launch_passive(
-        model=model, data=data, show_left_ui=False, show_right_ui=False
+        model=model,
+        data=data,
+        show_left_ui=False,
+        show_right_ui=False,
+        key_callback=key_callback,
     ) as viewer:
         mujoco.mjv_defaultFreeCamera(model, viewer.cam)
 
@@ -141,6 +149,9 @@ if __name__ == "__main__":
             # Update task targets.
             l_ee_task.set_target(mink.SE3.from_mocap_name(model, data, "left/target"))
             r_ee_task.set_target(mink.SE3.from_mocap_name(model, data, "right/target"))
+
+            # Continuously check for autonomous key movement.
+            key_callback.auto_key_move()
 
             # Compute velocity and integrate into the next configuration.
             for i in range(max_iters):
