@@ -27,6 +27,29 @@ class TestCollisionAvoidanceLimit(absltest.TestCase):
         self.configuration = Configuration(self.model)
         self.configuration.update_from_keyframe("home")
 
+    def test_geom_pairs_strings(self):
+        xml_str = """
+        <mujoco>
+          <worldbody>
+            <body>
+              <joint type="ball" name="ball"/>
+              <geom name="g1" type="sphere" size=".1" mass=".1"/>
+              <body>
+                <joint type="hinge" name="hinge" range="0 1.57"/>
+                <geom name="g2" type="sphere" size=".1" mass=".1"/>
+              </body>
+            </body>
+            <body>
+              <joint type="hinge" name="hinge2" range="0 1.57"/>
+              <geom name="g3" type="sphere" size=".1" mass=".1"/>
+            </body>
+          </worldbody>
+        </mujoco>
+        """
+        model = mujoco.MjModel.from_xml_string(xml_str)
+        limit = CollisionAvoidanceLimit(model=model, geom_pairs=[(["g1"], ["g3"])])
+        self.assertListEqual(limit.geom_id_pairs, [(0, 2)])
+
     def test_dimensions(self):
         g1 = get_body_geom_ids(self.model, self.model.body("wrist_2_link").id)
         g2 = get_body_geom_ids(self.model, self.model.body("upper_arm_link").id)
