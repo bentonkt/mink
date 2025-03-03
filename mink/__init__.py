@@ -15,7 +15,6 @@ from .exceptions import (
     MinkError,
     NotWithinConfigurationLimits,
     UnsupportedFrame,
-    InvalidJointName,
 )
 from .lie import SE3, SO3, MatrixLieGroup
 from .limits import (
@@ -71,7 +70,6 @@ __all__ = (
     "NotWithinConfigurationLimits",
     "TargetNotSet",
     "InvalidMocapBody",
-    "InvalidJointName",
     "SUPPORTED_FRAMES",
     "FRAME_TO_ENUM",
     "FRAME_TO_JAC_FUNC",
