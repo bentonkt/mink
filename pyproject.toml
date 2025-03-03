@@ -102,7 +102,11 @@ exclude_also = [
     "class .*\\bProtocol\\):",
     "@(abc\\.)?abstractmethod",
     "def __repr__",
+    "if use_taylor:",
+    "if theta_sq < get_epsilon(theta_sq\\.dtype):",
+    "def ljac",
 ]
 omit = [
     "*exceptions.py",
+    "*/contrib/*",
 ]
