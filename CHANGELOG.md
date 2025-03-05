@@ -19,6 +19,7 @@ All notable changes to this project will be documented in this file.
 
 - Improved ALOHA example script.
 - Fixed a small bug in the exit criterion of the ALOHA example script.
+- Updated Stretch example to work with MuJoCo >= 3.3.0.
 
 ## [0.0.5] - 2024-09-27
 
