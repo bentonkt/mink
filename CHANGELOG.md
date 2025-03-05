@@ -9,10 +9,9 @@ All notable changes to this project will be documented in this file.
 ### Added
 
 - `Configuration.check_limits` now logs joint limit violations to `debug` rather than `warn` when `safety_break=False`.
-- Added a new humanoid example using the Apollo robot.
 - Added `utils.get_subtree_body_ids` to get all bodies belonging to the subtree starting at a given body.
   - Example usage of this function can be found in the [ALOHA example script](examples/arm_aloha.py) where it is used to selectively apply gravity compensation torques to the left and right arm bodies.
-- Add new G1 example with a tabletop manipulation focus.
+- Add G1 and Apollo humanoid example with a tabletop manipulation focus.
 
 ![Banner for mink](https://github.com/kevinzakka/mink/blob/assets/g1_teleop.gif?raw=true)
 

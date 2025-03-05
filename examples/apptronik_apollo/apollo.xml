@@ -1,5 +1,5 @@
 <mujoco model="apptronik_apollo">
-  <compiler angle="radian" meshdir="assets/" texturedir="assets/"/>
+  <compiler angle="radian" meshdir="assets/"/>
 
   <option timestep="0.005" integrator="implicitfast"/>
 
@@ -25,7 +25,7 @@
       </default>
     </default>
     <default class="collision">
-      <geom group="3" rgba="0 1 0 0.4"/>
+      <geom group="3" rgba="0 1 0 0.4" contype="1" conaffinity="1"/>
     </default>
   </default>
 
@@ -168,7 +168,8 @@
                           <geom name="pinky_mesh_2" class="visual_dark" pos="-0.0330569 -0.0546993 -0.167156" quat="-0.0657942 -0.683567 0.00142601 0.726915" mesh="idx-F2"/>
                           <geom name="thumb_mesh_1" class="visual_dark" pos="0.0240477 -0.0463856 -0.0695448" quat="-0.986553 0.125649 -0.0560269 -0.0882391" mesh="thumb-F1"/>
                           <geom name="thumb_mesh_2" class="visual_dark" pos="0.0499644 -0.0457352 -0.0874305" quat="0.500891 -0.859176 -0.0358978 0.0981657" mesh="thumb-F2-left"/>
-                          <geom name="collision_l_hand_plate" class="collision" size="0.041 0.02 0.083" pos="0.00749988 -0.025 -0.112" type="box"/>
+                          <!-- <geom name="collision_l_hand_plate" class="collision" size="0.041 0.02 0.083" pos="0.00749988 -0.025 -0.112" type="box"/> -->
+                          <geom name="collision_l_hand_plate" class="collision" size="0.055 0.083" pos="0.00749988 -0.04 -0.112" type="capsule"/>
                           <site name="left_palm" pos="0 -0.05 -.08"/>
                         </body>
                       </body>
@@ -222,7 +223,7 @@
                           <geom class="visual_dark" pos="-0.0330568 0.0546993 -0.167156" quat="0.683567 0.0657951 0.726915 0.00142511" mesh="idx-F2"/>
                           <geom class="visual_dark" pos="0.0240477 0.0463855 -0.0695448" quat="-0.125649 0.986553 -0.0882404 -0.0560268" mesh="thumb-F1-MIR"/>
                           <geom class="visual_dark" pos="0.0499644 0.0457351 -0.0874305" quat="-0.859175 0.500891 -0.0981665 0.0358989" mesh="thumb-F2-right"/>
-                          <geom name="collision_r_hand_plate" class="collision" size="0.041 0.02 0.083" pos="0.00749988 0.025 -0.112" type="box"/>
+                          <geom name="collision_r_hand_plate" class="collision" size="0.055 0.083" pos="0.00749988 0.04 -0.112" type="capsule"/>
                           <site name="right_palm" pos="0 0.05 -.08"/>
                         </body>
                       </body>
