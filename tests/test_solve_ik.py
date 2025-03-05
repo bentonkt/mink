@@ -33,7 +33,7 @@ class TestSolveIK(absltest.TestCase):
     def test_checks_configuration_limits(self):
         """IK checks for configuration limits."""
         q = self.model.key("home").qpos.copy()
-        q[0] = np.inf
+        q[0] = self.model.jnt_range[0, 1] + 0.1
         self.configuration.update(q)
         with self.assertRaises(mink.NotWithinConfigurationLimits):
             mink.solve_ik(
@@ -48,7 +48,7 @@ class TestSolveIK(absltest.TestCase):
     def test_ignores_configuration_limits(self):
         """IK ignores configuration limits if flag is set."""
         q = self.model.key("home").qpos.copy()
-        q[0] = np.inf
+        q[0] = self.model.jnt_range[0, 1] + 0.1
         self.configuration.update(q)
         mink.solve_ik(
             self.configuration,
