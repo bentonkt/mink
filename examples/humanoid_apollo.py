@@ -110,7 +110,6 @@ if __name__ == "__main__":
         minimum_distance_from_collisions=0.05,
         collision_detection_distance=0.1,
     )
-    print(collision_avoidance_limit.geom_id_pairs)
     limits = [
         mink.ConfigurationLimit(model),
         collision_avoidance_limit,

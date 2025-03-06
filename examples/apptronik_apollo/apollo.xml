@@ -110,7 +110,7 @@
               <site name="head" pos="0 0 .3" size="0.02"/>
               <inertial pos="-0.0110616 0.000438589 0.066541" quat="0.715974 -0.0707674 -0.0795701 0.689958" mass="0.707753" diaginertia="0.00278981 0.002738 0.00071974"/>
               <joint name="neck_yaw" pos="0 0 0" axis="0 0 1" range="-1.65806 1.65806" actuatorfrcrange="-10.6 10.6" armature="0.0368" damping="10"/>
-              <geom class="visual_dark" mesh="neck_yaw_link"/>
+              <geom name="neck_yaw_geom" class="visual_dark" mesh="neck_yaw_link"/>
               <body name="neck_roll_link" pos="-0.025 0 0.2" quat="1.32679e-06 -1 0 0">
                 <inertial pos="9.66662e-05 -0.000233736 -0.000463806" quat="0.000426355 0.703652 0.00178423 0.710542" mass="0.0189001" diaginertia="1.89727e-06 1.24254e-06 1.0322e-06"/>
                 <joint name="neck_roll" pos="0 0 0" axis="1 0 0" range="-0.785398 0.785398" actuatorfrcrange="-34.2 34.2" armature="0.00305531" damping="10"/>

@@ -2,12 +2,29 @@ from pathlib import Path
 
 import mujoco
 import mujoco.viewer
+import numpy as np
 from loop_rate_limiters import RateLimiter
 
 import mink
 
 _HERE = Path(__file__).parent
 _XML = _HERE / "unitree_go1" / "scene.xml"
+
+
+def cubic_bezier_interpolation(y_start, y_end, x):
+    y_diff = y_end - y_start
+    bezier = x**3 + 3 * (x**2 * (1 - x))
+    return y_start + y_diff * bezier
+
+
+def get_foot_z(phi: np.ndarray, swing_height: float = 0.08) -> np.ndarray:
+    x = (phi + np.pi) / (2 * np.pi)  # [0, 1].
+    x = np.clip(x, 0, 1)
+    return np.where(
+        x <= 0.5,
+        cubic_bezier_interpolation(0, swing_height, 2 * x),  # Swing
+        cubic_bezier_interpolation(swing_height, 0, 2 * x - 1),  # Stance
+    )
 
 
 if __name__ == "__main__":
@@ -45,6 +62,13 @@ if __name__ == "__main__":
     data = configuration.data
     solver = "quadprog"
 
+    # Gait parameters.
+    phase = np.array([np.pi, 0, np.pi, 0])
+    swing_height = 0.1  # m.
+    gait_freq = 2.0  # Hz.
+    rate = RateLimiter(frequency=500.0, warn=False)
+    dt = 2 * np.pi * gait_freq * rate.dt
+
     with mujoco.viewer.launch_passive(
         model=model, data=data, show_left_ui=False, show_right_ui=False
     ) as viewer:
@@ -59,18 +83,27 @@ if __name__ == "__main__":
             mink.move_mocap_to_frame(model, data, f"{foot}_target", foot, "site")
         mink.move_mocap_to_frame(model, data, "trunk_target", "trunk", "body")
 
-        rate = RateLimiter(frequency=500.0, warn=False)
+        for i, task in enumerate(feet_tasks):
+            task.set_target(mink.SE3.from_mocap_id(data, feet_mid[i]))
+
+        t = 0.0
         while viewer.is_running():
             # Update task targets.
             base_task.set_target(mink.SE3.from_mocap_id(data, base_mid))
+
+            phase_i = np.fmod(phase + t + np.pi, 2 * np.pi) - np.pi
+            z = get_foot_z(phase_i, swing_height)
+            for i in range(4):
+                data.mocap_pos[feet_mid[i], 2] = z[i]
             for i, task in enumerate(feet_tasks):
                 task.set_target(mink.SE3.from_mocap_id(data, feet_mid[i]))
 
             # Compute velocity, integrate and set control signal.
-            vel = mink.solve_ik(configuration, tasks, rate.dt, solver, 1e-5)
+            vel = mink.solve_ik(configuration, tasks, dt, solver, 1e-5)
             configuration.integrate_inplace(vel, rate.dt)
             mujoco.mj_camlight(model, data)
 
             # Visualize at fixed FPS.
             viewer.sync()
             rate.sleep()
+            t += dt
