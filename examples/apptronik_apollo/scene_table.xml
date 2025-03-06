@@ -40,7 +40,7 @@
       <site type="sphere" size="0.01" rgba="0 0 1 1" group="1"/>
     </body>
     <body name="head_target" pos="0.5 0 .5" quat="0 1 0 0" mocap="true">
-      <geom type="sphere" size=".05" contype="0" conaffinity="0" rgba=".6 .3 .3 .2"/>
+      <geom name="head_target" type="sphere" size=".05" contype="0" conaffinity="0" rgba=".6 .3 .3 .2"/>
       <site type="sphere" size="0.01" rgba="0 0 1 1" group="1"/>
     </body>
   </worldbody>
@@ -54,5 +54,6 @@
     <fromto geom1="collision_l_hand_plate" geom2="table" cutoff="1"/>
     <fromto geom1="collision_r_hand_plate" geom2="collision_capsule_body_r_thigh" cutoff="1"/>
     <fromto geom1="collision_l_hand_plate" geom2="collision_capsule_body_l_thigh" cutoff="1"/>
+    <!-- <fromto geom1="neck_yaw_geom" geom2="head_target" cutoff="3"/> -->
   </sensor>
 </mujoco>
