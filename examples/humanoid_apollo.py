@@ -2,8 +2,8 @@ from pathlib import Path
 
 import mujoco
 import mujoco.viewer
-from loop_rate_limiters import RateLimiter
 import numpy as np
+from loop_rate_limiters import RateLimiter
 
 import mink
 

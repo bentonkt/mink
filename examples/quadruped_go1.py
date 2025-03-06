@@ -63,11 +63,12 @@ if __name__ == "__main__":
     solver = "quadprog"
 
     # Gait parameters.
-    phase = np.array([np.pi, 0, np.pi, 0])
+    # Initial phase offsets for each foot
+    foot_phases = np.array([np.pi, 0, np.pi, 0])
     swing_height = 0.1  # m.
-    gait_freq = 2.0  # Hz.
+    gait_freq = 1.5  # Hz.
     rate = RateLimiter(frequency=500.0, warn=False)
-    dt = 2 * np.pi * gait_freq * rate.dt
+    phase_dt = 2 * np.pi * gait_freq * rate.dt
 
     with mujoco.viewer.launch_passive(
         model=model, data=data, show_left_ui=False, show_right_ui=False
@@ -83,27 +84,40 @@ if __name__ == "__main__":
             mink.move_mocap_to_frame(model, data, f"{foot}_target", foot, "site")
         mink.move_mocap_to_frame(model, data, "trunk_target", "trunk", "body")
 
-        for i, task in enumerate(feet_tasks):
-            task.set_target(mink.SE3.from_mocap_id(data, feet_mid[i]))
+        # Store initial relative positions of feet to the base.
+        initial_feet_offsets = []
+        for i in range(4):
+            offset = data.mocap_pos[feet_mid[i], :2] - data.mocap_pos[base_mid, :2]
+            initial_feet_offsets.append(offset)
 
-        t = 0.0
+        time = 0.0
         while viewer.is_running():
             # Update task targets.
+            # Make the base x-y track a circle.
+            base_pos = np.array([0.5 * np.cos(time), 0.5 * np.sin(time)])
+            data.mocap_pos[base_mid, :2] = base_pos
+
             base_task.set_target(mink.SE3.from_mocap_id(data, base_mid))
 
-            phase_i = np.fmod(phase + t + np.pi, 2 * np.pi) - np.pi
-            z = get_foot_z(phase_i, swing_height)
+            # Get foot height based on current phase
+            z = get_foot_z(foot_phases, swing_height)
             for i in range(4):
+                # Use the stored offsets to maintain relative foot positions
+                data.mocap_pos[feet_mid[i], :2] = base_pos + initial_feet_offsets[i]
                 data.mocap_pos[feet_mid[i], 2] = z[i]
             for i, task in enumerate(feet_tasks):
                 task.set_target(mink.SE3.from_mocap_id(data, feet_mid[i]))
 
             # Compute velocity, integrate and set control signal.
-            vel = mink.solve_ik(configuration, tasks, dt, solver, 1e-5)
+            vel = mink.solve_ik(configuration, tasks, rate.dt, solver, 1e-5)
             configuration.integrate_inplace(vel, rate.dt)
             mujoco.mj_camlight(model, data)
 
             # Visualize at fixed FPS.
             viewer.sync()
             rate.sleep()
-            t += dt
+            time += rate.dt
+
+            # Increment phase.
+            foot_phases = (foot_phases + phase_dt) % (2 * np.pi)
+            foot_phases = foot_phases - np.where(foot_phases > np.pi, 2 * np.pi, 0)
