@@ -34,6 +34,7 @@ from .tasks import (
     RelativeFrameTask,
     TargetNotSet,
     Task,
+    EqualityConstraintTask,
 )
 from .utils import (
     custom_configuration_vector,
@@ -54,6 +55,7 @@ __all__ = (
     "RelativeFrameTask",
     "PostureTask",
     "Task",
+    "EqualityConstraintTask",
     "Objective",
     "ConfigurationLimit",
     "VelocityLimit",

@@ -25,3 +25,7 @@ class InvalidGain(MinkError):
 
 class InvalidDamping(MinkError):
     """Exception raised when the damping is outside the valid range."""
+
+
+class InvalidConstraint(MinkError):
+    """Exception raised when a constraint is invalid."""

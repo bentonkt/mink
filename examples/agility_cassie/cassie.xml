@@ -6,6 +6,7 @@
   <!-- Larger values still have stable dynamics -->
 
   <default>
+    <joint frictionloss=".1"/>
     <geom contype="0" conaffinity="0" condim="1" solref="0.005 1"/>
     <equality solref="0.005 1"/>
     <default class="cassie">
@@ -225,10 +226,10 @@
   </worldbody>
 
   <equality>
-    <connect body1="left-plantar-rod" body2="left-foot" anchor="0.35012 0 0"/>
-    <connect body1="left-achilles-rod" body2="left-heel-spring" anchor="0.5012 0 0"/>
-    <connect body1="right-plantar-rod" body2="right-foot" anchor="0.35012 0 0"/>
-    <connect body1="right-achilles-rod" body2="right-heel-spring" anchor="0.5012 0 0"/>
+    <connect name="left-plantar-rod-left-foot" body1="left-plantar-rod" body2="left-foot" anchor="0.35012 0 0"/>
+    <connect name="left-achilles-rod-left-heel-spring" body1="left-achilles-rod" body2="left-heel-spring" anchor="0.5012 0 0"/>
+    <connect name="right-plantar-rod-right-foot" body1="right-plantar-rod" body2="right-foot" anchor="0.35012 0 0"/>
+    <connect name="right-achilles-rod-right-heel-spring" body1="right-achilles-rod" body2="right-heel-spring" anchor="0.5012 0 0"/>
   </equality>
 
   <actuator>
