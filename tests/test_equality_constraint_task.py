@@ -5,7 +5,7 @@ from absl.testing import absltest
 from robot_descriptions.loaders.mujoco import load_robot_description
 
 from mink import Configuration
-from mink.tasks import EqualityConstraintTask, TaskDefinitionError
+from mink.tasks import EqualityConstraintTask, InvalidConstraint, TaskDefinitionError
 
 
 class TestEqualityConstraintTask(absltest.TestCase):
@@ -46,6 +46,34 @@ class TestEqualityConstraintTask(absltest.TestCase):
         with self.assertRaises(TaskDefinitionError) as cm:
             EqualityConstraintTask(model=model, cost=[-1, 2, 3, 4])
         expected_error_message = "EqualityConstraintTask cost must be >= 0"
+        self.assertEqual(str(cm.exception), expected_error_message)
+
+    def test_subset_of_constraints(self):
+        model = load_robot_description("cassie_mj_description")
+        task = EqualityConstraintTask(
+            model=model,
+            cost=[23.0, 17.0],
+            equality_ids=[0, 3],
+        )
+        np.testing.assert_array_equal(
+            task.cost,
+            np.array([23.0, 23.0, 23.0, 17.0, 17.0, 17.0]),
+        )
+
+    def test_subset_of_constraints_with_invalid_name_throws(self):
+        model = load_robot_description("cassie_mj_description")
+        with self.assertRaises(InvalidConstraint) as cm:
+            EqualityConstraintTask(model=model, cost=1.0, equality_ids=["invalid"])
+        expected_error_message = "Equality constraint 'invalid' not found."
+        self.assertEqual(str(cm.exception), expected_error_message)
+
+    def test_subset_of_constraints_with_invalid_index_throws(self):
+        model = load_robot_description("cassie_mj_description")
+        with self.assertRaises(InvalidConstraint) as cm:
+            EqualityConstraintTask(model=model, cost=1.0, equality_ids=[5])
+        expected_error_message = (
+            "Equality constraint index 5 out of range." "Must be in range [0, 4)."
+        )
         self.assertEqual(str(cm.exception), expected_error_message)
 
     def test_zero_error_when_constraint_is_satisfied(self):
