@@ -28,13 +28,13 @@ from .solve_ik import build_ik, solve_ik
 from .tasks import (
     ComTask,
     DampingTask,
+    EqualityConstraintTask,
     FrameTask,
     Objective,
     PostureTask,
     RelativeFrameTask,
     TargetNotSet,
     Task,
-    EqualityConstraintTask,
 )
 from .utils import (
     custom_configuration_vector,

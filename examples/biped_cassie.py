@@ -5,6 +5,7 @@ from pathlib import Path
 import mujoco
 import mujoco.viewer
 from loop_rate_limiters import RateLimiter
+
 import mink
 from mink.lie import SE3
 
@@ -31,7 +32,7 @@ def main():
     # will be regulated.
     equality_task = mink.EqualityConstraintTask(
         model=model,
-        constraint_cost=500.0,
+        cost=500.0,
         gain=0.5,
         lm_damping=1e-3,
     )
