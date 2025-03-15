@@ -53,7 +53,7 @@ class TestEqualityConstraintTask(absltest.TestCase):
         task = EqualityConstraintTask(
             model=model,
             cost=[23.0, 17.0],
-            equality_ids=[0, 3],
+            equalities=[0, 3],
         )
         np.testing.assert_array_equal(
             task.cost,
@@ -63,14 +63,14 @@ class TestEqualityConstraintTask(absltest.TestCase):
     def test_subset_of_constraints_with_invalid_name_throws(self):
         model = load_robot_description("cassie_mj_description")
         with self.assertRaises(InvalidConstraint) as cm:
-            EqualityConstraintTask(model=model, cost=1.0, equality_ids=["invalid"])
+            EqualityConstraintTask(model=model, cost=1.0, equalities=["invalid"])
         expected_error_message = "Equality constraint 'invalid' not found."
         self.assertEqual(str(cm.exception), expected_error_message)
 
     def test_subset_of_constraints_with_invalid_index_throws(self):
         model = load_robot_description("cassie_mj_description")
         with self.assertRaises(InvalidConstraint) as cm:
-            EqualityConstraintTask(model=model, cost=1.0, equality_ids=[5])
+            EqualityConstraintTask(model=model, cost=1.0, equalities=[5])
         expected_error_message = (
             "Equality constraint index 5 out of range." "Must be in range [0, 4)."
         )

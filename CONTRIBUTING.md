@@ -9,3 +9,13 @@ Some ways to contribute to mink:
 - Implement new tasks or constraints.
 
 If any of those sound interesting, open an [issue](https://github.com/kevinzakka/mink/issues) and say you're on it!
+
+## Documentation
+
+If you're adding new functionality to `mink` and want to update the documentation, you can build it and visualize it locally using the following:
+
+```bash
+uv pip install -r docs/requirements.txt
+sphinx-build docs _build -W
+open _build/index.html
+```

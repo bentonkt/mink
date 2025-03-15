@@ -40,30 +40,63 @@ def _get_equality_constraint_indices(
 
 
 class EqualityConstraintTask(Task):
-    """Equality constraint task.
+    """Regulate equality constraints in a model.
+
+    Equality constraints are useful, among other things, for modeling "loop joints"
+    such as four-bar linkages. In MuJoCo, there are several types of equality
+    constraints, including:
+
+    * ``mjEQ_CONNECT``: Connect two bodies at a point (ball joint).
+    * ``mjEQ_WELD``: Fix relative pose of two bodies.
+    * ``mjEQ_JOINT``: couple the values of two scalar joints
+    * ``mjEQ_TENDON``: couple the values of two tendons
+
+    This task can regulate all equality constraints in a model or a specific subset
+    identified by name or ID.
 
     Attributes:
-        equality_name: Name of the equality constraint to regulate. If not provided,
+        equalities: ID or name of the equality constraints to regulate. If not provided,
             the task will regulate all equality constraints in the model.
         cost: Cost vector for the equality constraint task. Either a scalar, in which
             case the same cost is applied to all constraints, or a vector of shape
-            `(neq,)`, where `neq` is the number of equality constraints in the model.
+            ``(neq,)``, where ``neq`` is the number of equality constraints in the
+            model.
+
+    Raises:
+        InvalidConstraint: If a specified equality constraint name or ID is not found.
+        TaskDefinitionError: If no equality constraints are found or if cost parameters
+            have invalid shape or values.
+
+    Example:
+
+    .. code-block:: python
+
+        # Regulate all equality constraints with the same cost.
+        eq_task = EqualityConstraintTask(model, cost=1.0)
+
+        # Regulate specific equality constraints with different costs.
+        eq_task = EqualityConstraintTask(
+            model,
+            cost=[1.0, 0.5],
+            equalities=["connect_right", "connect_left"]
+        )
     """
 
     def __init__(
         self,
         model: mujoco.MjModel,
         cost: npt.ArrayLike,
-        equality_ids: Optional[Sequence[int | str]] = None,
+        equalities: Optional[Sequence[int | str]] = None,
         gain: float = 1.0,
         lm_damping: float = 0.0,
     ):
         self._mask: np.ndarray | None = None  # Active equality constraint mask.
-        self._neq_active = 0  # Number of active equality constraints.
+        self._neq_active: int | None = None  # Number of active equality constraints.
 
-        eq_ids = []
-        if equality_ids is not None:
-            for eq_id_or_name in equality_ids:
+        eq_ids: list[int] = []
+        if equalities is not None:
+            for eq_id_or_name in equalities:
+                eq_id: int
                 if isinstance(eq_id_or_name, str):
                     eq_id = mujoco.mj_name2id(
                         model, mujoco.mjtObj.mjOBJ_EQUALITY, eq_id_or_name
@@ -126,7 +159,10 @@ class EqualityConstraintTask(Task):
             configuration: Robot configuration :math:`q`.
 
         Returns:
-            Equality constraint task error vector :math:`e(q)`.
+            Equality constraint task error vector :math:`e(q)`. The shape of the
+            error vector is ``(neq_active * constraint_dim,)``, where ``neq_active``
+            is the number of active equality constraints, and ``constraint_dim``
+            depends on the type of equality constraint.
         """
         self._update_constraint_info(configuration)
         return configuration.data.efc_pos[self._mask]
@@ -138,7 +174,11 @@ class EqualityConstraintTask(Task):
             configuration: Robot configuration :math:`q`.
 
         Returns:
-            Equality constraint task jacobian :math:`J(q)`.
+            Equality constraint task jacobian :math:`J(q)`. The shape of the Jacobian
+            is ``(neq_active * constraint_dim, nv)``, where ``neq_active`` is the
+            number of active equality constraints, ``constraint_dim`` depends on the
+            type of equality constraint, and ``nv`` is the dimension of the tangent
+            space.
         """
         self._update_constraint_info(configuration)
         data = configuration.data
