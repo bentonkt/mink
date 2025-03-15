@@ -38,3 +38,10 @@ Damping task
 
 .. automodule:: mink.tasks.damping_task
     :members:
+
+
+Equality constraint task
+========================
+
+.. automodule:: mink.tasks.equality_constraint_task
+    :members:
