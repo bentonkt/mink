@@ -24,14 +24,6 @@ def _get_constraint_dim(constraint: int) -> int:
     }[constraint]
 
 
-def _get_cost_dim(eq_types: np.ndarray) -> int:
-    """Get the total size of the cost vector for a set of equality constraints."""
-    dim: int = 0
-    for eq_type in eq_types:
-        dim += _get_constraint_dim(eq_type)
-    return dim
-
-
 class EqualityConstraintTask(Task):
     """Regulate equality constraints in a model.
 
@@ -45,9 +37,7 @@ class EqualityConstraintTask(Task):
     * ``mjEQ_TENDON``: Couple the values of two tendons.
 
     This task can regulate all equality constraints in a model or a specific subset
-    identified by name or ID. Note that if an equality constraint is not active at
-    the initial configuration, aka its corresponding ``mjModel.eq_active0`` entry is
-    ``False``, it will be ignored.
+    identified by name or ID.
 
     Attributes:
         equalities: ID or name of the equality constraints to regulate. If not provided,
@@ -58,7 +48,8 @@ class EqualityConstraintTask(Task):
             model.
 
     Raises:
-        InvalidConstraint: If a specified equality constraint name or ID is not found.
+        InvalidConstraint: If a specified equality constraint name or ID is not found,
+            or if the constraint is not active at the initial configuration.
         TaskDefinitionError: If no equality constraints are found or if cost parameters
             have invalid shape or values.
 
