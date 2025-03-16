@@ -38,7 +38,7 @@ def _get_dense_constraint_jacobian(
             data.efc_J_colind,
         )
         return efc_J
-    return data.efc_J.reshape((data.nefc, model.nv))
+    return data.efc_J.reshape((data.nefc, model.nv)).copy()
 
 
 class EqualityConstraintTask(Task):

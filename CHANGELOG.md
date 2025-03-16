@@ -7,12 +7,17 @@ All notable changes to this project will be documented in this file.
 ### Added
 
 - Added `EqualityConstraintTask`, which is particularly useful for closed-chain mechanisms like 4-bar linkages or parallel robots. See [biped_cassie.py](examples/biped_cassie.py) for an implementation example. Contribution from @simeon-ned.
+
+| Before | After |
+|--------|-------|
+| ![before](https://github.com/kevinzakka/mink/blob/assets/equality_before.gif?raw=true) | ![after](https://github.com/kevinzakka/mink/blob/assets/equality_after.gif?raw=true) |
+
 - `Configuration.check_limits` now logs joint limit violations to `debug` rather than `warn` when `safety_break=False`.
 - Added `utils.get_subtree_body_ids` to get all bodies belonging to the subtree starting at a given body.
   - Example usage of this function can be found in the [ALOHA example script](examples/arm_aloha.py) where it is used to selectively apply gravity compensation torques to the left and right arm bodies.
 - Add G1 and Apollo humanoid example with a tabletop manipulation focus.
 
-![Banner for mink](https://github.com/kevinzakka/mink/blob/assets/g1_teleop.gif?raw=true)
+![g1 teleop](https://github.com/kevinzakka/mink/blob/assets/g1_teleop.gif?raw=true)
 
 ### Changed
 
