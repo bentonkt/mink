@@ -1,5 +1,6 @@
 """Tests for equality_constraint_task.py."""
 
+import mujoco
 import numpy as np
 from absl.testing import absltest
 from robot_descriptions.loaders.mujoco import load_robot_description
@@ -60,6 +61,16 @@ class TestEqualityConstraintTask(absltest.TestCase):
             np.array([23.0, 23.0, 23.0, 17.0, 17.0, 17.0]),
         )
 
+    def test_inactive_init_constraints_throws_error(self):
+        model = load_robot_description("cassie_mj_description")
+        model.eq_active0[0] = False
+        with self.assertRaises(InvalidConstraint) as cm:
+            EqualityConstraintTask(model=model, cost=[1.0, 1.0], equalities=[0, 1])
+        expected_error_message = (
+            "Equality constraint 0 is not active at initial configuration."
+        )
+        self.assertEqual(str(cm.exception), expected_error_message)
+
     def test_subset_of_constraints_with_invalid_name_throws(self):
         model = load_robot_description("cassie_mj_description")
         with self.assertRaises(InvalidConstraint) as cm:
@@ -93,6 +104,15 @@ class TestEqualityConstraintTask(absltest.TestCase):
         x = np.random.random(configuration.nv)
         cost = objective.value(x)
         self.assertAlmostEqual(cost, 0.0)
+
+    def test_sparse_jacobian(self):
+        model = load_robot_description("cassie_mj_description")
+        model.opt.jacobian = mujoco.mjtJacobian.mjJAC_SPARSE
+        task = EqualityConstraintTask(model=model, cost=1.0)
+        configuration = Configuration(model)
+        configuration.update_from_keyframe("home")
+        jacobian = task.compute_jacobian(configuration)
+        self.assertEqual(jacobian.shape, (12, configuration.nv))
 
 
 if __name__ == "__main__":

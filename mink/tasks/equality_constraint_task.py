@@ -14,7 +14,7 @@ from .exceptions import InvalidConstraint, TaskDefinitionError
 from .task import Task
 
 
-def _get_constraint_dim(constraint: mujoco.mjtEq) -> int:
+def _get_constraint_dim(constraint: int) -> int:
     """Return the dimension of an equality constraint in the efc* arrays."""
     return {
         mujoco.mjtEq.mjEQ_CONNECT.value: 3,
@@ -32,13 +32,6 @@ def _get_cost_dim(eq_types: np.ndarray) -> int:
     return dim
 
 
-def _get_equality_constraint_indices(
-    data: mujoco.MjData, eq_ids: np.ndarray
-) -> np.ndarray:
-    """Get indices of a given equality constraint if it is active."""
-    return np.isin(data.efc_id, eq_ids)
-
-
 class EqualityConstraintTask(Task):
     """Regulate equality constraints in a model.
 
@@ -48,11 +41,13 @@ class EqualityConstraintTask(Task):
 
     * ``mjEQ_CONNECT``: Connect two bodies at a point (ball joint).
     * ``mjEQ_WELD``: Fix relative pose of two bodies.
-    * ``mjEQ_JOINT``: couple the values of two scalar joints
-    * ``mjEQ_TENDON``: couple the values of two tendons
+    * ``mjEQ_JOINT``: Couple the values of two scalar joints.
+    * ``mjEQ_TENDON``: Couple the values of two tendons.
 
     This task can regulate all equality constraints in a model or a specific subset
-    identified by name or ID.
+    identified by name or ID. Note that if an equality constraint is not active at
+    the initial configuration, aka its corresponding ``mjModel.eq_active0`` entry is
+    ``False``, it will be ignored.
 
     Attributes:
         equalities: ID or name of the equality constraints to regulate. If not provided,
@@ -90,46 +85,21 @@ class EqualityConstraintTask(Task):
         gain: float = 1.0,
         lm_damping: float = 0.0,
     ):
-        self._mask: np.ndarray | None = None  # Active equality constraint mask.
-        self._neq_active: int | None = None  # Number of active equality constraints.
+        self._eq_ids = self._resolve_equality_ids(model, equalities)
+        self._eq_types = model.eq_type[self._eq_ids].copy()
+        self._neq_total = len(self._eq_ids)
+        self._mask: np.ndarray | None = None
+        self._jac_sparse = mujoco.mj_isSparse(model)
 
-        eq_ids: list[int] = []
-        if equalities is not None:
-            for eq_id_or_name in equalities:
-                eq_id: int
-                if isinstance(eq_id_or_name, str):
-                    eq_id = mujoco.mj_name2id(
-                        model, mujoco.mjtObj.mjOBJ_EQUALITY, eq_id_or_name
-                    )
-                    if eq_id == -1:
-                        raise InvalidConstraint(
-                            f"Equality constraint '{eq_id_or_name}' not found."
-                        )
-                else:
-                    eq_id = eq_id_or_name
-                    if eq_id < 0 or eq_id >= model.neq:
-                        raise InvalidConstraint(
-                            f"Equality constraint index {eq_id} out of range."
-                            f"Must be in range [0, {model.neq})."
-                        )
-                eq_ids.append(eq_id)
-        else:
-            eq_ids = list(range(model.neq))
-            logging.warning("Regulating %d equality constraints", len(eq_ids))
-        if len(eq_ids) == 0:
-            raise TaskDefinitionError(
-                f"{self.__class__.__name__} no equality constraints found in this "
-                "model."
-            )
-        self._eq_ids = np.array(eq_ids)
-        self._eq_types = model.eq_type[self._eq_ids]
-        self._neq_total = len(self._eq_ids)  # Total number of equality constraints.
-
-        cost_dim = _get_cost_dim(self._eq_types)
-        super().__init__(cost=np.zeros((cost_dim,)), gain=gain, lm_damping=lm_damping)
+        super().__init__(cost=np.zeros((1,)), gain=gain, lm_damping=lm_damping)
         self.set_cost(cost)
 
     def set_cost(self, cost: npt.ArrayLike) -> None:
+        """Set the cost vector for the equality constraint task.
+
+        Args:
+            cost: Cost vector for the equality constraint task.
+        """
         cost = np.atleast_1d(cost)
         if cost.ndim != 1 or cost.shape[0] not in (1, self._neq_total):
             raise TaskDefinitionError(
@@ -139,18 +109,14 @@ class EqualityConstraintTask(Task):
         if not np.all(cost >= 0.0):
             raise TaskDefinitionError(f"{self.__class__.__name__} cost must be >= 0")
 
-        # For scalar cost, broadcast to all elements.
-        if cost.shape[0] == 1:
-            self.cost[:] = cost[0]
-            return
+        # Per constraint cost.
+        self._cost = (
+            np.full((self._neq_total,), cost[0]) if cost.shape[0] == 1 else cost.copy()
+        )
 
-        # For vector cost, repeat each element according to its constraint dimension.
+        # Expanded per constraint dimension.
         repeats = [_get_constraint_dim(eq_type) for eq_type in self._eq_types]
-        self.cost[:] = np.repeat(cost, repeats)
-
-    def _update_constraint_info(self, configuration: Configuration) -> None:
-        self._mask = _get_equality_constraint_indices(configuration.data, self._eq_ids)
-        self._neq_active = np.sum(self._mask)
+        self.cost = np.repeat(self._cost, repeats)
 
     def compute_error(self, configuration: Configuration) -> np.ndarray:
         """Compute the equality constraint task error.
@@ -182,5 +148,75 @@ class EqualityConstraintTask(Task):
         """
         self._update_constraint_info(configuration)
         data = configuration.data
-        J_efc = data.efc_J.reshape((data.nefc, configuration.model.nv))
-        return J_efc[self._mask]
+        efc_J = self._get_dense_jacobian(data, configuration.nv)
+        return efc_J[self._mask]
+
+    # Helper functions.
+
+    def _update_constraint_info(self, configuration: Configuration) -> None:
+        self._mask = (
+            configuration.data.efc_type == mujoco.mjtConstraint.mjCNSTR_EQUALITY
+        ) & np.isin(configuration.data.efc_id, self._eq_ids)
+        active_eq_ids = configuration.data.efc_id[self._mask]
+        self.cost = self._cost[active_eq_ids]
+
+    def _resolve_equality_ids(
+        self, model: mujoco.MjModel, equalities: Optional[Sequence[int | str]]
+    ) -> np.ndarray:
+        eq_ids: list[int] = []
+
+        if equalities is not None:
+            for eq_id_or_name in equalities:
+                eq_id: int
+                if isinstance(eq_id_or_name, str):
+                    eq_id = mujoco.mj_name2id(
+                        model, mujoco.mjtObj.mjOBJ_EQUALITY, eq_id_or_name
+                    )
+                    if eq_id == -1:
+                        raise InvalidConstraint(
+                            f"Equality constraint '{eq_id_or_name}' not found."
+                        )
+                else:
+                    eq_id = eq_id_or_name
+                    if eq_id < 0 or eq_id >= model.neq:
+                        raise InvalidConstraint(
+                            f"Equality constraint index {eq_id} out of range."
+                            f"Must be in range [0, {model.neq})."
+                        )
+                if not model.eq_active0[eq_id]:
+                    raise InvalidConstraint(
+                        f"Equality constraint {eq_id} is not active at initial "
+                        "configuration."
+                    )
+                else:
+                    eq_ids.append(eq_id)
+            # Check for duplicates.
+            if len(eq_ids) != len(set(eq_ids)):
+                raise TaskDefinitionError(
+                    f"Duplicate equality constraint IDs provided: {eq_ids}."
+                )
+        else:
+            eq_ids = list(range(model.neq))
+            logging.info("Regulating %d equality constraints", len(eq_ids))
+
+        # Ensure we have at least 1 constraint.
+        if len(eq_ids) == 0:
+            raise TaskDefinitionError(
+                f"{self.__class__.__name__} no equality constraints found in this "
+                "model."
+            )
+
+        return np.array(eq_ids)
+
+    def _get_dense_jacobian(self, data: mujoco.MjData, nv: int) -> np.ndarray:
+        if self._jac_sparse:
+            efc_J = np.empty((data.nefc, nv))
+            mujoco.mju_sparse2dense(
+                efc_J,
+                data.efc_J,
+                data.efc_J_rownnz,
+                data.efc_J_rowadr,
+                data.efc_J_colind,
+            )
+            return efc_J
+        return data.efc_J.reshape((data.nefc, nv))
