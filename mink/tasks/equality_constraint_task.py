@@ -24,6 +24,23 @@ def _get_constraint_dim(constraint: int) -> int:
     }[constraint]
 
 
+def _get_dense_constraint_jacobian(
+    model: mujoco.MjModel, data: mujoco.MjData
+) -> np.ndarray:
+    """Return the dense constraint Jacobian for a model."""
+    if mujoco.mj_isSparse(model):
+        efc_J = np.empty((data.nefc, model.nv))
+        mujoco.mju_sparse2dense(
+            efc_J,
+            data.efc_J,
+            data.efc_J_rownnz,
+            data.efc_J_rowadr,
+            data.efc_J_colind,
+        )
+        return efc_J
+    return data.efc_J.reshape((data.nefc, model.nv))
+
+
 class EqualityConstraintTask(Task):
     """Regulate equality constraints in a model.
 
@@ -80,7 +97,6 @@ class EqualityConstraintTask(Task):
         self._eq_types = model.eq_type[self._eq_ids].copy()
         self._neq_total = len(self._eq_ids)
         self._mask: np.ndarray | None = None
-        self._jac_sparse = mujoco.mj_isSparse(model)
 
         super().__init__(cost=np.zeros((1,)), gain=gain, lm_damping=lm_damping)
         self.set_cost(cost)
@@ -121,7 +137,7 @@ class EqualityConstraintTask(Task):
             is the number of active equality constraints, and ``constraint_dim``
             depends on the type of equality constraint.
         """
-        self._update_constraint_info(configuration)
+        self._update_active_constraints(configuration)
         return configuration.data.efc_pos[self._mask]
 
     def compute_jacobian(self, configuration: Configuration) -> np.ndarray:
@@ -137,13 +153,13 @@ class EqualityConstraintTask(Task):
             type of equality constraint, and ``nv`` is the dimension of the tangent
             space.
         """
-        self._update_constraint_info(configuration)
-        efc_J = self._get_dense_jacobian(configuration.data, configuration.nv)
+        self._update_active_constraints(configuration)
+        efc_J = _get_dense_constraint_jacobian(configuration.model, configuration.data)
         return efc_J[self._mask]
 
     # Helper functions.
 
-    def _update_constraint_info(self, configuration: Configuration) -> None:
+    def _update_active_constraints(self, configuration: Configuration) -> None:
         self._mask = (
             configuration.data.efc_type == mujoco.mjtConstraint.mjCNSTR_EQUALITY
         ) & np.isin(configuration.data.efc_id, self._eq_ids)
@@ -197,16 +213,3 @@ class EqualityConstraintTask(Task):
             )
 
         return np.array(eq_ids)
-
-    def _get_dense_jacobian(self, data: mujoco.MjData, nv: int) -> np.ndarray:
-        if self._jac_sparse:
-            efc_J = np.empty((data.nefc, nv))
-            mujoco.mju_sparse2dense(
-                efc_J,
-                data.efc_J,
-                data.efc_J_rownnz,
-                data.efc_J_rowadr,
-                data.efc_J_colind,
-            )
-            return efc_J
-        return data.efc_J.reshape((data.nefc, nv))
