@@ -138,8 +138,7 @@ class EqualityConstraintTask(Task):
             space.
         """
         self._update_constraint_info(configuration)
-        data = configuration.data
-        efc_J = self._get_dense_jacobian(data, configuration.nv)
+        efc_J = self._get_dense_jacobian(configuration.data, configuration.nv)
         return efc_J[self._mask]
 
     # Helper functions.

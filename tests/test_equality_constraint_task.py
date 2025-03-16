@@ -61,6 +61,13 @@ class TestEqualityConstraintTask(absltest.TestCase):
             np.array([23.0, 23.0, 23.0, 17.0, 17.0, 17.0]),
         )
 
+    def test_duplicate_constraint_ids_throws(self):
+        model = load_robot_description("cassie_mj_description")
+        with self.assertRaises(TaskDefinitionError) as cm:
+            EqualityConstraintTask(model=model, cost=1.0, equalities=[0, 0])
+        expected_error_message = "Duplicate equality constraint IDs provided: [0, 0]."
+        self.assertEqual(str(cm.exception), expected_error_message)
+
     def test_inactive_init_constraints_throws_error(self):
         model = load_robot_description("cassie_mj_description")
         model.eq_active0[0] = False
