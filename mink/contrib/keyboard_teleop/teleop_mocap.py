@@ -112,10 +112,7 @@ class TeleopMocap:
         """
 
         q = self.data.mocap_quat[self.mocap_idx].copy()
-        rot = np.zeros(shape=(9,), dtype=np.float64)
-        mujoco.mju_quat2Mat(rot, q)
-        rot = rot.reshape((3, 3))
-        unit_vec = rot[:, axis]
+        unit_vec = self.unit_vec_from_quat(q, axis)
         step_size = self.m_step_size if self.manual else self.nm_step_size
         self.data.mocap_pos[self.mocap_idx] += direction * step_size * unit_vec
 
@@ -125,31 +122,33 @@ class TeleopMocap:
         based on the axis and step size.
         """
 
-        step_size = self.m_rotation_step if self.manual else self.nm_rotation_step
-        self.data.mocap_quat[self.mocap_idx] = self.rotate_quaternion(
-            self.data.mocap_quat[self.mocap_idx], axis, direction * step_size
-        )
+        q = self.data.mocap_quat[self.mocap_idx].copy()
+        unit_vec = self.unit_vec_from_quat(q, axis)
 
-    def rotate_quaternion(self, quat, axis, angle):
-        """
-        Rotate a quaternion by an angle around an axis.
-        """
-        rot = np.zeros(shape=(4,), dtype=np.float64)
+        # Rotate the quaternion by the specified angle around the axis.
+        quat_rot = np.zeros(shape=(4,), dtype=np.float64)
         result = np.zeros(shape=(4,), dtype=np.float64)
-
-        unit_axis = np.zeros(shape=(3,), dtype=np.float64)
-        if axis == 0:
-            unit_axis[0] = 1.0
-        elif axis == 1:
-            unit_axis[1] = 1.0
-        elif axis == 2:
-            unit_axis[2] = 1.0
-
+        step_size = self.m_rotation_step if self.manual else self.nm_rotation_step
+        angle = direction * step_size
         angle_rad = np.deg2rad(angle)
-        unit_axis = unit_axis / np.linalg.norm(unit_axis)
-        mujoco.mju_axisAngle2Quat(rot, unit_axis, angle_rad)
-        mujoco.mju_mulQuat(result, rot, quat)
-        return result
+        unit_vec = unit_vec / np.linalg.norm(unit_vec)
+        mujoco.mju_axisAngle2Quat(quat_rot, unit_vec, angle_rad)
+        mujoco.mju_mulQuat(result, quat_rot, q)
+
+        self.data.mocap_quat[self.mocap_idx] = result
+
+    def unit_vec_from_quat(self, q, axis):
+        """
+        Compute the unit vector corresponding to the specified axis
+        from the given quaternion.
+        """
+
+        rot = np.zeros(shape=(9,), dtype=np.float64)
+        mujoco.mju_quat2Mat(rot, q)
+        rot = rot.reshape((3, 3))
+        unit_vec = rot[:, axis]
+
+        return unit_vec
 
     def toggle_on(self):
         self.on = not self.on
