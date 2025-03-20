@@ -32,6 +32,7 @@ from .solve_ik import build_ik, solve_ik
 from .tasks import (
     ComTask,
     DampingTask,
+    EqualityConstraintTask,
     FrameTask,
     Objective,
     PostureTask,
@@ -58,6 +59,7 @@ __all__ = (
     "RelativeFrameTask",
     "PostureTask",
     "Task",
+    "EqualityConstraintTask",
     "Objective",
     "ConfigurationLimit",
     "VelocityLimit",

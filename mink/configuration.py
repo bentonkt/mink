@@ -62,6 +62,8 @@ class Configuration:
         # mj_kinematics. An extra call to mj_comPos is required for updated Jacobians.
         mujoco.mj_kinematics(self.model, self.data)
         mujoco.mj_comPos(self.model, self.data)
+        if self.model.neq > 0:
+            mujoco.mj_makeConstraint(self.model, self.data)
 
     def update_from_keyframe(self, key_name: str) -> None:
         """Update the configuration from a keyframe.
@@ -104,7 +106,7 @@ class Configuration:
                         model=self.model,
                     )
                 else:
-                    logging.warning(
+                    logging.debug(
                         f"Value {qval:.2f} at index {jnt} is outside of its limits: "
                         f"[{qmin:.2f}, {qmax:.2f}]"
                     )

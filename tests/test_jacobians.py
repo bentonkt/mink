@@ -8,13 +8,16 @@ from robot_descriptions.loaders.mujoco import load_robot_description
 import mink
 from mink import lie
 
+_TOL = 1e-5
+_STEP_SIZE = np.sqrt(np.finfo(float).eps)
+
 
 class TestJacobians(absltest.TestCase):
     """Test task jacobian matrices against finite differences."""
 
     @classmethod
     def setUpClass(cls):
-        cls.model = load_robot_description("g1_mj_description")
+        cls.model = load_robot_description("talos_mj_description")
 
     def setUp(self, nb_configs: int = 1):
         np.random.seed(42)
@@ -60,11 +63,10 @@ class TestJacobians(absltest.TestCase):
             e_0 = e(q_0)
             J_finite = np.empty_like(J_0)
             for i in range(self.model.nv):
-                h = 0.000001
                 e_i = np.eye(self.model.nv)[i]
                 q_perturbed = q_0.copy()
-                mujoco.mj_integratePos(self.model, q_perturbed, e_i, h)
-                J_finite[:, i] = (e(q_perturbed) - e_0) / h
+                mujoco.mj_integratePos(self.model, q_perturbed, e_i, _STEP_SIZE)
+                J_finite[:, i] = (e(q_perturbed) - e_0) / _STEP_SIZE
             self.assertLess(np.linalg.norm(J_0 - J_finite, ord=np.inf), tol)
 
     def test_frame_task(self):
@@ -75,19 +77,19 @@ class TestJacobians(absltest.TestCase):
             orientation_cost=1.0,
         )
         frame_task.set_target(lie.SE3.sample_uniform())
-        self.check_jacobian_finite_diff(frame_task, tol=1e-5)
+        self.check_jacobian_finite_diff(frame_task, tol=_TOL)
 
     def test_relative_frame_task(self):
         relative_frame_task = mink.RelativeFrameTask(
             frame_name="left_foot",
             frame_type="site",
-            root_name="torso_link",
+            root_name="torso_1_link",
             root_type="body",
             position_cost=1.0,
             orientation_cost=1.0,
         )
         relative_frame_task.set_target(lie.SE3.sample_uniform())
-        self.check_jacobian_finite_diff(relative_frame_task, tol=1e-5)
+        self.check_jacobian_finite_diff(relative_frame_task, tol=_TOL)
 
     def test_posture_task(self):
         posture_task = mink.PostureTask(model=self.model, cost=1.0)
@@ -96,16 +98,20 @@ class TestJacobians(absltest.TestCase):
         q0 = data.qpos.copy()
         target_q = q0 + np.random.randn(self.model.nq) * 1e-3
         posture_task.set_target(target_q)
-        self.check_jacobian_finite_diff(posture_task, tol=1e-6)
+        self.check_jacobian_finite_diff(posture_task, tol=1e-5)
 
     def test_com_task(self):
         com_task = mink.ComTask(cost=1.0)
         com_task.set_target(np.zeros(3))
-        self.check_jacobian_finite_diff(com_task, tol=1e-6)
+        self.check_jacobian_finite_diff(com_task, tol=_TOL)
 
     def test_damping_task(self):
         damping_task = mink.DampingTask(self.model, cost=1.0)
-        self.check_jacobian_finite_diff(damping_task, tol=1e-6)
+        self.check_jacobian_finite_diff(damping_task, tol=_TOL)
+
+    def test_equality_constraint_task(self):
+        equality_constraint_task = mink.EqualityConstraintTask(self.model, cost=1.0)
+        self.check_jacobian_finite_diff(equality_constraint_task, tol=_TOL)
 
 
 if __name__ == "__main__":

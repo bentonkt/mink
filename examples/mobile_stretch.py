@@ -8,7 +8,10 @@ from loop_rate_limiters import RateLimiter
 import mink
 
 _HERE = Path(__file__).parent
-_XML = _HERE / "hello_robot_stretch_3" / "scene.xml"
+if mujoco.__version__ == "3.3.0":
+    _XML = _HERE / "hello_robot_stretch_3" / "scene_33.xml"
+else:
+    _XML = _HERE / "hello_robot_stretch_3" / "scene.xml"
 
 
 if __name__ == "__main__":
