@@ -13,6 +13,7 @@ from ..configuration import Configuration
 from .exceptions import InvalidConstraint, TaskDefinitionError
 from .task import Task
 
+from typing import List, Tuple
 
 def _get_constraint_dim(constraint: int) -> int:
     """Return the dimension of an equality constraint in the efc* arrays."""
@@ -169,7 +170,7 @@ class EqualityConstraintTask(Task):
     def _resolve_equality_ids(
         self, model: mujoco.MjModel, equalities: Optional[Sequence[int | str]]
     ) -> np.ndarray:
-        eq_ids: list[int] = []
+        eq_ids: List[int] = []
 
         if equalities is not None:
             for eq_id_or_name in equalities:

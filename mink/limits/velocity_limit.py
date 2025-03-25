@@ -10,6 +10,7 @@ from ..configuration import Configuration
 from ..constants import dof_width
 from .exceptions import LimitDefinitionError
 from .limit import Constraint, Limit
+from typing import List, Tuple
 
 
 class VelocityLimit(Limit):
@@ -42,8 +43,8 @@ class VelocityLimit(Limit):
             velocities: Dictionary mapping joint name to maximum allowed magnitude in
                 [m]/[s] for slide joints and [rad]/[s] for hinge joints.
         """
-        limit_list: list[float] = []
-        index_list: list[int] = []
+        limit_list: List[float] = []
+        index_list: List[int] = []
         for joint_name, max_vel in velocities.items():
             jid = model.joint(joint_name).id
             jnt_type = model.jnt_type[jid]

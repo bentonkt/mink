@@ -9,7 +9,7 @@ readme = "README.md"
 authors = [
     {name = "Kevin Zakka", email = "zakka@berkeley.edu"},
 ]
-requires-python = ">=3.9"
+requires-python = ">=3.8"
 dynamic = ["description"]
 classifiers = [
     "Development Status :: 5 - Production/Stable",

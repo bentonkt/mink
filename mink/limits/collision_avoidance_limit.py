@@ -9,11 +9,12 @@ import numpy as np
 
 from ..configuration import Configuration
 from .limit import Constraint, Limit
+from typing import Tuple
 
 # Type aliases.
 Geom = Union[int, str]
 GeomSequence = Sequence[Geom]
-CollisionPair = tuple[GeomSequence, GeomSequence]
+CollisionPair = Tuple[GeomSequence, GeomSequence]
 CollisionPairs = Sequence[CollisionPair]
 
 
@@ -231,7 +232,7 @@ class CollisionAvoidanceLimit(Limit):
     def _homogenize_geom_id_list(self, geom_list: GeomSequence) -> List[int]:
         """Take a heterogeneous list of geoms (specified via ID or name) and return
         a homogenous list of IDs (int)."""
-        list_of_int: list[int] = []
+        list_of_int: List[int] = []
         for g in geom_list:
             if isinstance(g, int):
                 list_of_int.append(g)
@@ -245,8 +246,8 @@ class CollisionAvoidanceLimit(Limit):
         for collision_pair in collision_pairs:
             id_pair_A = self._homogenize_geom_id_list(collision_pair[0])
             id_pair_B = self._homogenize_geom_id_list(collision_pair[1])
-            id_pair_A = list(set(id_pair_A))
-            id_pair_B = list(set(id_pair_B))
+            id_pair_A = List(set(id_pair_A))
+            id_pair_B = List(set(id_pair_B))
             geom_id_pairs.append((id_pair_A, id_pair_B))
         return geom_id_pairs
 

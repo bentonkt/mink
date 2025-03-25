@@ -9,6 +9,7 @@ from .configuration import Configuration
 from .limits import ConfigurationLimit, Limit
 from .tasks import Objective, Task
 
+from typing import List, Tuple
 
 def _compute_qp_objective(
     configuration: Configuration, tasks: Sequence[Task], damping: float
@@ -24,11 +25,11 @@ def _compute_qp_objective(
 
 def _compute_qp_inequalities(
     configuration: Configuration, limits: Optional[Sequence[Limit]], dt: float
-) -> tuple[Optional[np.ndarray], Optional[np.ndarray]]:
+) -> Tuple[Optional[np.ndarray], Optional[np.ndarray]]:
     if limits is None:
         limits = [ConfigurationLimit(configuration.model)]
-    G_list: list[np.ndarray] = []
-    h_list: list[np.ndarray] = []
+    G_list: List[np.ndarray] = []
+    h_list: List[np.ndarray] = []
     for limit in limits:
         inequality = limit.compute_qp_inequalities(configuration, dt)
         if not inequality.inactive:

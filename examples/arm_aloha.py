@@ -8,6 +8,7 @@ from loop_rate_limiters import RateLimiter
 
 import mink
 from mink.contrib import TeleopMocap
+from typing import List, Tuple
 
 _HERE = Path(__file__).parent
 _XML = _HERE / "aloha" / "scene.xml"
@@ -62,7 +63,7 @@ if __name__ == "__main__":
     right_subtree_id = model.body("right/base_link").id
 
     # Get the dof and actuator ids for the joints we wish to control.
-    joint_names: list[str] = []
+    joint_names: List[str] = []
     velocity_limits: dict[str, float] = {}
     for prefix in ["left", "right"]:
         for n in _JOINT_NAMES:
