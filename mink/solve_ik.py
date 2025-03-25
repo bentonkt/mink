@@ -1,6 +1,6 @@
 """Build and solve the inverse kinematics problem."""
 
-from typing import Optional, Sequence
+from typing import List, Optional, Sequence, Tuple
 
 import numpy as np
 import qpsolvers
@@ -9,7 +9,6 @@ from .configuration import Configuration
 from .limits import ConfigurationLimit, Limit
 from .tasks import Objective, Task
 
-from typing import List, Tuple
 
 def _compute_qp_objective(
     configuration: Configuration, tasks: Sequence[Task], damping: float

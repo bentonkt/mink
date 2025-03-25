@@ -1,6 +1,6 @@
 """Joint velocity limit."""
 
-from typing import Mapping, Optional
+from typing import List, Mapping, Optional
 
 import mujoco
 import numpy as np
@@ -10,7 +10,6 @@ from ..configuration import Configuration
 from ..constants import dof_width
 from .exceptions import LimitDefinitionError
 from .limit import Constraint, Limit
-from typing import List, Tuple
 
 
 class VelocityLimit(Limit):

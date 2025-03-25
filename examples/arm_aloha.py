@@ -1,5 +1,5 @@
 from pathlib import Path
-from typing import Optional, Sequence
+from typing import List, Optional, Sequence
 
 import mujoco
 import mujoco.viewer
@@ -8,7 +8,6 @@ from loop_rate_limiters import RateLimiter
 
 import mink
 from mink.contrib import TeleopMocap
-from typing import List, Tuple
 
 _HERE = Path(__file__).parent
 _XML = _HERE / "aloha" / "scene.xml"

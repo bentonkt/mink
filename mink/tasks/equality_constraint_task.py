@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import logging
-from typing import Optional, Sequence
+from typing import List, Optional, Sequence
 
 import mujoco
 import numpy as np
@@ -13,7 +13,6 @@ from ..configuration import Configuration
 from .exceptions import InvalidConstraint, TaskDefinitionError
 from .task import Task
 
-from typing import List, Tuple
 
 def _get_constraint_dim(constraint: int) -> int:
     """Return the dimension of an equality constraint in the efc* arrays."""

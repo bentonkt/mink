@@ -1,11 +1,10 @@
-from typing import Optional
+from typing import List, Optional, Tuple
 
 import mujoco
 import numpy as np
 
 from . import constants as consts
 from .exceptions import InvalidKeyframe, InvalidMocapBody
-from typing import List, Tuple
 
 
 def move_mocap_to_frame(

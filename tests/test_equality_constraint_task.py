@@ -90,7 +90,7 @@ class TestEqualityConstraintTask(absltest.TestCase):
         with self.assertRaises(InvalidConstraint) as cm:
             EqualityConstraintTask(model=model, cost=1.0, equalities=[5])
         expected_error_message = (
-            "Equality constraint index 5 out of range." "Must be in range [0, 4)."
+            "Equality constraint index 5 out of range.Must be in range [0, 4)."
         )
         self.assertEqual(str(cm.exception), expected_error_message)
 

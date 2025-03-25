@@ -1,5 +1,7 @@
 """Joint position limit."""
 
+from typing import List
+
 import mujoco
 import numpy as np
 

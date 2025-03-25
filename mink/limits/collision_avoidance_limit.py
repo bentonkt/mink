@@ -2,14 +2,13 @@
 
 import itertools
 from dataclasses import dataclass
-from typing import List, Sequence, Union
+from typing import List, Sequence, Tuple, Union
 
 import mujoco
 import numpy as np
 
 from ..configuration import Configuration
 from .limit import Constraint, Limit
-from typing import Tuple
 
 # Type aliases.
 Geom = Union[int, str]
