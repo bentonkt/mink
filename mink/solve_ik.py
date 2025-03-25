@@ -1,6 +1,6 @@
 """Build and solve the inverse kinematics problem."""
 
-from typing import Optional, Sequence
+from typing import List, Optional, Sequence, Tuple
 
 import numpy as np
 import qpsolvers
@@ -24,11 +24,11 @@ def _compute_qp_objective(
 
 def _compute_qp_inequalities(
     configuration: Configuration, limits: Optional[Sequence[Limit]], dt: float
-) -> tuple[Optional[np.ndarray], Optional[np.ndarray]]:
+) -> Tuple[Optional[np.ndarray], Optional[np.ndarray]]:
     if limits is None:
         limits = [ConfigurationLimit(configuration.model)]
-    G_list: list[np.ndarray] = []
-    h_list: list[np.ndarray] = []
+    G_list: List[np.ndarray] = []
+    h_list: List[np.ndarray] = []
     for limit in limits:
         inequality = limit.compute_qp_inequalities(configuration, dt)
         if not inequality.inactive:

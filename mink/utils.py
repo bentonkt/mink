@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import List, Optional, Tuple
 
 import mujoco
 import numpy as np
@@ -35,7 +35,7 @@ def move_mocap_to_frame(
     mujoco.mju_mat2Quat(data.mocap_quat[mocap_id], xmat)
 
 
-def get_freejoint_dims(model: mujoco.MjModel) -> tuple[list[int], list[int]]:
+def get_freejoint_dims(model: mujoco.MjModel) -> Tuple[List[int], List[int]]:
     """Get all floating joint configuration and tangent indices.
 
     Args:
@@ -45,8 +45,8 @@ def get_freejoint_dims(model: mujoco.MjModel) -> tuple[list[int], list[int]]:
         A (q_ids, v_ids) pair containing all floating joint indices in the
         configuration and tangent spaces respectively.
     """
-    q_ids: list[int] = []
-    v_ids: list[int] = []
+    q_ids: List[int] = []
+    v_ids: List[int] = []
     for j in range(model.njnt):
         if model.jnt_type[j] == mujoco.mjtJoint.mjJNT_FREE:
             qadr = model.jnt_qposadr[j]
@@ -97,7 +97,7 @@ def custom_configuration_vector(
     return q
 
 
-def get_body_body_ids(model: mujoco.MjModel, body_id: int) -> list[int]:
+def get_body_body_ids(model: mujoco.MjModel, body_id: int) -> List[int]:
     """Get immediate children bodies belonging to a given body.
 
     Args:
@@ -105,7 +105,7 @@ def get_body_body_ids(model: mujoco.MjModel, body_id: int) -> list[int]:
         body_id: ID of body.
 
     Returns:
-        A list containing all child body ids.
+        A List containing all child body ids.
     """
     return [
         i
@@ -115,7 +115,7 @@ def get_body_body_ids(model: mujoco.MjModel, body_id: int) -> list[int]:
     ]
 
 
-def get_subtree_body_ids(model: mujoco.MjModel, body_id: int) -> list[int]:
+def get_subtree_body_ids(model: mujoco.MjModel, body_id: int) -> List[int]:
     """Get all bodies belonging to subtree starting at a given body.
 
     Args:
@@ -123,9 +123,9 @@ def get_subtree_body_ids(model: mujoco.MjModel, body_id: int) -> list[int]:
         body_id: ID of body where subtree starts.
 
     Returns:
-        A list containing all subtree body ids.
+        A List containing all subtree body ids.
     """
-    body_ids: list[int] = []
+    body_ids: List[int] = []
     stack = [body_id]
     while stack:
         body_id = stack.pop()
@@ -134,7 +134,7 @@ def get_subtree_body_ids(model: mujoco.MjModel, body_id: int) -> list[int]:
     return body_ids
 
 
-def get_body_geom_ids(model: mujoco.MjModel, body_id: int) -> list[int]:
+def get_body_geom_ids(model: mujoco.MjModel, body_id: int) -> List[int]:
     """Get immediate geoms belonging to a given body.
 
     Here, immediate geoms are those directly attached to the body and not its
@@ -152,7 +152,7 @@ def get_body_geom_ids(model: mujoco.MjModel, body_id: int) -> list[int]:
     return list(range(geom_start, geom_end))
 
 
-def get_subtree_geom_ids(model: mujoco.MjModel, body_id: int) -> list[int]:
+def get_subtree_geom_ids(model: mujoco.MjModel, body_id: int) -> List[int]:
     """Get all geoms belonging to subtree starting at a given body.
 
     Here, a subtree is defined as the kinematic tree starting at the body and including
@@ -165,7 +165,7 @@ def get_subtree_geom_ids(model: mujoco.MjModel, body_id: int) -> list[int]:
     Returns:
         A list containing all subtree geom ids.
     """
-    geom_ids: list[int] = []
+    geom_ids: List[int] = []
     stack = [body_id]
     while stack:
         body_id = stack.pop()

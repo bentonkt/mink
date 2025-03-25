@@ -1,5 +1,7 @@
 """Joint position limit."""
 
+from typing import List
+
 import mujoco
 import numpy as np
 
@@ -38,7 +40,7 @@ class ConfigurationLimit(Limit):
                 f"{self.__class__.__name__} gain must be in the range (0, 1]"
             )
 
-        index_list: list[int] = []  # DoF indices that are limited.
+        index_list: List[int] = []  # DoF indices that are limited.
         lower = np.full(model.nq, -mujoco.mjMAXVAL)
         upper = np.full(model.nq, mujoco.mjMAXVAL)
         for jnt in range(model.njnt):

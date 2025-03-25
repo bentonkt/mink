@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import logging
-from typing import Optional, Sequence
+from typing import List, Optional, Sequence
 
 import mujoco
 import numpy as np
@@ -169,7 +169,7 @@ class EqualityConstraintTask(Task):
     def _resolve_equality_ids(
         self, model: mujoco.MjModel, equalities: Optional[Sequence[int | str]]
     ) -> np.ndarray:
-        eq_ids: list[int] = []
+        eq_ids: List[int] = []
 
         if equalities is not None:
             for eq_id_or_name in equalities:

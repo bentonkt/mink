@@ -1,5 +1,5 @@
 from pathlib import Path
-from typing import Optional, Sequence
+from typing import List, Optional, Sequence
 
 import mujoco
 import mujoco.viewer
@@ -62,7 +62,7 @@ if __name__ == "__main__":
     right_subtree_id = model.body("right/base_link").id
 
     # Get the dof and actuator ids for the joints we wish to control.
-    joint_names: list[str] = []
+    joint_names: List[str] = []
     velocity_limits: dict[str, float] = {}
     for prefix in ["left", "right"]:
         for n in _JOINT_NAMES:
