@@ -2,11 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
-## [0.0.7] - 2024-03-25
+## Unreleased
 
 ### Changed
 
-- Added support for Python 3.8 by updating List and Tuple typing.
+- Added support for Python 3.8.
 
 ## [0.0.6] - 2025-03-15
 

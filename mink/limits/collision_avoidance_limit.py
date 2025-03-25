@@ -245,8 +245,8 @@ class CollisionAvoidanceLimit(Limit):
         for collision_pair in collision_pairs:
             id_pair_A = self._homogenize_geom_id_list(collision_pair[0])
             id_pair_B = self._homogenize_geom_id_list(collision_pair[1])
-            id_pair_A = List(set(id_pair_A))
-            id_pair_B = List(set(id_pair_B))
+            id_pair_A = list(set(id_pair_A))
+            id_pair_B = list(set(id_pair_B))
             geom_id_pairs.append((id_pair_A, id_pair_B))
         return geom_id_pairs
 

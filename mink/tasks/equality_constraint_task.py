@@ -186,7 +186,7 @@ class EqualityConstraintTask(Task):
                     eq_id = eq_id_or_name
                     if eq_id < 0 or eq_id >= model.neq:
                         raise InvalidConstraint(
-                            f"Equality constraint index {eq_id} out of range."
+                            f"Equality constraint index {eq_id} out of range. "
                             f"Must be in range [0, {model.neq})."
                         )
                 if not model.eq_active0[eq_id]:
