@@ -54,10 +54,7 @@ class SE3(MatrixLieGroup):
     @classmethod
     def from_rotation(cls, rotation: SO3) -> SE3:
         return SE3.from_rotation_and_translation(
-            rotation=rotation,
-            translation=np.zeros(
-                SE3.space_dim,
-            ),
+            rotation=rotation, translation=np.zeros(SE3.space_dim)
         )
 
     @classmethod
