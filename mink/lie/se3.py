@@ -1,9 +1,11 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from typing import List
 
 import mujoco
 import numpy as np
+from scipy.spatial.transform import Rotation, Slerp
 
 from ..exceptions import InvalidMocapBody
 from .base import MatrixLieGroup
@@ -213,6 +215,58 @@ class SE3(MatrixLieGroup):
         J_inv = SO3.ljacinv(theta)
         O = np.zeros((3, 3))
         return np.block([[J_inv, -J_inv @ Q @ J_inv], [O, J_inv]])
+
+
+def interpolate_se3(
+    t_from: SE3, t_to: SE3, lin_threshold: float, ori_threshold: float
+) -> List[SE3]:
+    """Interpolate two transforms via decoupled translation and rotation.
+
+    Args:
+        t_from: The interpolation start transform.
+        t_to: The interpolation end transform.
+        lin_threshold: Maximum linear distance allowed between adjacent transforms.
+        ori_threshold: Maximum orientation distance allowed between adjacent transforms.
+
+    Returns:
+        A list of transforms starting at `t_from` and ending at `t_to` that are
+        no further than `lin_threshold`/`ori_threshold` apart.
+    """
+    if lin_threshold <= 0.0:
+        raise ValueError("`lin_threshold` must be > 0.0")
+    if ori_threshold <= 0.0:
+        raise ValueError("`ori_threshold` must be > 0.0")
+
+    t_diff = t_to.minus(t_from)
+    lin_dist = np.linalg.norm(t_diff[:3])
+    ori_dist = np.linalg.norm(t_diff[3:])
+
+    lin_steps = int(np.ceil(lin_dist / lin_threshold))
+    ori_steps = int(np.ceil(ori_dist / ori_threshold))
+    num_steps = max(lin_steps, ori_steps, 1)
+
+    slerp = Slerp(
+        [0, 1],
+        Rotation.from_matrix(
+            [
+                t_from.rotation().as_matrix(),
+                t_to.rotation().as_matrix(),
+            ]
+        ),
+    )
+
+    transforms = []
+    for alpha in np.linspace(0, 1, num_steps + 1):
+        interp_translation = (
+            1 - alpha
+        ) * t_from.translation() + alpha * t_to.translation()
+        interp_rotmat = slerp(alpha).as_matrix()
+        transforms.append(
+            SE3.from_rotation_and_translation(
+                SO3.from_matrix(interp_rotmat), interp_translation
+            )
+        )
+    return transforms
 
 
 # Eqn 180.

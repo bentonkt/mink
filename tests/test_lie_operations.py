@@ -8,7 +8,7 @@ from absl.testing import absltest, parameterized
 
 from mink.exceptions import InvalidMocapBody
 from mink.lie.base import MatrixLieGroup
-from mink.lie.se3 import SE3
+from mink.lie.se3 import SE3, interpolate_se3
 from mink.lie.so3 import SO3
 
 from .utils import assert_transforms_close
@@ -161,6 +161,88 @@ class TestGroupSpecificOperations(absltest.TestCase):
         data = mujoco.MjData(model)
         with self.assertRaises(InvalidMocapBody):
             SE3.from_mocap_name(model, data, "test")
+
+    def test_interpolate_se3(self):
+        start_pose = SE3.from_rotation_and_translation(
+            SO3.from_x_radians(0), np.array([0, 0, 0])
+        )
+        end_pose = SE3.from_rotation_and_translation(
+            SO3.from_x_radians(np.pi), np.array([1, 0, 0])
+        )
+
+        # Thresholds of inf mean no interpolation occurs, so we should just get
+        # the start and end pose.
+        poses = interpolate_se3(
+            start_pose, end_pose, lin_threshold=np.inf, ori_threshold=np.inf
+        )
+        self.assertEqual(len(poses), 2)
+        assert_transforms_close(poses[0], start_pose)
+        assert_transforms_close(poses[1], end_pose)
+
+        # Interpolate based on position.
+        poses = interpolate_se3(
+            start_pose, end_pose, lin_threshold=0.65, ori_threshold=np.inf
+        )
+        self.assertEqual(len(poses), 3)
+        assert_transforms_close(poses[0], start_pose)
+        assert_transforms_close(poses[2], end_pose)
+        halfway_pose = SE3.from_rotation_and_translation(
+            SO3.from_x_radians(np.pi / 2), np.array([0.5, 0.0, 0.0])
+        )
+        assert_transforms_close(poses[1], halfway_pose)
+
+        # Interpolate based on orientation.
+        poses = interpolate_se3(
+            start_pose, end_pose, lin_threshold=np.inf, ori_threshold=np.pi * 0.3
+        )
+        self.assertEqual(len(poses), 5)
+        assert_transforms_close(poses[0], start_pose)
+        assert_transforms_close(poses[4], end_pose)
+        # There should be three evenly spaced intermediate poses.
+        intermediate_poses = [
+            SE3.from_rotation_and_translation(
+                SO3.from_x_radians(np.pi * 0.25), np.array([0.25, 0.0, 0.0])
+            ),
+            SE3.from_rotation_and_translation(
+                SO3.from_x_radians(np.pi * 0.5), np.array([0.5, 0.0, 0.0])
+            ),
+            SE3.from_rotation_and_translation(
+                SO3.from_x_radians(np.pi * 0.75), np.array([0.75, 0.0, 0.0])
+            ),
+        ]
+        assert_transforms_close(poses[1], intermediate_poses[0])
+        assert_transforms_close(poses[2], intermediate_poses[1])
+        assert_transforms_close(poses[3], intermediate_poses[2])
+
+        # If thresholds for position and orientation are given, the one that
+        # requires more interpolation steps should take preference.
+        # In this scenario, we should get the same behavior as the scenario
+        # above (where only orientation was applied) since orientation requires
+        # more interpolation steps than linear.
+        poses = interpolate_se3(
+            start_pose, end_pose, lin_threshold=0.65, ori_threshold=np.pi * 0.3
+        )
+        self.assertEqual(len(poses), 5)
+        assert_transforms_close(poses[0], start_pose)
+        assert_transforms_close(poses[1], intermediate_poses[0])
+        assert_transforms_close(poses[2], intermediate_poses[1])
+        assert_transforms_close(poses[3], intermediate_poses[2])
+        assert_transforms_close(poses[4], end_pose)
+
+        with self.assertRaisesRegex(ValueError, "`lin_threshold` must be > 0"):
+            interpolate_se3(
+                start_pose, end_pose, lin_threshold=0.0, ori_threshold=np.inf
+            )
+            interpolate_se3(
+                start_pose, end_pose, lin_threshold=-1.0, ori_threshold=np.inf
+            )
+        with self.assertRaisesRegex(ValueError, "`ori_threshold` must be > 0"):
+            interpolate_se3(
+                start_pose, end_pose, lin_threshold=np.inf, ori_threshold=0.0
+            )
+            interpolate_se3(
+                start_pose, end_pose, lin_threshold=np.inf, ori_threshold=-1.0
+            )
 
 
 if __name__ == "__main__":
