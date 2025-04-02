@@ -77,6 +77,8 @@ __all__ = (
     "FRAME_TO_JAC_FUNC",
     "FRAME_TO_POS_ATTR",
     "FRAME_TO_XMAT_ATTR",
+    "set_mocap_pose_from_frame",
+    "pose_from_mocap",
     "custom_configuration_vector",
     "get_freejoint_dims",
     "interpolate_se3",
