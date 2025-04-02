@@ -45,6 +45,11 @@ class SO3(MatrixLieGroup):
         wxyz = np.round(self.wxyz, 5)
         return f"{self.__class__.__name__}(wxyz={wxyz})"
 
+    def __eq__(self, other: object) -> bool:
+        if not isinstance(other, SO3):
+            return NotImplemented
+        return np.array_equal(self.wxyz, other.wxyz)
+
     def parameters(self) -> np.ndarray:
         return self.wxyz
 

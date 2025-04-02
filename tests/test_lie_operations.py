@@ -84,6 +84,22 @@ class TestGroupSpecificOperations(absltest.TestCase):
 
     # SO3.
 
+    def test_so3_equality(self):
+        rot_1 = SO3.identity()
+        rot_2 = SO3.identity()
+        self.assertEqual(rot_1, rot_2)
+
+        rot_1 = SO3.from_x_radians(np.pi)
+        rot_2 = SO3.from_x_radians(np.pi)
+        self.assertEqual(rot_1, rot_2)
+
+        rot_1 = SO3.from_x_radians(np.pi)
+        rot_2 = SO3.from_x_radians(np.pi * 0.5)
+        self.assertNotEqual(rot_1, rot_2)
+
+        # Make sure different types are properly handled
+        self.assertNotEqual(SO3.identity(), 5)
+
     def test_so3_rpy_bijective(self):
         T = SO3.sample_uniform()
         assert_transforms_close(T, SO3.from_rpy_radians(*T.as_rpy_radians()))
@@ -100,14 +116,30 @@ class TestGroupSpecificOperations(absltest.TestCase):
         with np.testing.assert_raises(AssertionError):
             np.testing.assert_allclose(T_c.wxyz, T.wxyz)
 
+    # SE3.
+
+    def test_se3_equality(self):
+        pose_1 = SE3.identity()
+        pose_2 = SE3.identity()
+        self.assertEqual(pose_1, pose_2)
+
+        pose_1 = SE3.from_translation(np.array([1.0, 0.0, 0.0]))
+        pose_2 = SE3.from_translation(np.array([1.0, 0.0, 0.0]))
+        self.assertEqual(pose_1, pose_2)
+
+        pose_1 = SE3.from_translation(np.array([1.0, 2.0, 3.0]))
+        pose_2 = SE3.from_translation(np.array([1.0, 0.0, 0.0]))
+        self.assertNotEqual(pose_1, pose_2)
+
+        # Make sure different types are properly handled
+        self.assertNotEqual(SE3.identity(), 5)
+
     def test_se3_apply(self):
         T = SE3.sample_uniform()
         v = np.random.rand(3)
         np.testing.assert_allclose(
             T.apply(v), T.as_matrix()[:3, :3] @ v + T.translation()
         )
-
-    # SE3.
 
     def test_se3_from_mocap_id(self):
         xml_str = """
