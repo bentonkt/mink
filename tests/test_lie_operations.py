@@ -97,7 +97,7 @@ class TestGroupSpecificOperations(absltest.TestCase):
         rot_2 = SO3.from_x_radians(np.pi * 0.5)
         self.assertNotEqual(rot_1, rot_2)
 
-        # Make sure different types are properly handled
+        # Make sure different types are properly handled.
         self.assertNotEqual(SO3.identity(), 5)
 
     def test_so3_rpy_bijective(self):
@@ -131,7 +131,7 @@ class TestGroupSpecificOperations(absltest.TestCase):
         pose_2 = SE3.from_translation(np.array([1.0, 0.0, 0.0]))
         self.assertNotEqual(pose_1, pose_2)
 
-        # Make sure different types are properly handled
+        # Make sure different types are properly handled.
         self.assertNotEqual(SE3.identity(), 5)
 
     def test_se3_apply(self):
