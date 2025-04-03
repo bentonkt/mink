@@ -103,6 +103,21 @@ class MatrixLieGroup(abc.ABC):
         """Normalize/projects values and returns."""
         raise NotImplementedError
 
+    def interpolate(self, other: Self, alpha: float = 0.5) -> Self:
+        """Interpolate between two matrix Lie groups.
+
+        Args:
+            other: The other Lie group, which serves as the end point of interpolation.
+            alpha: The fraction of interpolation between [self, other]. This must
+                be within [0.0, 1.0]. 0.0 = self, 1.0 = other.
+
+        Returns:
+            The interpolated matrix Lie group.
+        """
+        if alpha < 0.0 or alpha > 1.0:
+            raise ValueError(f"Expected alpha within [0.0, 1.0] but received {alpha}")
+        return self @ self.exp(alpha * (self.inverse() @ other).log())
+
     # Plus and minus operators.
 
     # Eqn. 25.

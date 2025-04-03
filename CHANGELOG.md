@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
 
 - Added support for Python 3.8.
 - Added equality operators for SE3 and SO3.
+- Added matrix Lie group interpolation.
 
 ## [0.0.6] - 2025-03-15
 

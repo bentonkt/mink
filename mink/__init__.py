@@ -16,7 +16,7 @@ from .exceptions import (
     NotWithinConfigurationLimits,
     UnsupportedFrame,
 )
-from .lie import SE3, SO3, MatrixLieGroup, interpolate_se3
+from .lie import SE3, SO3, MatrixLieGroup
 from .limits import (
     CollisionAvoidanceLimit,
     ConfigurationLimit,
@@ -81,7 +81,6 @@ __all__ = (
     "pose_from_mocap",
     "custom_configuration_vector",
     "get_freejoint_dims",
-    "interpolate_se3",
     "move_mocap_to_frame",
     "get_subtree_geom_ids",
     "get_body_geom_ids",
