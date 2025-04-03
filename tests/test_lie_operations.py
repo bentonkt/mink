@@ -4,7 +4,6 @@ from typing import Type
 
 import mujoco
 import numpy as np
-import pytest
 from absl.testing import absltest, parameterized
 
 from mink.exceptions import InvalidMocapBody
@@ -129,9 +128,13 @@ class TestGroupSpecificOperations(absltest.TestCase):
         assert_transforms_close(start.interpolate(end, alpha=0.0), start)
         assert_transforms_close(start.interpolate(end, alpha=1.0), end)
 
-        with pytest.raises(ValueError, match="Expected alpha within"):
+        expected_error_message = "Expected alpha within [0.0, 1.0]"
+        with self.assertRaises(ValueError) as cm:
             start.interpolate(end, alpha=-1.0)
+        self.assertIn(expected_error_message, str(cm.exception))
+        with self.assertRaises(ValueError) as cm:
             start.interpolate(end, alpha=2.0)
+        self.assertIn(expected_error_message, str(cm.exception))
 
     # SE3.
 
@@ -234,9 +237,13 @@ class TestGroupSpecificOperations(absltest.TestCase):
         assert_transforms_close(start.interpolate(end, alpha=0.0), start)
         assert_transforms_close(start.interpolate(end, alpha=1.0), end)
 
-        with pytest.raises(ValueError, match="Expected alpha within"):
+        expected_error_message = "Expected alpha within [0.0, 1.0]"
+        with self.assertRaises(ValueError) as cm:
             start.interpolate(end, alpha=-1.0)
+        self.assertIn(expected_error_message, str(cm.exception))
+        with self.assertRaises(ValueError) as cm:
             start.interpolate(end, alpha=2.0)
+        self.assertIn(expected_error_message, str(cm.exception))
 
 
 if __name__ == "__main__":
