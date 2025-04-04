@@ -116,6 +116,26 @@ class TestGroupSpecificOperations(absltest.TestCase):
         with np.testing.assert_raises(AssertionError):
             np.testing.assert_allclose(T_c.wxyz, T.wxyz)
 
+    def test_so3_interpolate(self):
+        start = SO3.from_y_radians(np.pi)
+        end = SO3.from_y_radians(2 * np.pi)
+
+        assert_transforms_close(start.interpolate(end), SO3.from_y_radians(np.pi * 1.5))
+        assert_transforms_close(
+            start.interpolate(end, alpha=0.75), SO3.from_y_radians(np.pi * 1.75)
+        )
+
+        assert_transforms_close(start.interpolate(end, alpha=0.0), start)
+        assert_transforms_close(start.interpolate(end, alpha=1.0), end)
+
+        expected_error_message = "Expected alpha within [0.0, 1.0]"
+        with self.assertRaises(ValueError) as cm:
+            start.interpolate(end, alpha=-1.0)
+        self.assertIn(expected_error_message, str(cm.exception))
+        with self.assertRaises(ValueError) as cm:
+            start.interpolate(end, alpha=2.0)
+        self.assertIn(expected_error_message, str(cm.exception))
+
     # SE3.
 
     def test_se3_equality(self):
@@ -193,6 +213,37 @@ class TestGroupSpecificOperations(absltest.TestCase):
         data = mujoco.MjData(model)
         with self.assertRaises(InvalidMocapBody):
             SE3.from_mocap_name(model, data, "test")
+
+    def test_se3_interpolate(self):
+        start = SE3.from_rotation_and_translation(
+            SO3.from_x_radians(0.0), np.array([0, 0, 0])
+        )
+        end = SE3.from_rotation_and_translation(
+            SO3.from_x_radians(np.pi), np.array([1, 0, 0])
+        )
+
+        assert_transforms_close(
+            start.interpolate(end),
+            SE3.from_rotation_and_translation(
+                SO3.from_x_radians(np.pi * 0.5), np.array([0.5, 0, 0])
+            ),
+        )
+        assert_transforms_close(
+            start.interpolate(end, alpha=0.75),
+            SE3.from_rotation_and_translation(
+                SO3.from_x_radians(np.pi * 0.75), np.array([0.75, 0, 0])
+            ),
+        )
+        assert_transforms_close(start.interpolate(end, alpha=0.0), start)
+        assert_transforms_close(start.interpolate(end, alpha=1.0), end)
+
+        expected_error_message = "Expected alpha within [0.0, 1.0]"
+        with self.assertRaises(ValueError) as cm:
+            start.interpolate(end, alpha=-1.0)
+        self.assertIn(expected_error_message, str(cm.exception))
+        with self.assertRaises(ValueError) as cm:
+            start.interpolate(end, alpha=2.0)
+        self.assertIn(expected_error_message, str(cm.exception))
 
 
 if __name__ == "__main__":
