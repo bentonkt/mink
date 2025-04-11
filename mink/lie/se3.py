@@ -113,130 +113,130 @@ class SE3(MatrixLieGroup):
 
     @classmethod
     def exp(cls, tangent: np.ndarray) -> SE3:
-        assert tangent.shape == (SE3.tangent_dim,)
+        assert tangent.shape == (cls.tangent_dim,)
         rotation = SO3.exp(tangent[3:])
-        theta_squared = tangent[3:] @ tangent[3:]
-        use_taylor = theta_squared < get_epsilon(theta_squared.dtype)
-        theta_squared_safe = 1.0 if use_taylor else theta_squared
-        theta_safe = np.sqrt(theta_squared_safe)
-        skew_omega = skew(tangent[3:])
-        if use_taylor:
-            V = rotation.as_matrix()
+        theta = np.float64(mujoco.mju_norm3(tangent[3:]))
+        t2 = theta * theta        
+        if t2 < get_epsilon(t2.dtype):
+            v_mat = rotation.as_matrix()
         else:
-            V = (
+            skew_omega = skew(tangent[3:])
+            v_mat = (
                 np.eye(3, dtype=np.float64)
-                + (1.0 - np.cos(theta_safe)) / (theta_squared_safe) * skew_omega
-                + (theta_safe - np.sin(theta_safe))
-                / (theta_squared_safe * theta_safe)
+                + (1.0 - np.cos(theta)) / t2
+                * skew_omega
+                + (theta - np.sin(theta)) / (t2 * theta)
                 * (skew_omega @ skew_omega)
             )
-        return SE3.from_rotation_and_translation(
+        return cls.from_rotation_and_translation(
             rotation=rotation,
-            translation=V @ tangent[:3],
+            translation=v_mat @ tangent[:3],
         )
 
     def inverse(self) -> SE3:
-        R_inv = self.rotation().inverse()
-        return SE3.from_rotation_and_translation(
-            rotation=R_inv,
-            translation=-(R_inv @ self.translation()),
-        )
+        inverse_wxyz_xyz = np.empty(SE3.parameters_dim, dtype=np.float64)
+        mujoco.mju_negQuat(inverse_wxyz_xyz[:4], self.wxyz_xyz[:4])
+        mujoco.mju_rotVecQuat(inverse_wxyz_xyz[4:], -1.0 * self.wxyz_xyz[4:], inverse_wxyz_xyz[:4])
+        return SE3(wxyz_xyz=inverse_wxyz_xyz)
 
     def normalize(self) -> SE3:
-        return SE3.from_rotation_and_translation(
-            rotation=self.rotation().normalize(),
-            translation=self.translation(),
-        )
+        normalized_wxyz_xyz = np.array(self.wxyz_xyz)
+        mujoco.mju_normalize4(normalized_wxyz_xyz[:4])
+        return SE3(wxyz_xyz=normalized_wxyz_xyz)
 
     def apply(self, target: np.ndarray) -> np.ndarray:
         assert target.shape == (SE3.space_dim,)
-        return self.rotation() @ target + self.translation()
+        rotated_target = np.empty(SE3.space_dim, dtype=np.float64)
+        mujoco.mju_rotVecQuat(rotated_target, target, self.wxyz_xyz[:4])
+        return rotated_target + self.wxyz_xyz[4:]
 
     def multiply(self, other: SE3) -> SE3:
-        return SE3.from_rotation_and_translation(
-            rotation=self.rotation() @ other.rotation(),
-            translation=(self.rotation() @ other.translation()) + self.translation(),
-        )
+        wxyz_xyz = np.empty(SE3.parameters_dim, dtype=np.float64)
+        mujoco.mju_mulQuat(wxyz_xyz[:4], self.wxyz_xyz[:4], other.wxyz_xyz[:4])
+        mujoco.mju_rotVecQuat(wxyz_xyz[4:], other.wxyz_xyz[4:], self.wxyz_xyz[:4])
+        wxyz_xyz[4:] += self.wxyz_xyz[4:]
+        return SE3(wxyz_xyz=wxyz_xyz)
 
     def log(self) -> np.ndarray:
         omega = self.rotation().log()
-        theta_squared = omega @ omega
-        use_taylor = theta_squared < get_epsilon(theta_squared.dtype)
+        theta = np.float64(mujoco.mju_norm3(omega))
+        t2 = theta * theta
         skew_omega = skew(omega)
-        theta_squared_safe = 1.0 if use_taylor else theta_squared
-        theta_safe = np.sqrt(theta_squared_safe)
-        half_theta_safe = 0.5 * theta_safe
-        skew_omega_norm = skew_omega @ skew_omega
-        if use_taylor:
-            V_inv = (
-                np.eye(3, dtype=np.float64) - 0.5 * skew_omega + skew_omega_norm / 12.0
+        skew_omega2 = skew_omega @ skew_omega
+        if t2 < get_epsilon(t2.dtype):
+            vinv_mat = (
+                np.eye(3, dtype=np.float64) - 0.5 * skew_omega + skew_omega2 / 12.0
             )
         else:
-            V_inv = (
-                np.eye(3, dtype=np.float64)
+            half_theta = 0.5 * theta
+            vinv_mat = (
+                np.eye(3, dtype=np.float64) 
                 - 0.5 * skew_omega
-                + (
-                    1.0
-                    - theta_safe
-                    * np.cos(half_theta_safe)
-                    / (2.0 * np.sin(half_theta_safe))
-                )
-                / theta_squared_safe
-                * skew_omega_norm
+                + (1.0 - 0.5 * theta * np.cos(half_theta) / np.sin(half_theta)) / t2
+                * skew_omega2
             )
-        return np.concatenate([V_inv @ self.translation(), omega])
+        tangent = np.empty(SE3.tangent_dim, dtype=np.float64)
+        tangent[:3] = vinv_mat @ self.translation()
+        tangent[3:] = omega
+        return tangent
 
     def adjoint(self) -> np.ndarray:
-        R = self.rotation().as_matrix()
-        return np.block(
-            [
-                [R, skew(self.translation()) @ R],
-                [np.zeros((3, 3), dtype=np.float64), R],
-            ]
-        )
+        rotation = self.rotation()
+        rotation_mat = rotation.as_matrix()
+        tangent_mat = skew(self.translation()) @ rotation_mat
+        adjoint_mat = np.zeros((SE3.tangent_dim, SE3.tangent_dim), dtype=np.float64)
+        adjoint_mat[:3, :3] = rotation_mat
+        adjoint_mat[:3, 3:] = tangent_mat
+        adjoint_mat[3:, 3:] = rotation_mat
+        return adjoint_mat
 
     # Jacobians.
 
     # Eqn 179 a)
     @classmethod
     def ljac(cls, other: np.ndarray) -> np.ndarray:
-        theta = other[3:]
-        if theta @ theta < get_epsilon(theta.dtype):
+        theta_squared = np.float64(mujoco.mju_dot3(other[3:], other[3:]))
+        if theta_squared < get_epsilon(theta_squared.dtype):
             return np.eye(cls.tangent_dim)
-        Q = _getQ(other)
-        J = SO3.ljac(theta)
-        O = np.zeros((3, 3))
-        return np.block([[J, Q], [O, J]])
+        ljac_se3 = np.zeros((cls.tangent_dim, cls.tangent_dim), dtype=np.float64)
+        ljac_translation = _getQ(other)
+        ljac_so3 = SO3.ljac(other[3:])
+        ljac_se3[:3, :3] = ljac_so3
+        ljac_se3[:3, 3:] = ljac_translation
+        ljac_se3[3:, 3:] = ljac_so3
+        return ljac_se3
 
     # Eqn 179 b)
     @classmethod
     def ljacinv(cls, other: np.ndarray) -> np.ndarray:
-        theta = other[3:]
-        if theta @ theta < get_epsilon(theta.dtype):
+        theta_squared = np.float64(mujoco.mju_dot3(other[3:], other[3:]))
+        if theta_squared < get_epsilon(theta_squared.dtype):
             return np.eye(cls.tangent_dim)
-        Q = _getQ(other)
-        J_inv = SO3.ljacinv(theta)
-        O = np.zeros((3, 3))
-        return np.block([[J_inv, -J_inv @ Q @ J_inv], [O, J_inv]])
+        ljacinv_se3 = np.zeros((cls.tangent_dim, cls.tangent_dim), dtype=np.float64)
+        ljac_translation = _getQ(other)
+        ljacinv_so3 = SO3.ljacinv(other[3:])
+        ljacinv_se3[:3, :3] = ljacinv_so3
+        ljacinv_se3[:3, 3:] = -ljacinv_so3 @ ljac_translation @ ljacinv_so3
+        ljacinv_se3[3:, 3:] = ljacinv_so3
+        return ljacinv_se3
 
 
 # Eqn 180.
 def _getQ(c) -> np.ndarray:
-    theta_sq = c[3:] @ c[3:]
+    theta = np.float64(mujoco.mju_norm3(c[3:]))
+    t2 = theta * theta
     A = 0.5
-    if theta_sq < get_epsilon(theta_sq.dtype):
-        B = (1.0 / 6.0) + (1.0 / 120.0) * theta_sq
-        C = -(1.0 / 24.0) + (1.0 / 720.0) * theta_sq
+    if t2 < get_epsilon(t2.dtype):
+        B = (1.0 / 6.0) + (1.0 / 120.0) * t2
+        C = -(1.0 / 24.0) + (1.0 / 720.0) * t2
         D = -(1.0 / 60.0)
     else:
-        theta = np.sqrt(theta_sq)
+        t4 = t2 * t2
         sin_theta = np.sin(theta)
         cos_theta = np.cos(theta)
-        B = (theta - sin_theta) / (theta_sq * theta)
-        C = (1.0 - theta_sq / 2.0 - cos_theta) / (theta_sq * theta_sq)
-        D = ((2) * theta - (3) * sin_theta + theta * cos_theta) / (
-            (2) * theta_sq * theta_sq * theta
-        )
+        B = (theta - sin_theta) / (t2 * theta)
+        C = (1.0 - 0.5 * t2 - cos_theta) / t4
+        D = (2.0 * theta - 3.0 * sin_theta + theta * cos_theta) / (2.0 * t4 * theta)
     V = skew(c[:3])
     W = skew(c[3:])
     VW = V @ W
@@ -246,6 +246,6 @@ def _getQ(c) -> np.ndarray:
     return (
         +A * V
         + B * (WV + VW + WVW)
-        - C * (VWW - VWW.T - 3 * WVW)
+        - C * (VWW - VWW.T - 3.0 * WVW)
         + D * (WVW @ W + W @ WVW)
     )
