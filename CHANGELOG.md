@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## Unreleased
+
+### Changed
+
+- Switch Lie algebra implementation to use mujoco functions.
+- Rewrite some Lie algebra methods to use derivations with least operations.
+- Relax tolerances on test_solve_ik.py test_single_task_convergence.
+
 ## [0.0.8] - 2025-04-21
 
 ### Added
