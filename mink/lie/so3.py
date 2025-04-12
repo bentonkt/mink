@@ -169,8 +169,12 @@ class SO3(MatrixLieGroup):
 
     # Eq. 133.
     def log(self) -> np.ndarray:
-        theta = 2.0 * np.arccos(self.wxyz[0])
-        axis = np.array(self.wxyz[1:])
+        if self.wxyz[0] < 0.0:
+            theta = 2.0 * np.arccos(-self.wxyz[0])
+            axis = -1.0 * np.array(self.wxyz[1:])
+        else:
+            theta = 2.0 * np.arccos(self.wxyz[0])
+            axis = np.array(self.wxyz[1:])
         mujoco.mju_normalize3(axis)
         return theta * axis
 
