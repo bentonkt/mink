@@ -71,7 +71,7 @@ if __name__ == "__main__":
     ]
 
     # IK settings.
-    solver = "quadprog"
+    solver = "daqp"
     pos_threshold = 1e-4
     ori_threshold = 1e-4
     max_iters = 20

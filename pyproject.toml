@@ -4,7 +4,7 @@ build-backend = "flit_core.buildapi"
 
 [project]
 name = "mink"
-version = "0.0.7"
+version = "0.0.8"
 readme = "README.md"
 authors = [
     {name = "Kevin Zakka", email = "zakka@berkeley.edu"},
@@ -27,7 +27,7 @@ classifiers = [
 dependencies = [
     # 3.1.6 for mj_geomDistance.
     "mujoco >= 3.1.6",
-    "qpsolvers[quadprog] >= 4.3.1",
+    "qpsolvers[daqp] >= 4.3.1",
     "typing_extensions",
     "numpy < 2.0.0",
 ]
@@ -37,7 +37,7 @@ keywords = ["inverse", "kinematics", "mujoco"]
 examples = [
     "dm_control >= 1.0.20",
     "loop-rate-limiters >= 0.1.0",
-    "qpsolvers[quadprog] >= 4.3.1",
+    "qpsolvers[daqp] >= 4.3.1",
     "osqp >=0.6.2,<1",
 ]
 test = [

@@ -2,13 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
-## Unreleased
+## [0.0.8] - 2025-04-21
+
+### Added
+
+- Added equality operators for SE3 and SO3.
+- Added matrix Lie group interpolation.
 
 ### Changed
 
+- Remove quadprog dependency and switch to `daqp` for examples.
+
+## [0.0.7] - 2025-03-28
+
+### Added
+
 - Added support for Python 3.8.
-- Added equality operators for SE3 and SO3.
-- Added matrix Lie group interpolation.
 
 ## [0.0.6] - 2025-03-15
 

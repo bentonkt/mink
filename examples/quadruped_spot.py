@@ -58,7 +58,7 @@ if __name__ == "__main__":
     eef_mid = model.body("EE_target").mocapid[0]
 
     # IK settings.
-    solver = "quadprog"
+    solver = "daqp"
     pos_threshold = 1e-4
     ori_threshold = 1e-4
     max_iters = 20

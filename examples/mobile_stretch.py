@@ -36,7 +36,7 @@ if __name__ == "__main__":
 
     model = configuration.model
     data = configuration.data
-    solver = "quadprog"
+    solver = "daqp"
     circle_radius = 0.5
     mid = model.body("base_target").mocapid[0]
 

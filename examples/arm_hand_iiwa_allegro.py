@@ -90,7 +90,7 @@ if __name__ == "__main__":
     ]
 
     # IK settings.
-    solver = "quadprog"
+    solver = "daqp"
     model = configuration.model
     data = configuration.data
 

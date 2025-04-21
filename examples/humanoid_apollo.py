@@ -121,7 +121,7 @@ if __name__ == "__main__":
     head_mid = model.body("head_target").mocapid[0]
     model = configuration.model
     data = configuration.data
-    solver = "quadprog"
+    solver = "daqp"
 
     with mujoco.viewer.launch_passive(
         model=model, data=data, show_left_ui=False, show_right_ui=False

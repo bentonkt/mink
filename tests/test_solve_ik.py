@@ -42,7 +42,7 @@ class TestSolveIK(absltest.TestCase):
                 limits=self.limits,
                 dt=1.0,
                 safety_break=True,
-                solver="quadprog",
+                solver="daqp",
             )
 
     def test_ignores_configuration_limits(self):
@@ -55,7 +55,7 @@ class TestSolveIK(absltest.TestCase):
             [],
             limits=self.limits,
             dt=1.0,
-            solver="quadprog",
+            solver="daqp",
             safety_break=False,
         )
 
@@ -73,7 +73,7 @@ class TestSolveIK(absltest.TestCase):
 
     def test_trivial_solution(self):
         """No task returns no velocity."""
-        v = mink.solve_ik(self.configuration, [], limits=[], dt=1e-3, solver="quadprog")
+        v = mink.solve_ik(self.configuration, [], limits=[], dt=1e-3, solver="daqp")
         np.testing.assert_allclose(v, np.zeros((self.model.nv,)))
 
     def test_single_task_fulfilled(self):
@@ -88,7 +88,7 @@ class TestSolveIK(absltest.TestCase):
             self.configuration.get_transform_frame_to_world("attachment_site", "site")
         )
         v = mink.solve_ik(
-            self.configuration, [task], limits=self.limits, dt=1e-3, solver="quadprog"
+            self.configuration, [task], limits=self.limits, dt=1e-3, solver="daqp"
         )
         np.testing.assert_allclose(v, np.zeros((self.model.nv,)), atol=1e-10)
 
@@ -110,7 +110,7 @@ class TestSolveIK(absltest.TestCase):
 
         dt = 5e-3  # [s]
         velocity = mink.solve_ik(
-            configuration, [task], limits=self.limits, dt=dt, solver="quadprog"
+            configuration, [task], limits=self.limits, dt=dt, solver="daqp"
         )
 
         # Initially we are nowhere near the target and moving.
@@ -133,7 +133,7 @@ class TestSolveIK(absltest.TestCase):
             last_error = error
             configuration.integrate_inplace(velocity, dt)
             velocity = mink.solve_ik(
-                configuration, [task], limits=self.limits, dt=dt, solver="quadprog"
+                configuration, [task], limits=self.limits, dt=dt, solver="daqp"
             )
 
         # After nb_steps we are at the target and not moving.
