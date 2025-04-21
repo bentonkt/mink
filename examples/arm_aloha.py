@@ -117,7 +117,7 @@ if __name__ == "__main__":
 
     l_mid = model.body("left/target").mocapid[0]
     r_mid = model.body("right/target").mocapid[0]
-    solver = "quadprog"
+    solver = "daqp"
     pos_threshold = 5e-3
     ori_threshold = 5e-3
     max_iters = 5

@@ -60,7 +60,7 @@ if __name__ == "__main__":
 
     model = configuration.model
     data = configuration.data
-    solver = "quadprog"
+    solver = "daqp"
 
     # Gait parameters.
     # Initial phase offsets for each foot
