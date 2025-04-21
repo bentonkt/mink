@@ -7,10 +7,9 @@ import mujoco
 import numpy as np
 
 from .base import MatrixLieGroup
-from .utils import get_epsilon, skew
+from .utils import get_epsilon
 
 _IDENTITIY_WXYZ = np.array([1.0, 0.0, 0.0, 0.0], dtype=np.float64)
-_INVERT_QUAT_SIGN = np.array([1.0, -1.0, -1.0, -1.0], dtype=np.float64)
 
 
 class RollPitchYaw(NamedTuple):
@@ -137,63 +136,47 @@ class SO3(MatrixLieGroup):
             yaw=self.compute_yaw_radians(),
         )
 
-    # Paragraph above Appendix B.A.
     def inverse(self) -> SO3:
-        return SO3(wxyz=self.wxyz * _INVERT_QUAT_SIGN)
+        conjugate_wxyz = np.empty(4)
+        mujoco.mju_negQuat(conjugate_wxyz, self.wxyz)
+        return SO3(wxyz=conjugate_wxyz)
 
     def normalize(self) -> SO3:
-        return SO3(wxyz=self.wxyz / np.linalg.norm(self.wxyz))
+        normalized_wxyz = np.array(self.wxyz)
+        mujoco.mju_normalize4(normalized_wxyz)
+        return SO3(wxyz=normalized_wxyz)
 
     # Eq. 136.
     def apply(self, target: np.ndarray) -> np.ndarray:
         assert target.shape == (SO3.space_dim,)
-        padded_target = np.concatenate([np.zeros(1, dtype=np.float64), target])
-        return (self @ SO3(wxyz=padded_target) @ self.inverse()).wxyz[1:]
+        rotated_target = np.empty(SO3.space_dim, dtype=np.float64)
+        mujoco.mju_rotVecQuat(rotated_target, target, self.wxyz)
+        return rotated_target
 
     def multiply(self, other: SO3) -> SO3:
         res = np.empty(self.parameters_dim, dtype=np.float64)
         mujoco.mju_mulQuat(res, self.wxyz, other.wxyz)
         return SO3(wxyz=res)
 
-    ##
-    #
-    ##
-
     # Eq. 132.
     @classmethod
     def exp(cls, tangent: np.ndarray) -> SO3:
-        assert tangent.shape == (SO3.tangent_dim,)
-        theta_squared = tangent @ tangent
-        theta_pow_4 = theta_squared * theta_squared
-        use_taylor = theta_squared < get_epsilon(tangent.dtype)
-        safe_theta = 1.0 if use_taylor else np.sqrt(theta_squared)
-        safe_half_theta = 0.5 * safe_theta
-        if use_taylor:
-            real = 1.0 - theta_squared / 8.0 + theta_pow_4 / 384.0
-            imaginary = 0.5 - theta_squared / 48.0 + theta_pow_4 / 3840.0
-        else:
-            real = np.cos(safe_half_theta)
-            imaginary = np.sin(safe_half_theta) / safe_theta
-        wxyz = np.concatenate([np.array([real]), imaginary * tangent])
+        axis = np.array(tangent)
+        theta = mujoco.mju_normalize3(axis)
+        wxyz = np.zeros(4)
+        mujoco.mju_axisAngle2Quat(wxyz, axis, theta)
         return SO3(wxyz=wxyz)
 
     # Eq. 133.
     def log(self) -> np.ndarray:
-        w = self.wxyz[0]
-        norm_sq = self.wxyz[1:] @ self.wxyz[1:]
-        use_taylor = norm_sq < get_epsilon(norm_sq.dtype)
-        norm_safe = 1.0 if use_taylor else np.sqrt(norm_sq)
-        w_safe = w if use_taylor else 1.0
-        atan_n_over_w = np.arctan2(-norm_safe if w < 0 else norm_safe, abs(w))
-        if use_taylor:
-            atan_factor = 2.0 / w_safe - 2.0 / 3.0 * norm_sq / w_safe**3
+        if self.wxyz[0] < 0.0:
+            theta = 2.0 * np.arccos(-self.wxyz[0])
+            axis = -1.0 * np.array(self.wxyz[1:])
         else:
-            if abs(w) < get_epsilon(w.dtype):
-                scl = 1.0 if w > 0.0 else -1.0
-                atan_factor = scl * np.pi / norm_safe
-            else:
-                atan_factor = 2.0 * atan_n_over_w / norm_safe
-        return atan_factor * self.wxyz[1:]
+            theta = 2.0 * np.arccos(self.wxyz[0])
+            axis = np.array(self.wxyz[1:])
+        mujoco.mju_normalize3(axis)
+        return theta * axis
 
     # Eq. 139.
     def adjoint(self) -> np.ndarray:
@@ -204,28 +187,65 @@ class SO3(MatrixLieGroup):
     # Eqn. 145, 174.
     @classmethod
     def ljac(cls, other: np.ndarray) -> np.ndarray:
-        theta = np.sqrt(other @ other)
-        use_taylor = theta < get_epsilon(theta.dtype)
-        if use_taylor:
-            t2 = theta**2
-            A = (1.0 / 2.0) * (1.0 - t2 / 12.0 * (1.0 - t2 / 30.0 * (1.0 - t2 / 56.0)))
-            B = (1.0 / 6.0) * (1.0 - t2 / 20.0 * (1.0 - t2 / 42.0 * (1.0 - t2 / 72.0)))
+        theta = np.float64(mujoco.mju_norm3(other))
+        t2 = theta * theta
+        if theta < get_epsilon(theta.dtype):
+            alpha = (1.0 / 2.0) * (1.0 - t2 / 12.0 * (1.0 - t2 / 30.0 * (1.0 - t2 / 56.0)))
+            beta = (1.0 / 6.0) * (1.0 - t2 / 20.0 * (1.0 - t2 / 42.0 * (1.0 - t2 / 72.0)))
         else:
-            A = (1 - np.cos(theta)) / (theta**2)
-            B = (theta - np.sin(theta)) / (theta**3)
-        skew_other = skew(other)
-        return np.eye(3) + A * skew_other + B * (skew_other @ skew_other)
+            t3 = t2 * theta
+            alpha = (1 - np.cos(theta)) / t2
+            beta = (theta - np.sin(theta)) / t3
+        # ljac = eye(3) + alpha * skew_other + beta * (skew_other @ skew_other)
+        ljac = np.empty((3, 3))
+        # skew_other @ skew_other == outer(other) - inner(other) * eye(3)
+        mujoco.mju_mulMatMat(ljac, other.reshape(3, 1), other.reshape(1, 3))
+        inner_product = mujoco.mju_dot3(other, other)
+        ljac[0, 0] -= inner_product
+        ljac[1, 1] -= inner_product
+        ljac[2, 2] -= inner_product
+        ljac *= beta
+        # + alpha * skew_other
+        alpha_vec = alpha * other
+        ljac[0, 1] += -alpha_vec[2]
+        ljac[0, 2] += alpha_vec[1]
+        ljac[1, 0] += alpha_vec[2]
+        ljac[1, 2] += -alpha_vec[0]
+        ljac[2, 0] += -alpha_vec[1]
+        ljac[2, 1] += alpha_vec[0]
+        # + eye(3)
+        ljac[0, 0] += 1.0
+        ljac[1, 1] += 1.0
+        ljac[2, 2] += 1.0
+        return ljac
 
     @classmethod
     def ljacinv(cls, other: np.ndarray) -> np.ndarray:
-        theta = np.sqrt(other @ other)
-        use_taylor = theta < get_epsilon(theta.dtype)
-        if use_taylor:
-            t2 = theta**2
-            A = (1.0 / 12.0) * (1.0 + t2 / 60.0 * (1.0 + t2 / 42.0 * (1.0 + t2 / 40.0)))
+        theta = np.float64(mujoco.mju_norm3(other))
+        t2 = theta * theta
+        if theta < get_epsilon(theta.dtype):
+            beta = (1.0 / 12.0) * (1.0 + t2 / 60.0 * (1.0 + t2 / 42.0 * (1.0 + t2 / 40.0)))
         else:
-            A = (1.0 / theta**2) * (
-                1.0 - (theta * np.sin(theta) / (2.0 * (1.0 - np.cos(theta))))
-            )
-        skew_other = skew(other)
-        return np.eye(3) - 0.5 * skew_other + A * (skew_other @ skew_other)
+            beta = (1.0 / t2) * (1.0 - (theta * np.sin(theta) / (2.0 * (1.0 - np.cos(theta)))))
+        # ljacinv = eye(3) - 0.5 * skew_other + beta * (skew_other @ skew_other)
+        ljacinv = np.empty((3,3))
+        # skew_other @ skew_other == outer(other) - inner(other) * eye(3)
+        mujoco.mju_mulMatMat(ljacinv, other.reshape(3,1), other.reshape(1,3))
+        inner_product = mujoco.mju_dot3(other, other)
+        ljacinv[0, 0] -= inner_product
+        ljacinv[1, 1] -= inner_product
+        ljacinv[2, 2] -= inner_product
+        ljacinv *= beta
+        # - 0.5 * skew_other
+        alpha_vec = -0.5 * other
+        ljacinv[0, 1] += -alpha_vec[2]
+        ljacinv[0, 2] += alpha_vec[1]
+        ljacinv[1, 0] += alpha_vec[2]
+        ljacinv[1, 2] += -alpha_vec[0]
+        ljacinv[2, 0] += -alpha_vec[1]
+        ljacinv[2, 1] += alpha_vec[0]
+        # + eye(3)
+        ljacinv[0, 0] += 1.0
+        ljacinv[1, 1] += 1.0
+        ljacinv[2, 2] += 1.0
+        return ljacinv
