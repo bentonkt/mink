@@ -190,8 +190,12 @@ class SO3(MatrixLieGroup):
         theta = np.float64(mujoco.mju_norm3(other))
         t2 = theta * theta
         if theta < get_epsilon(theta.dtype):
-            alpha = (1.0 / 2.0) * (1.0 - t2 / 12.0 * (1.0 - t2 / 30.0 * (1.0 - t2 / 56.0)))
-            beta = (1.0 / 6.0) * (1.0 - t2 / 20.0 * (1.0 - t2 / 42.0 * (1.0 - t2 / 72.0)))
+            alpha = (1.0 / 2.0) * (
+                1.0 - t2 / 12.0 * (1.0 - t2 / 30.0 * (1.0 - t2 / 56.0))
+            )
+            beta = (1.0 / 6.0) * (
+                1.0 - t2 / 20.0 * (1.0 - t2 / 42.0 * (1.0 - t2 / 72.0))
+            )
         else:
             t3 = t2 * theta
             alpha = (1 - np.cos(theta)) / t2
@@ -224,13 +228,17 @@ class SO3(MatrixLieGroup):
         theta = np.float64(mujoco.mju_norm3(other))
         t2 = theta * theta
         if theta < get_epsilon(theta.dtype):
-            beta = (1.0 / 12.0) * (1.0 + t2 / 60.0 * (1.0 + t2 / 42.0 * (1.0 + t2 / 40.0)))
+            beta = (1.0 / 12.0) * (
+                1.0 + t2 / 60.0 * (1.0 + t2 / 42.0 * (1.0 + t2 / 40.0))
+            )
         else:
-            beta = (1.0 / t2) * (1.0 - (theta * np.sin(theta) / (2.0 * (1.0 - np.cos(theta)))))
+            beta = (1.0 / t2) * (
+                1.0 - (theta * np.sin(theta) / (2.0 * (1.0 - np.cos(theta))))
+            )
         # ljacinv = eye(3) - 0.5 * skew_other + beta * (skew_other @ skew_other)
-        ljacinv = np.empty((3,3))
+        ljacinv = np.empty((3, 3))
         # skew_other @ skew_other == outer(other) - inner(other) * eye(3)
-        mujoco.mju_mulMatMat(ljacinv, other.reshape(3,1), other.reshape(1,3))
+        mujoco.mju_mulMatMat(ljacinv, other.reshape(3, 1), other.reshape(1, 3))
         inner_product = mujoco.mju_dot3(other, other)
         ljacinv[0, 0] -= inner_product
         ljacinv[1, 1] -= inner_product

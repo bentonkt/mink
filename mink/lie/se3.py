@@ -116,17 +116,15 @@ class SE3(MatrixLieGroup):
         assert tangent.shape == (cls.tangent_dim,)
         rotation = SO3.exp(tangent[3:])
         theta = np.float64(mujoco.mju_norm3(tangent[3:]))
-        t2 = theta * theta        
+        t2 = theta * theta
         if t2 < get_epsilon(t2.dtype):
             v_mat = rotation.as_matrix()
         else:
             skew_omega = skew(tangent[3:])
             v_mat = (
                 np.eye(3, dtype=np.float64)
-                + (1.0 - np.cos(theta)) / t2
-                * skew_omega
-                + (theta - np.sin(theta)) / (t2 * theta)
-                * (skew_omega @ skew_omega)
+                + (1.0 - np.cos(theta)) / t2 * skew_omega
+                + (theta - np.sin(theta)) / (t2 * theta) * (skew_omega @ skew_omega)
             )
         return cls.from_rotation_and_translation(
             rotation=rotation,
@@ -136,7 +134,9 @@ class SE3(MatrixLieGroup):
     def inverse(self) -> SE3:
         inverse_wxyz_xyz = np.empty(SE3.parameters_dim, dtype=np.float64)
         mujoco.mju_negQuat(inverse_wxyz_xyz[:4], self.wxyz_xyz[:4])
-        mujoco.mju_rotVecQuat(inverse_wxyz_xyz[4:], -1.0 * self.wxyz_xyz[4:], inverse_wxyz_xyz[:4])
+        mujoco.mju_rotVecQuat(
+            inverse_wxyz_xyz[4:], -1.0 * self.wxyz_xyz[4:], inverse_wxyz_xyz[:4]
+        )
         return SE3(wxyz_xyz=inverse_wxyz_xyz)
 
     def normalize(self) -> SE3:
@@ -170,9 +170,10 @@ class SE3(MatrixLieGroup):
         else:
             half_theta = 0.5 * theta
             vinv_mat = (
-                np.eye(3, dtype=np.float64) 
+                np.eye(3, dtype=np.float64)
                 - 0.5 * skew_omega
-                + (1.0 - 0.5 * theta * np.cos(half_theta) / np.sin(half_theta)) / t2
+                + (1.0 - 0.5 * theta * np.cos(half_theta) / np.sin(half_theta))
+                / t2
                 * skew_omega2
             )
         tangent = np.empty(SE3.tangent_dim, dtype=np.float64)
