@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+
+### Changed
+
+- Update so3.py log function to clamp quaternion values for arccos
+
 ## [0.0.9] - 2025-04-21
 
 ### Changed
