@@ -2,11 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
-## [Unreleased]
+## [0.0.10] - 2025-04-22
 
 ### Changed
 
-- Update so3.py log function to use arctan2 instead of arccos for better numerical stability
+- Update so3.py log function to use arctan2 instead of arccos for better numerical stability.
 
 ## [0.0.9] - 2025-04-21
 

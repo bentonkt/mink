@@ -85,6 +85,7 @@ class SO3(MatrixLieGroup):
         assert matrix.shape == (SO3.matrix_dim, SO3.matrix_dim)
         wxyz = np.empty(SO3.parameters_dim, dtype=np.float64)
         mujoco.mju_mat2Quat(wxyz, matrix.ravel())
+        # NOTE mju_mat2Quat normalizes the quaternion.
         return SO3(wxyz=wxyz)
 
     @classmethod
@@ -163,7 +164,10 @@ class SO3(MatrixLieGroup):
     def exp(cls, tangent: np.ndarray) -> SO3:
         axis = np.array(tangent)
         theta = mujoco.mju_normalize3(axis)
-        wxyz = np.zeros(4)
+        wxyz = np.empty(4, dtype=np.float64)
+        # NOTE mju_axisAngle2Quat does not normalize the quaternion but is guaranteed
+        # to return a unit quaternion when axis is a unit vector. In our case,
+        # mju_normalize3 ensures that axis is a unit vector.
         mujoco.mju_axisAngle2Quat(wxyz, axis, theta)
         return SO3(wxyz=wxyz)
 
