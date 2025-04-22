@@ -6,7 +6,7 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
-- Update so3.py log function to clamp quaternion values for arccos
+- Update so3.py log function to use arctan2 instead of arccos for better numerical stability
 
 ## [0.0.9] - 2025-04-21
 
