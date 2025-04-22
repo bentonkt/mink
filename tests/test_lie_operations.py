@@ -136,6 +136,18 @@ class TestGroupSpecificOperations(absltest.TestCase):
             start.interpolate(end, alpha=2.0)
         self.assertIn(expected_error_message, str(cm.exception))
 
+    def test_so3_apply(self):
+        vec = np.random.rand(3)
+        rot = SO3.sample_uniform()
+        rotated_vec = rot.apply(vec)
+        np.testing.assert_allclose(rotated_vec, rot.as_matrix() @ vec)
+
+    def test_so3_apply_throws_assertion_error_if_wrong_shape(self):
+        rot = SO3.sample_uniform()
+        vec = np.random.rand(2)
+        with self.assertRaises(AssertionError):
+            rot.apply(vec)
+
     # SE3.
 
     def test_se3_equality(self):
