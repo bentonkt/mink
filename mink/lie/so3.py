@@ -169,15 +169,13 @@ class SO3(MatrixLieGroup):
 
     # Eq. 133.
     def log(self) -> np.ndarray:
-        w_clamped = np.clip(self.wxyz[0], -1.0, 1.0)
-        if w_clamped < 0.0:
-            theta = 2.0 * np.arccos(-w_clamped)
-            axis = -1.0 * np.array(self.wxyz[1:])
-        else:
-            theta = 2.0 * np.arccos(w_clamped)
-            axis = np.array(self.wxyz[1:])
-        mujoco.mju_normalize3(axis)
-        return theta * axis
+        q = np.array(self.wxyz)
+        q *= np.sign(q[0])
+        w, v = q[0], q[1:]
+        norm = mujoco.mju_normalize3(v)
+        if norm < get_epsilon(v.dtype):
+            return np.zeros_like(v)
+        return 2 * np.arctan2(norm, w) * v
 
     # Eq. 139.
     def adjoint(self) -> np.ndarray:
