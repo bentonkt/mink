@@ -17,11 +17,28 @@ from .task import Task
 class PostureTask(Task):
     """Regulate the joint angles of the robot towards a desired posture.
 
-    A posture is a vector of actuated joint angles. Floating-base coordinates are not
-    affected by this task.
+    Using this task with a low cost value is useful as a regularizer, biasing the
+    solution towards the desired posture when the problem is under-constrained.
 
     Attributes:
-        target_q: Target configuration.
+        target_q: Target configuration :math:`q^*`, of shape :math:`(n_q,)`. Units are
+            radians for revolute joints and meters for prismatic joints. Note that
+            floating-base coordinates are not affected by this task but should be
+            included in the target configuration.
+
+    Example:
+
+    .. code-block:: python
+
+        posture_task = PostureTask(model, cost=1e-3)
+
+        # Update the target posture directly.
+        q_desired = ...
+        posture_task.set_target(q_desired)
+
+        # Or from a keyframe defined in the model.
+        configuration.update_from_keyframe("home")
+        posture_task.set_target_from_configuration(configuration)
     """
 
     target_q: Optional[np.ndarray]
