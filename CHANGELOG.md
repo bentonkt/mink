@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## Unreleased
+
+### Changed
+
+- Merged task and limit exceptions to base exceptions file.
+- Improved the documentation for certain tasks.
+
 ## [0.0.10] - 2025-04-22
 
 ### Changed
