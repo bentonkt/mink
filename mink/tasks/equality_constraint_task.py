@@ -53,8 +53,17 @@ class EqualityConstraintTask(Task):
     * ``mjEQ_JOINT``: Couple the values of two scalar joints.
     * ``mjEQ_TENDON``: Couple the values of two tendons.
 
-    This task can regulate all equality constraints in a model or a specific subset
+    This task can regulate all equality constraints in the model or a specific subset
     identified by name or ID.
+
+    .. note::
+
+        MuJoCo computes the constraint residual and its Jacobian and stores them in
+        ``data.efc_pos`` and ``data.efc_J`` (potentially in sparse format), respectively.
+        The :func:`compute_error` and :func:`compute_jacobian` methods simply extract the
+        rows corresponding to the active equality constraints specified for this task
+        from ``data.efc_pos`` and ``data.efc_J``. More information on MuJoCo's constraint
+        model can be found in [MuJoCoEqualityConstraints]_.
 
     Attributes:
         equalities: ID or name of the equality constraints to regulate. If not provided,
@@ -126,32 +135,25 @@ class EqualityConstraintTask(Task):
         self.cost = np.repeat(self._cost, repeats)
 
     def compute_error(self, configuration: Configuration) -> np.ndarray:
-        """Compute the equality constraint task error.
+        """Compute the task error (constraint residual) :math:`e(q) = r(q)`.
 
         Args:
             configuration: Robot configuration :math:`q`.
 
         Returns:
-            Equality constraint task error vector :math:`e(q)`. The shape of the
-            error vector is ``(neq_active * constraint_dim,)``, where ``neq_active``
-            is the number of active equality constraints, and ``constraint_dim``
-            depends on the type of equality constraint.
+            Task error vector :math:`e(q)` for the active equality constraints.
         """
         self._update_active_constraints(configuration)
         return configuration.data.efc_pos[self._mask]
 
     def compute_jacobian(self, configuration: Configuration) -> np.ndarray:
-        """Compute the task Jacobian at a given configuration.
+        """Compute the task Jacobian (constraint Jacobian) :math:`J(q) = J_r(q)`.
 
         Args:
             configuration: Robot configuration :math:`q`.
 
         Returns:
-            Equality constraint task jacobian :math:`J(q)`. The shape of the Jacobian
-            is ``(neq_active * constraint_dim, nv)``, where ``neq_active`` is the
-            number of active equality constraints, ``constraint_dim`` depends on the
-            type of equality constraint, and ``nv`` is the dimension of the tangent
-            space.
+            Task jacobian :math:`J(q)` for the active equality constraints.
         """
         self._update_active_constraints(configuration)
         efc_J = _get_dense_constraint_jacobian(configuration.model, configuration.data)
