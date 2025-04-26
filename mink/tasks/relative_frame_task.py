@@ -8,8 +8,8 @@ import numpy as np
 import numpy.typing as npt
 
 from ..configuration import Configuration
+from ..exceptions import TargetNotSet, TaskDefinitionError
 from ..lie import SE3
-from .exceptions import TargetNotSet, TaskDefinitionError
 from .task import Task
 
 

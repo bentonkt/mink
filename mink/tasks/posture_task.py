@@ -9,16 +9,16 @@ import numpy as np
 import numpy.typing as npt
 
 from ..configuration import Configuration
+from ..exceptions import InvalidTarget, TargetNotSet, TaskDefinitionError
 from ..utils import get_freejoint_dims
-from .exceptions import InvalidTarget, TargetNotSet, TaskDefinitionError
 from .task import Task
 
 
 class PostureTask(Task):
     """Regulate the joint angles of the robot towards a desired posture.
 
-    Using this task with a low cost value is useful as a regularizer, biasing the
-    solution towards the desired posture when the problem is under-constrained.
+    Using this task with a low cost value is useful as a regularizer when the problem
+    is under-constrained.
 
     Attributes:
         target_q: Target configuration :math:`q^*`, of shape :math:`(n_q,)`. Units are
@@ -125,8 +125,8 @@ class PostureTask(Task):
             m=configuration.model,
             qvel=qvel,
             dt=1.0,
-            qpos1=configuration.q,
-            qpos2=self.target_q,
+            qpos1=self.target_q,
+            qpos2=configuration.q,
         )
 
         if self._v_ids is not None:
@@ -149,11 +149,7 @@ class PostureTask(Task):
         Returns:
             Posture task jacobian :math:`J(q)`.
         """
-        if self.target_q is None:
-            raise TargetNotSet(self.__class__.__name__)
-
-        jac = -np.eye(configuration.nv)
+        jac = np.eye(configuration.nv)
         if self._v_ids is not None:
             jac[:, self._v_ids] = 0.0
-
         return jac

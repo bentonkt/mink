@@ -10,7 +10,7 @@ import numpy as np
 import numpy.typing as npt
 
 from ..configuration import Configuration
-from .exceptions import InvalidConstraint, TaskDefinitionError
+from ..exceptions import InvalidConstraint, TaskDefinitionError
 from .task import Task
 
 

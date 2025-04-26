@@ -6,7 +6,8 @@ from absl.testing import absltest
 from robot_descriptions.loaders.mujoco import load_robot_description
 
 from mink import Configuration
-from mink.limits import LimitDefinitionError, VelocityLimit
+from mink.exceptions import LimitDefinitionError
+from mink.limits import VelocityLimit
 
 
 class TestVelocityLimit(absltest.TestCase):

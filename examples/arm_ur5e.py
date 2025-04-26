@@ -22,8 +22,9 @@ if __name__ == "__main__":
             frame_type="site",
             position_cost=1.0,
             orientation_cost=1.0,
-            lm_damping=1.0,
+            lm_damping=1e-6,
         ),
+        posture_task := mink.PostureTask(model, cost=1e-3),
     ]
 
     # Enable collision avoidance between the following geoms:
@@ -59,20 +60,19 @@ if __name__ == "__main__":
 
         # Initialize to the home keyframe.
         configuration.update_from_keyframe("home")
+        posture_task.set_target(configuration.q)
 
         # Initialize the mocap target at the end-effector site.
         mink.move_mocap_to_frame(model, data, "target", "attachment_site", "site")
 
-        rate = RateLimiter(frequency=500.0, warn=False)
+        rate = RateLimiter(frequency=200.0, warn=False)
         while viewer.is_running():
             # Update task target.
             T_wt = mink.SE3.from_mocap_name(model, data, "target")
             end_effector_task.set_target(T_wt)
 
             # Compute velocity and integrate into the next configuration.
-            vel = mink.solve_ik(
-                configuration, tasks, rate.dt, solver, 1e-3, limits=limits
-            )
+            vel = mink.solve_ik(configuration, tasks, rate.dt, solver, limits=limits)
             configuration.integrate_inplace(vel, rate.dt)
             mujoco.mj_camlight(model, data)
 

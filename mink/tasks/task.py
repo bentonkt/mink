@@ -6,7 +6,7 @@ from typing import NamedTuple
 import numpy as np
 
 from ..configuration import Configuration
-from .exceptions import InvalidDamping, InvalidGain
+from ..exceptions import InvalidDamping, InvalidGain
 
 
 class Objective(NamedTuple):

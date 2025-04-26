@@ -6,8 +6,8 @@ from absl.testing import absltest
 from robot_descriptions.loaders.mujoco import load_robot_description
 
 from mink import Configuration
+from mink.exceptions import LimitDefinitionError
 from mink.limits import ConfigurationLimit, VelocityLimit
-from mink.limits.exceptions import LimitDefinitionError
 from mink.utils import get_freejoint_dims
 
 

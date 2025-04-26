@@ -5,12 +5,8 @@ from absl.testing import absltest
 from robot_descriptions.loaders.mujoco import load_robot_description
 
 from mink import Configuration
-from mink.tasks import (
-    ComTask,
-    InvalidTarget,
-    TargetNotSet,
-    TaskDefinitionError,
-)
+from mink.exceptions import InvalidTarget, TargetNotSet, TaskDefinitionError
+from mink.tasks import ComTask
 
 
 class TestComTask(absltest.TestCase):
@@ -59,10 +55,10 @@ class TestComTask(absltest.TestCase):
             task.compute_error(self.configuration)
         self.assertEqual(str(cm.exception), "No target set for ComTask")
 
-    def test_jacobian_without_target(self):
+    def test_jacobian_can_be_computed_without_target(self):
         task = ComTask(cost=1.0)
-        with self.assertRaises(TargetNotSet):
-            task.compute_jacobian(self.configuration)
+        jac = task.compute_jacobian(self.configuration)
+        self.assertEqual(jac.shape, (3, self.configuration.nv))
 
     def test_set_target_from_configuration(self):
         task = ComTask(cost=1.0)

@@ -2,7 +2,7 @@
 
 from absl.testing import absltest
 
-from mink.tasks.exceptions import InvalidDamping, InvalidGain
+from mink.exceptions import InvalidDamping, InvalidGain
 from mink.tasks.task import Task
 
 
