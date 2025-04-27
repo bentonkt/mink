@@ -15,6 +15,8 @@ _STEP_SIZE = np.sqrt(np.finfo(float).eps)
 class TestJacobians(absltest.TestCase):
     """Test task jacobian matrices against finite differences."""
 
+    model: mujoco.MjModel
+
     @classmethod
     def setUpClass(cls):
         cls.model = load_robot_description("talos_mj_description")
@@ -67,7 +69,8 @@ class TestJacobians(absltest.TestCase):
                 q_perturbed = q_0.copy()
                 mujoco.mj_integratePos(self.model, q_perturbed, e_i, _STEP_SIZE)
                 J_finite[:, i] = (e(q_perturbed) - e_0) / _STEP_SIZE
-            self.assertLess(np.linalg.norm(J_0 - J_finite, ord=np.inf), tol)
+            norm_diff = float(np.linalg.norm(J_0 - J_finite, ord=np.inf))
+            self.assertLess(norm_diff, tol)
 
     def test_frame_task(self):
         frame_task = mink.FrameTask(
