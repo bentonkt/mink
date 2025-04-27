@@ -5,7 +5,8 @@ from absl.testing import absltest
 from robot_descriptions.loaders.mujoco import load_robot_description
 
 from mink import SE3, Configuration
-from mink.tasks import FrameTask, RelativeFrameTask, TargetNotSet, TaskDefinitionError
+from mink.exceptions import TargetNotSet, TaskDefinitionError
+from mink.tasks import FrameTask, RelativeFrameTask
 
 
 class TestRelativeFrameTask(absltest.TestCase):

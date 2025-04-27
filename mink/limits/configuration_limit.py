@@ -7,7 +7,7 @@ import numpy as np
 
 from ..configuration import Configuration
 from ..constants import dof_width, qpos_width
-from .exceptions import LimitDefinitionError
+from ..exceptions import LimitDefinitionError
 from .limit import Constraint, Limit
 
 
@@ -98,7 +98,7 @@ class ConfigurationLimit(Limit):
             return Constraint()
 
         # Upper.
-        delta_q_max = np.zeros((self.model.nv,))
+        delta_q_max = np.empty((self.model.nv,))
         mujoco.mj_differentiatePos(
             m=self.model,
             qvel=delta_q_max,
@@ -108,7 +108,7 @@ class ConfigurationLimit(Limit):
         )
 
         # Lower.
-        delta_q_min = np.zeros((self.model.nv,))
+        delta_q_min = np.empty((self.model.nv,))
         mujoco.mj_differentiatePos(
             m=self.model,
             qvel=delta_q_min,

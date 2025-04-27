@@ -107,6 +107,7 @@ exclude_also = [
     "if use_taylor:",
     "if theta_sq < get_epsilon(theta_sq\\.dtype):",
     "def ljac",
+    "def rjac",
 ]
 omit = [
     "*exceptions.py",

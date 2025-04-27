@@ -8,7 +8,7 @@ import numpy.typing as npt
 
 from ..configuration import Configuration
 from ..constants import dof_width
-from .exceptions import LimitDefinitionError
+from ..exceptions import LimitDefinitionError
 from .limit import Constraint, Limit
 
 

@@ -8,19 +8,38 @@ import numpy as np
 import numpy.typing as npt
 
 from ..configuration import Configuration
+from ..exceptions import TargetNotSet, TaskDefinitionError
 from ..lie import SE3
-from .exceptions import TargetNotSet, TaskDefinitionError
 from .task import Task
 
 
 class FrameTask(Task):
-    """Regulate the pose of a frame expressed in the world frame.
+    """Regulate the position and orientation of a frame expressed in the world frame.
 
     Attributes:
         frame_name: Name of the frame to regulate, typically the name of body, geom
             or site in the robot model.
         frame_type: The frame type: `body`, `geom` or `site`.
         transform_frame_to_world: Target pose of the frame.
+
+    Example:
+
+    .. code-block:: python
+
+        frame_task = FrameTask(
+            frame_name="target",
+            frame_type="site",
+            position_cost=1.0,
+            orientation_cost=1.0,
+        )
+
+        # Update the target pose directly.
+        transform_target_to_world = SE3.from_translation(np.random.rand(3))
+        frame_task.set_target(transform_target_to_world)
+
+        # Or from the current configuration. This will automatically compute the
+        # target pose from the current configuration and update the task target.
+        frame_task.set_target_from_configuration(configuration)
     """
 
     k: int = 6

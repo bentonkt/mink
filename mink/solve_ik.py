@@ -53,7 +53,9 @@ def build_ik(
         configuration: Robot configuration.
         tasks: List of kinematic tasks.
         dt: Integration timestep in [s].
-        damping: Levenberg-Marquardt damping.
+        damping: Levenberg-Marquardt damping. Higher values improve numerical
+            stability but slow down task convergence. This value applies to all
+            dofs, including floating-base coordinates.
         limits: List of limits to enforce. Set to empty list to disable. If None,
             defaults to a configuration limit.
 
@@ -85,7 +87,9 @@ def solve_ik(
         tasks: List of kinematic tasks.
         dt: Integration timestep in [s].
         solver: Backend quadratic programming (QP) solver.
-        damping: Levenberg-Marquardt damping.
+        damping: Levenberg-Marquardt damping applied to all tasks. Higher values
+            improve numerical stability but slow down task convergence. This
+            value applies to all dofs, including floating-base coordinates.
         safety_break: If True, stop execution and raise an exception if
             the current configuration is outside limits. If False, print a
             warning and continue execution.

@@ -9,7 +9,7 @@ import numpy as np
 import numpy.typing as npt
 
 from ..configuration import Configuration
-from .exceptions import InvalidTarget, TargetNotSet, TaskDefinitionError
+from ..exceptions import InvalidTarget, TargetNotSet, TaskDefinitionError
 from .task import Task
 
 
@@ -18,6 +18,20 @@ class ComTask(Task):
 
     Attributes:
         target_com: Target position of the CoM.
+
+    Example:
+
+    .. code-block:: python
+
+        com_task = ComTask(model, cost=1.0)
+
+        # Update the target CoM directly.
+        com_desired = np.zeros(3)
+        com_task.set_target(com_desired)
+
+        # Or from a keyframe defined in the model.
+        configuration.update_from_keyframe("home")
+        com_task.set_target_from_configuration(configuration)
     """
 
     k: int = 3
@@ -69,7 +83,21 @@ class ComTask(Task):
         self.set_target(configuration.data.subtree_com[1])
 
     def compute_error(self, configuration: Configuration) -> np.ndarray:
-        """Compute the CoM task error.
+        r"""Compute the CoM task error.
+
+        The center of mass :math:`c(q)` for a collection of bodies :math:`\mathcal{B}`
+        is the mass-weighted average of their individual centers of mass. After running
+        forward kinematics, in particular after calling ``mj_comPos``, MuJoCo stores
+        the CoM of each subtree in ``data.subtree_com``. This task uses the CoM of the
+        subtree starting from body 1, which is the entire robot excluding the world
+        body (body 0).
+
+        The task error :math:`e(q)` is the difference between the current CoM
+        :math:`c(q)` and the target CoM :math:`c^*`:
+
+        .. math::
+
+            e(q) = c(q) - c^*
 
         Args:
             configuration: Robot configuration :math:`q`.
@@ -79,19 +107,46 @@ class ComTask(Task):
         """
         if self.target_com is None:
             raise TargetNotSet(self.__class__.__name__)
+        # Note: body 0 is the world body, so we start from body 1 (the robot).
+        # TODO(kevin): Don't hardcode subtree index.
         return configuration.data.subtree_com[1] - self.target_com
 
     def compute_jacobian(self, configuration: Configuration) -> np.ndarray:
-        """Compute the CoM task Jacobian.
+        r"""Compute the Jacobian of the CoM task error :math:`e(q)`.
+
+        The Jacobian is the derivative of this error with respect to the
+        generalized coordinates :math:`q`. Since the target :math:`c^*` is
+        constant, the Jacobian of the error simplifies to the Jacobian of the
+        CoM position :math:`c(q)`:
+
+        .. math::
+
+            J(q) = \frac{\partial e(q)}{\partial q} = \frac{\partial c(q)}{\partial q}
+
+        MuJoCo's ``mj_jacSubtreeCom`` function computes this Jacobian using the
+        formula:
+
+        .. math::
+
+            \frac{\partial c(q)}{\partial q} =
+            \frac{1}{M} \sum_{i \in \mathcal{B}} m_i \frac{\partial p_i(q)}{\partial q}
+            = \frac{1}{M} \sum_{i \in \mathcal{B}} m_i J_i(q)
+
+        where :math:`M = \sum_{i \in \mathcal{B}} m_i` is the total mass of the subtree,
+        :math:`m_i` is the mass of body :math:`i`, :math:`p_i(q)` is the position
+        of the origin of body frame :math:`i` in the world frame, :math:`J_i(q) =
+        \frac{\partial p_i(q)}{\partial q}` is the Jacobian mapping joint velocities to
+        the linear velocity of the origin of body frame :math:`i`, and the sum is over
+        all bodies :math:`\mathcal{B}` in the specified subtree (body 1 and its
+        descendants).
 
         Args:
             configuration: Robot configuration :math:`q`.
 
         Returns:
-            Center-of-mass task jacobian :math:`J(q)`.
+            Jacobian of the center-of-mass task error :math:`J(q)`.
         """
-        if self.target_com is None:
-            raise TargetNotSet(self.__class__.__name__)
+        # NOTE: We don't need a target CoM to compute this Jacobian.
         jac = np.empty((self.k, configuration.nv))
         mujoco.mj_jacSubtreeCom(configuration.model, configuration.data, jac, 1)
         return jac

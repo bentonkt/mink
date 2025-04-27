@@ -11,18 +11,25 @@ from mink.tasks import DampingTask
 class TestDampingTask(absltest.TestCase):
     """Test consistency of the damping task."""
 
-    @classmethod
-    def setUpClass(cls):
-        cls.model = load_robot_description("ur5e_mj_description")
-
-    def setUp(self):
-        self.configuration = Configuration(self.model)
-
-    def test_qp_objective(self):
-        task = DampingTask(self.model, cost=1.0)
-        nv = self.configuration.nv
-        H, c = task.compute_qp_objective(self.configuration)
+    def test_qp_objective_fixed_base(self):
+        model = load_robot_description("ur5e_mj_description")
+        configuration = Configuration(model)
+        task = DampingTask(model, cost=1.0)
+        nv = configuration.nv
+        H, c = task.compute_qp_objective(configuration)
         np.testing.assert_allclose(H, np.eye(nv))
+        np.testing.assert_allclose(c, np.zeros(nv))
+
+    def test_qp_objective_floating_base(self):
+        model = load_robot_description("g1_mj_description")
+        configuration = Configuration(model)
+        task = DampingTask(model, cost=1.0)
+        nv = configuration.nv
+        H, c = task.compute_qp_objective(configuration)
+        # Floating base indices should not be damped.
+        H_expected = np.zeros((nv, nv))
+        H_expected[6:, 6:] = np.eye(nv - 6)
+        np.testing.assert_allclose(H, H_expected)
         np.testing.assert_allclose(c, np.zeros(nv))
 
 

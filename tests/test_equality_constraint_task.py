@@ -6,7 +6,8 @@ from absl.testing import absltest
 from robot_descriptions.loaders.mujoco import load_robot_description
 
 from mink import Configuration
-from mink.tasks import EqualityConstraintTask, InvalidConstraint, TaskDefinitionError
+from mink.exceptions import InvalidConstraint, TaskDefinitionError
+from mink.tasks import EqualityConstraintTask
 
 
 class TestEqualityConstraintTask(absltest.TestCase):

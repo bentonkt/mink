@@ -9,19 +9,36 @@ import numpy as np
 import numpy.typing as npt
 
 from ..configuration import Configuration
+from ..exceptions import InvalidTarget, TargetNotSet, TaskDefinitionError
 from ..utils import get_freejoint_dims
-from .exceptions import InvalidTarget, TargetNotSet, TaskDefinitionError
 from .task import Task
 
 
 class PostureTask(Task):
     """Regulate the joint angles of the robot towards a desired posture.
 
-    A posture is a vector of actuated joint angles. Floating-base coordinates are not
-    affected by this task.
+    Using this task with a low cost value is useful as a regularizer when the problem
+    is under-constrained.
 
     Attributes:
-        target_q: Target configuration.
+        target_q: Target configuration :math:`q^*`, of shape :math:`(n_q,)`. Units are
+            radians for revolute joints and meters for prismatic joints. Note that
+            floating-base coordinates are not affected by this task but should be
+            included in the target configuration.
+
+    Example:
+
+    .. code-block:: python
+
+        posture_task = PostureTask(model, cost=1e-3)
+
+        # Update the target posture directly.
+        q_desired = ...
+        posture_task.set_target(q_desired)
+
+        # Or from a keyframe defined in the model.
+        configuration.update_from_keyframe("home")
+        posture_task.set_target_from_configuration(configuration)
     """
 
     target_q: Optional[np.ndarray]
@@ -108,8 +125,8 @@ class PostureTask(Task):
             m=configuration.model,
             qvel=qvel,
             dt=1.0,
-            qpos1=configuration.q,
-            qpos2=self.target_q,
+            qpos1=self.target_q,
+            qpos2=configuration.q,
         )
 
         if self._v_ids is not None:
@@ -132,11 +149,7 @@ class PostureTask(Task):
         Returns:
             Posture task jacobian :math:`J(q)`.
         """
-        if self.target_q is None:
-            raise TargetNotSet(self.__class__.__name__)
-
-        jac = -np.eye(configuration.nv)
+        jac = np.eye(configuration.nv)
         if self._v_ids is not None:
             jac[:, self._v_ids] = 0.0
-
         return jac
