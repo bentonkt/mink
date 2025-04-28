@@ -6,7 +6,9 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
-- Added single and dual Franka Emika Panda robot examples featuring inverse kinematics (IK), motion planning, and bi-manual coordination.
+- Added single and dual Franka Emika Panda robot examples featuring motion planning, and bi-manual coordination. Contribution from @Debojit-D.
+
+![bimanual panda](https://github.com/kevinzakka/mink/blob/assets/dual_panda.gif?raw=true)
 
 ### Changed
 
