@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
+### Added
+
+- Added single and dual Franka Emika Panda robot examples featuring inverse kinematics (IK), motion planning, and bi-manual coordination.
+
 ### Changed
 
 - Merged task and limit exceptions to base exceptions file.
