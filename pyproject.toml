@@ -108,6 +108,7 @@ exclude_also = [
     "if theta_sq < get_epsilon(theta_sq\\.dtype):",
     "def ljac",
     "def rjac",
+    "if mujoco.__version__"
 ]
 omit = [
     "*exceptions.py",
