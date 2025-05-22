@@ -12,6 +12,7 @@ Features include:
 * Task specification in configuration or operational space;
 * Limits on joint positions and velocities;
 * Collision avoidance between any geom pair;
+* Support for closed-chain kinematics (loop closures) via [equality constraints](https://mujoco.readthedocs.io/en/stable/computation/index.html#coequality);
 * Lie group interface for rigid body transformations.
 
 For usage and API reference, see the [documentation](https://kevinzakka.github.io/mink/).

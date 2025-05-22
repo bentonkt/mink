@@ -28,14 +28,12 @@ class KineticEnergyRegularizationTask(BaseTask):
     .. note::
 
         This task penalizes DoFs in proportion to their joint-space inertia, so
-        higher-inertia (i.e., heavier) links will move less. This is in contrast to
-        :class:`~.L2RegularizationTask`, which uniformly damps all DoFs.
+        higher-inertia (i.e., heavier) links will move less.
 
     .. warning::
 
-        The timestep :math:`\Delta t` must be set via :meth:`set_dt` before use.
-        This task penalizes velocity via displacement, and omitting `dt` will raise
-        a runtime error.
+        The integration timestep :math:`\Delta t` must be set via :meth:`set_dt`
+        before use. This ensures the cost is expressed in units of energy (Joules).
 
     Example:
 
