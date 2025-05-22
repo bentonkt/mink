@@ -10,19 +10,37 @@ from ..exceptions import InvalidDamping, InvalidGain
 
 
 class Objective(NamedTuple):
-    r"""Quadratic objective of the form :math:`\frac{1}{2} x^T H x + c^T x`."""
+    r"""Quadratic objective of the form
+    :math:`\frac{1}{2} \Delta q^T H \Delta q + c^T \Delta q`.
+    """
 
     H: np.ndarray
-    """Hessian matrix, of shape (n_v, n_v)"""
+    r"""Hessian matrix, of shape (:math:`n_v`, :math:`n_v`)."""
     c: np.ndarray
-    """Linear vector, of shape (n_v,)."""
+    r"""Linear vector, of shape (:math:`n_v`,)."""
 
     def value(self, x: np.ndarray) -> float:
         """Returns the value of the objective at the input vector."""
         return x.T @ self.H @ x + self.c @ x
 
 
-class Task(abc.ABC):
+class BaseTask(abc.ABC):
+    """Base class for all tasks."""
+
+    @abc.abstractmethod
+    def compute_qp_objective(self, configuration: Configuration) -> Objective:
+        r"""Compute the matrix-vector pair :math:`(H, c)` of the QP objective.
+
+        Args:
+            configuration: Robot configuration :math:`q`.
+
+        Returns:
+            Pair :math:`(H(q), c(q))`.
+        """
+        raise NotImplementedError
+
+
+class Task(BaseTask):
     r"""Abstract base class for kinematic tasks.
 
     Subclasses must implement the configuration-dependent task error
