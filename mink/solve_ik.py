@@ -48,7 +48,7 @@ def build_ik(
     damping: float = 1e-12,
     limits: Optional[Sequence[Limit]] = None,
 ) -> qpsolvers.Problem:
-    r"""Build quadratic program from current configuration and tasks.
+    r"""Build the quadratic program given the current configuration and tasks.
 
     The quadratic program is defined as:
 

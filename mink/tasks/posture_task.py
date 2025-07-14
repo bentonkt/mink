@@ -15,10 +15,10 @@ from .task import Task
 
 
 class PostureTask(Task):
-    """Regulate the joint angles of the robot towards a desired posture.
+    """Regulate joint angles towards a target posture.
 
-    Using this task with a low cost value is useful as a regularizer when the problem
-    is under-constrained.
+    Often used with a low priority in the task stack, this task acts like a regularizer,
+    biasing the solution toward a specific joint configuration.
 
     Attributes:
         target_q: Target configuration :math:`q^*`, of shape :math:`(n_q,)`. Units are
@@ -83,7 +83,8 @@ class PostureTask(Task):
         """Set the target posture.
 
         Args:
-            target_q: Desired joint configuration.
+            target_q: A vector of shape (nq,) representing the desired joint
+                configuration.
         """
         target_q = np.atleast_1d(target_q)
         if target_q.ndim != 1 or target_q.shape[0] != (self.nq):
@@ -94,7 +95,7 @@ class PostureTask(Task):
         self.target_q = target_q.copy()
 
     def set_target_from_configuration(self, configuration: Configuration) -> None:
-        """Set the target posture from the current configuration.
+        """Set the target posture by extracting it from the current configuration.
 
         Args:
             configuration: Robot configuration :math:`q`.

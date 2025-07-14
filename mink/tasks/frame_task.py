@@ -14,13 +14,13 @@ from .task import Task
 
 
 class FrameTask(Task):
-    """Regulate the position and orientation of a frame expressed in the world frame.
+    """Regulate the position and orientation of a frame of interest on the robot.
 
     Attributes:
         frame_name: Name of the frame to regulate, typically the name of body, geom
             or site in the robot model.
         frame_type: The frame type: `body`, `geom` or `site`.
-        transform_frame_to_world: Target pose of the frame.
+        transform_frame_to_world: Target pose of the frame in the world frame.
 
     Example:
 

@@ -49,6 +49,12 @@ class ComTask(Task):
         self.set_cost(cost)
 
     def set_cost(self, cost: npt.ArrayLike) -> None:
+        """Set the cost of the CoM task.
+
+        Args:
+            cost: A vector of shape (1,) (aka identical cost for all coordinates),
+                or (3,) (aka different costs for each coordinate).
+        """
         cost = np.atleast_1d(cost)
         if cost.ndim != 1 or cost.shape[0] not in (1, self.k):
             raise TaskDefinitionError(
@@ -64,7 +70,8 @@ class ComTask(Task):
         """Set the target CoM position in the world frame.
 
         Args:
-            target_com: Desired center-of-mass position in the world frame.
+            target_com: A vector of shape (3,) representing the desired
+                center-of-mass position in the world frame.
         """
         target_com = np.atleast_1d(target_com)
         if target_com.ndim != 1 or target_com.shape[0] != (self.k):

@@ -11,26 +11,26 @@ from .posture_task import PostureTask
 class DampingTask(PostureTask):
     r"""L2-regularization on joint velocities (a.k.a. *velocity damping*).
 
-    This low-priority task adds a Tikhonov/Levenberg-Marquardt term to the
-    quadratic program, making the Hessian strictly positive-definite and
-    selecting the **minimum-norm joint velocity** in any redundant or
-    near-singular situation. Formally it contributes:
+    This task, typically used with a low priority in the task stack, adds a
+    Levenberg-Marquardt term to the quadratic program, favoring **minimum-norm
+    joint velocities** in redundant or near-singular situations. Formally, it
+    contributes the following term to the quadratic program:
 
     .. math::
         \frac{1}{2}\,\Delta \mathbf{q}^\top \Lambda\,\Delta \mathbf{q},
 
     where :math:`\Delta \mathbf{q}\in\mathbb{R}^{n_v}` is the vector of joint
     displacements and :math:`\Lambda = \mathrm{diag}(\lambda_1, \ldots, \lambda_{n_v})`
-    is a diagonal matrix of per-DoF weights provided by ``cost``. A larger
-    :math:`\lambda_i` reduces motion in DoF :math:`i`; with no other active
-    tasks the robot remains at rest.
-
-    This task does not favor a particular posture—only small instantaneous
-    motion. If you need a posture bias, use an explicit :class:`~.PostureTask`.
+    is a diagonal matrix of per-DoF damping weights specified via ``cost``. A larger
+    :math:`\lambda_i` reduces motion in DoF :math:`i`. With no other active
+    tasks, the robot remains at rest. Unlike the `damping` parameter in
+    :func:`~.solve_ik`, which is uniformly applied to all DoFs, this task does
+    not affect the floating-base coordinates.
 
     .. note::
 
-        Floating-base coordinates are not affected by this task.
+        This task does not favor a particular posture, only small instantaneous motion.
+        If you need a posture bias, use :class:`~.PostureTask` instead.
 
     Example:
 
@@ -53,7 +53,7 @@ class DampingTask(PostureTask):
         r"""Compute the damping task error.
 
         The damping task does not chase a reference; its desired joint velocity
-        is identically **zero**, so the error vector is always
+        is identically **zero**, so the task error is always:
 
         .. math:: e = \mathbf 0 \in \mathbb R^{n_v}.
 
