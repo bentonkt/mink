@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
+### Added
+
+- `clamp` method for SO3 and SE3.
+
 ### Changed
 
 - `solve_ik` now raises a new exception, `NoSolutionFound`, when the QP solver fails to find a solution.

@@ -99,6 +99,21 @@ if __name__ == "__main__":
         configuration.update(data.qpos)
         posture_task.set_target_from_configuration(configuration)
 
+        # Define a rectangular region centered about the origin of the initial
+        # end-effector pose. This can be used to clamp the end_effector_task target
+        # to ensure that the end-effector stays within this region.
+        # Roll and pitch limits are also defined to keep the hand pointed downward.
+        T_eef_init = configuration.get_transform_frame_to_world(
+            "attachment_site", "site"
+        )
+        translation_init = T_eef_init.translation()
+        x_limits = (translation_init[0] - 0.1, translation_init[0] + 0.1)
+        y_limits = (translation_init[1] - 0.1, translation_init[1] + 0.1)
+        z_limits = (translation_init[2] - 0.1, translation_init[2] + 0.1)
+        rpy_init = T_eef_init.rotation().as_rpy_radians()
+        roll_limits = (rpy_init.roll - 0.2, rpy_init.roll + 0.2)
+        pitch_limits = (rpy_init.pitch - 0.2, rpy_init.pitch + 0.2)
+
         # Initialize the mocap target at the end-effector site.
         mink.move_mocap_to_frame(model, data, "target", "attachment_site", "site")
         for finger in fingers:
@@ -112,9 +127,16 @@ if __name__ == "__main__":
 
         rate = RateLimiter(frequency=200.0, warn=False)
         while viewer.is_running():
-            # Update kuka end-effector task.
+            # Clamp the target within the limits and then update the end-effector task.
             T_wt = mink.SE3.from_mocap_name(model, data, "target")
-            end_effector_task.set_target(T_wt)
+            T_wt_clamped = T_wt.clamp(
+                x_translation=x_limits,
+                y_translation=y_limits,
+                z_translation=z_limits,
+                roll_radians=roll_limits,
+                pitch_radians=pitch_limits,
+            )
+            end_effector_task.set_target(T_wt_clamped)
 
             # Update finger tasks.
             for finger, task in zip(fingers, finger_tasks):

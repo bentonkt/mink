@@ -148,6 +148,34 @@ class TestGroupSpecificOperations(absltest.TestCase):
         with self.assertRaises(AssertionError):
             rot.apply(vec)
 
+    def test_so3_clamp(self):
+        # Clamping with the default RPY limits (+- infinity) means the SO3 should remain unchanged.
+        rot = SO3.from_rpy_radians(roll=np.pi, pitch=0, yaw=-np.pi)
+        self.assertEqual(rot, rot.clamp())
+
+        original_rpy = rot.as_rpy_radians()
+
+        # Test clamping the roll.
+        clamped_rot = rot.clamp(roll_radians=(0, 1))
+        clamped_rpy = clamped_rot.as_rpy_radians()
+        self.assertAlmostEqual(clamped_rpy.roll, 1)
+        self.assertAlmostEqual(clamped_rpy.pitch, original_rpy.pitch)
+        self.assertAlmostEqual(clamped_rpy.yaw, original_rpy.yaw)
+
+        # Test clamping the pitch.
+        clamped_rot = rot.clamp(pitch_radians=(1, 2))
+        clamped_rpy = clamped_rot.as_rpy_radians()
+        self.assertAlmostEqual(clamped_rpy.roll, original_rpy.roll)
+        self.assertAlmostEqual(clamped_rpy.pitch, 1)
+        self.assertAlmostEqual(clamped_rpy.yaw, original_rpy.yaw)
+
+        # Test clamping the yaw.
+        clamped_rot = rot.clamp(yaw_radians=(np.pi, 2 * np.pi))
+        clamped_rpy = clamped_rot.as_rpy_radians()
+        self.assertAlmostEqual(clamped_rpy.roll, original_rpy.roll)
+        self.assertAlmostEqual(clamped_rpy.pitch, original_rpy.pitch)
+        self.assertAlmostEqual(clamped_rpy.yaw, np.pi)
+
     # SE3.
 
     def test_se3_equality(self):
@@ -256,6 +284,55 @@ class TestGroupSpecificOperations(absltest.TestCase):
         with self.assertRaises(ValueError) as cm:
             start.interpolate(end, alpha=2.0)
         self.assertIn(expected_error_message, str(cm.exception))
+
+    def test_se3_clamp(self):
+        T = SE3.from_rotation_and_translation(
+            rotation=SO3.from_rpy_radians(roll=np.pi, pitch=0, yaw=-np.pi),
+            translation=np.array([0, 1, 2]),
+        )
+        original_rpy = T.rotation().as_rpy_radians()
+
+        # Clamping with the default limits (+- infinity) means the SE3 should remain unchanged.
+        self.assertEqual(T, T.clamp())
+
+        # Test clamping the x translation.
+        clamped_T = T.clamp(x_translation=(1, 2))
+        np.testing.assert_allclose(clamped_T.translation(), np.array([1, 1, 2]))
+        self.assertEqual(clamped_T.rotation(), T.rotation())
+
+        # Test clamping the y translation.
+        clamped_T = T.clamp(y_translation=(-1, 0))
+        np.testing.assert_allclose(clamped_T.translation(), np.array([0, 0, 2]))
+        self.assertEqual(clamped_T.rotation(), T.rotation())
+
+        # Test clamping the z translation.
+        clamped_T = T.clamp(z_translation=(5, 10))
+        np.testing.assert_allclose(clamped_T.translation(), np.array([0, 1, 5]))
+        self.assertEqual(clamped_T.rotation(), T.rotation())
+
+        # Test clamping the roll.
+        clamped_T = T.clamp(roll_radians=(0, 1))
+        clamped_rpy = clamped_T.rotation().as_rpy_radians()
+        np.testing.assert_equal(clamped_T.translation(), T.translation())
+        self.assertAlmostEqual(clamped_rpy.roll, 1)
+        self.assertAlmostEqual(clamped_rpy.pitch, original_rpy.pitch)
+        self.assertAlmostEqual(clamped_rpy.yaw, original_rpy.yaw)
+
+        # Test clamping the pitch.
+        clamped_T = T.clamp(pitch_radians=(1, 2))
+        clamped_rpy = clamped_T.rotation().as_rpy_radians()
+        np.testing.assert_equal(clamped_T.translation(), T.translation())
+        self.assertAlmostEqual(clamped_rpy.roll, original_rpy.roll)
+        self.assertAlmostEqual(clamped_rpy.pitch, 1)
+        self.assertAlmostEqual(clamped_rpy.yaw, original_rpy.yaw)
+
+        # Test clamping the yaw.
+        clamped_T = T.clamp(yaw_radians=(np.pi, 2 * np.pi))
+        clamped_rpy = clamped_T.rotation().as_rpy_radians()
+        np.testing.assert_equal(clamped_T.translation(), T.translation())
+        self.assertAlmostEqual(clamped_rpy.roll, original_rpy.roll)
+        self.assertAlmostEqual(clamped_rpy.pitch, original_rpy.pitch)
+        self.assertAlmostEqual(clamped_rpy.yaw, np.pi)
 
 
 if __name__ == "__main__":

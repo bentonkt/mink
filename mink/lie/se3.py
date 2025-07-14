@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from typing import Tuple
 
 import mujoco
 import numpy as np
@@ -220,6 +221,36 @@ class SE3(MatrixLieGroup):
         ljacinv_se3[:3, 3:] = -ljacinv_so3 @ ljac_translation @ ljacinv_so3
         ljacinv_se3[3:, 3:] = ljacinv_so3
         return ljacinv_se3
+
+    def clamp(
+        self,
+        x_translation: Tuple[float, float] = (-np.inf, np.inf),
+        y_translation: Tuple[float, float] = (-np.inf, np.inf),
+        z_translation: Tuple[float, float] = (-np.inf, np.inf),
+        roll_radians: Tuple[float, float] = (-np.inf, np.inf),
+        pitch_radians: Tuple[float, float] = (-np.inf, np.inf),
+        yaw_radians: Tuple[float, float] = (-np.inf, np.inf),
+    ) -> SE3:
+        """Clamp a SE3 within translation and RPY limits.
+
+        Args:
+            x_translation: The (lower, upper) limits for translation along the x axis.
+            y_translation: The (lower, upper) limits for translation along the y axis.
+            z_translation: The (lower, upper) limits for translation along the z axis.
+            roll_radians: The (lower, upper) limits for the roll.
+            pitch_radians: The (lower, upper) limits for the pitch.
+            yaw_radians: The (lower, upper) limits for the yaw.
+
+        Returns:
+            A SE3 within the translation and RPY limits.
+        """
+        translation_limits = np.array([x_translation, y_translation, z_translation])
+        return SE3.from_rotation_and_translation(
+            rotation=self.rotation().clamp(roll_radians, pitch_radians, yaw_radians),
+            translation=np.clip(
+                self.translation(), translation_limits[:, 0], translation_limits[:, 1]
+            ),
+        )
 
 
 # Eqn 180.

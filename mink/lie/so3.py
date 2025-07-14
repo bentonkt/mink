@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import NamedTuple
+from typing import NamedTuple, Tuple
 
 import mujoco
 import numpy as np
@@ -260,3 +260,25 @@ class SO3(MatrixLieGroup):
         ljacinv[1, 1] += 1.0
         ljacinv[2, 2] += 1.0
         return ljacinv
+
+    def clamp(
+        self,
+        roll_radians: Tuple[float, float] = (-np.inf, np.inf),
+        pitch_radians: Tuple[float, float] = (-np.inf, np.inf),
+        yaw_radians: Tuple[float, float] = (-np.inf, np.inf),
+    ) -> SO3:
+        """Clamp a SO3 within RPY limits.
+
+        Args:
+            roll_radians: The (lower, upper) limits for the roll.
+            pitch_radians: The (lower, upper) limits for the pitch.
+            yaw_radians: The (lower, upper) limits for the yaw.
+
+        Returns:
+            A SO3 within the RPY limits.
+        """
+        return SO3.from_rpy_radians(
+            roll=np.clip(self.compute_roll_radians(), *roll_radians),
+            pitch=np.clip(self.compute_pitch_radians(), *pitch_radians),
+            yaw=np.clip(self.compute_yaw_radians(), *yaw_radians),
+        )

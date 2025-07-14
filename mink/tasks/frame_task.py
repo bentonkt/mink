@@ -20,7 +20,7 @@ class FrameTask(Task):
         frame_name: Name of the frame to regulate, typically the name of body, geom
             or site in the robot model.
         frame_type: The frame type: `body`, `geom` or `site`.
-        transform_frame_to_world: Target pose of the frame in the world frame.
+        transform_target_to_world: Target pose of the frame in the world frame.
 
     Example:
 
