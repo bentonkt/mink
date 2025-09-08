@@ -206,7 +206,7 @@ class CollisionAvoidanceLimit(Limit):
             jac = compute_contact_normal_jacobian(
                 self.model, configuration.data, contact
             )
-            coefficient_matrix[idx] = -jac
+            coefficient_matrix[idx] = -np.sign(hi_bound_dist) * jac
         return Constraint(G=coefficient_matrix, h=upper_bound)
 
     # Private methods.

@@ -15,6 +15,7 @@ All notable changes to this project will be documented in this file.
 ### Bugfix
 
 - Fix `Configuration.get_inertia_matrix` for MuJoCo versions >= 3.3.4.
+- Objects already in collision repel each other instead of locking together.
 
 ## [0.0.11] - 2025-05-22
 
