@@ -2,11 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
-## Unreleased
+## [0.0.13] - 2025-09-12
 
-### Added
+### Bugfix
 
-- `clamp` method for SO3 and SE3.
+* Objects already in collision repel each other instead of locking together. Contribution from @mattrobotcontributor.
+
+## [0.0.12] - 2025-08-08
 
 ### Changed
 
@@ -14,8 +16,11 @@ All notable changes to this project will be documented in this file.
 
 ### Bugfix
 
-- Fix `Configuration.get_inertia_matrix` for MuJoCo versions >= 3.3.4.
-- Objects already in collision repel each other instead of locking together.
+* Fix `Configuration.get_inertia_matrix` for MuJoCo versions >= 3.3.4.
+
+### Added
+
+- `clamp` method for SO3 and SE3. Contribution from @adlarkin.
 
 ## [0.0.11] - 2025-05-22
 
