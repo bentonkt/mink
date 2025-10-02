@@ -4,6 +4,7 @@ import mujoco
 import numpy as np
 from absl.testing import absltest
 from robot_descriptions.loaders.mujoco import load_robot_description
+from scipy.optimize import linprog
 
 from mink import Configuration
 from mink.exceptions import LimitDefinitionError
@@ -154,6 +155,39 @@ class TestConfigurationLimit(absltest.TestCase):
         _, h = limit.compute_qp_inequalities(self.configuration, dt)
         self.assertLess(np.max(h), slack_vel * dt + tol)
         self.assertGreater(np.min(h), -slack_vel * dt - tol)
+
+    def test_configuration_limit_dt_invariance(self):
+        """Configuration-limit inequalities are invariant to dt."""
+        limit = ConfigurationLimit(self.model, gain=0.95)
+        G1, h1 = limit.compute_qp_inequalities(self.configuration, dt=1e-3)
+        G2, h2 = limit.compute_qp_inequalities(self.configuration, dt=0.2)
+        self.assertTrue(np.allclose(G1, G2))
+        self.assertTrue(np.allclose(h1, h2))
+
+    def test_feasible_step_respects_position_bounds(self, tol=1e-9):
+        limit = ConfigurationLimit(self.model, gain=1.0)
+
+        # dt is irrelevant for configuration limits; pass anything.
+        G, h = limit.compute_qp_inequalities(self.configuration, dt=0.1)
+
+        # We use linprog to construct a strictly feasible delta_q for the inequality
+        # set `G Δq ≤ h - eps``. Shrinking the RHS by eps guarantees strict slack if a
+        # solution exists. linprog with a zero cost is a convenient feasibility solver.
+        eps = 1e-3
+        c = np.zeros(self.configuration.nv)
+        res = linprog(c, A_ub=G, b_ub=h - eps, bounds=(None, None), method="highs")
+        assert res.success, "Could not find a strictly feasible Δq"
+        delta_q = res.x
+
+        # Integrate one second with `v = delta_q` (so Δq = v * 1).
+        q_next = self.configuration.integrate(delta_q, dt=1.0)
+
+        # Check the next configuration is inside the true bounds for limited joints.
+        lower = limit.lower[limit.indices]
+        upper = limit.upper[limit.indices]
+        qn = q_next[limit.indices]
+        assert np.all(qn <= upper + tol)
+        assert np.all(qn >= lower - tol)
 
 
 if __name__ == "__main__":
