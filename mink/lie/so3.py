@@ -49,6 +49,9 @@ class SO3(MatrixLieGroup):
             return NotImplemented
         return np.array_equal(self.wxyz, other.wxyz)
 
+    def __hash__(self) -> int:
+        return hash(self.wxyz.tobytes())
+
     def parameters(self) -> np.ndarray:
         return self.wxyz
 

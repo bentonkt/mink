@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## Unreleased
+
+### Added
+
+* Add more tests to `test_configuration_limit.py` and `test_velocity_limit.py`.
+
 ## [0.0.13] - 2025-09-12
 
 ### Bugfix
