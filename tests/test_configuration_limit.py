@@ -157,7 +157,7 @@ class TestConfigurationLimit(absltest.TestCase):
         self.assertGreater(np.min(h), -slack_vel * dt - tol)
 
     def test_configuration_limit_dt_invariance(self):
-        """Configuration-limit inequalities are invariant to dt."""
+        """Inequalities are invariant to dt."""
         limit = ConfigurationLimit(self.model, gain=0.95)
         G1, h1 = limit.compute_qp_inequalities(self.configuration, dt=1e-3)
         G2, h2 = limit.compute_qp_inequalities(self.configuration, dt=0.2)
@@ -165,6 +165,7 @@ class TestConfigurationLimit(absltest.TestCase):
         self.assertTrue(np.allclose(h1, h2))
 
     def test_feasible_step_respects_position_bounds(self, tol=1e-9):
+        """A strictly feasible Δq (for GΔq ≤ h) keeps q_next inside [lower, upper]."""
         limit = ConfigurationLimit(self.model, gain=1.0)
 
         # dt is irrelevant for configuration limits; pass anything.

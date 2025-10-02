@@ -140,6 +140,14 @@ class TestVelocityLimit(absltest.TestCase):
         expected_error_message = "Free joint floating is not supported"
         self.assertEqual(str(cm.exception), expected_error_message)
 
+    def test_velocity_limit_scales_with_dt(self):
+        """RHS scales linearly with dt (sanity check for Δq = v*dt)."""
+        vlim = VelocityLimit(self.model, self.velocities)
+        G1, h1 = vlim.compute_qp_inequalities(self.configuration, dt=0.1)
+        G2, h2 = vlim.compute_qp_inequalities(self.configuration, dt=0.2)
+        assert np.allclose(G1, G2)
+        assert np.allclose(h2, 2.0 * h1)
+
 
 if __name__ == "__main__":
     absltest.main()
