@@ -38,6 +38,9 @@ class SE3(MatrixLieGroup):
             return NotImplemented
         return np.array_equal(self.wxyz_xyz, other.wxyz_xyz)
 
+    def __hash__(self) -> int:
+        return hash(self.wxyz_xyz.tobytes())
+
     def copy(self) -> SE3:
         return SE3(wxyz_xyz=np.array(self.wxyz_xyz))
 
