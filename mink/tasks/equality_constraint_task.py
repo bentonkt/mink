@@ -50,7 +50,7 @@ def _get_dense_constraint_jacobian(
     """Return the dense constraint Jacobian for a model."""
 
     def _sparse2dense(data: mujoco.MjData) -> np.ndarray:
-        if mujoco.__version__ < "3.2.5":
+        if mujoco.__version__ < "3.2.5":  # pragma: no cover
             efc_J = np.zeros((data.nefc, model.nv))  # Important to zero out here.
             _sparse2dense_fallback(
                 efc_J,
@@ -59,7 +59,7 @@ def _get_dense_constraint_jacobian(
                 data.efc_J_rowadr,
                 data.efc_J_colind,
             )
-        else:
+        else:  # pragma: no branch
             efc_J = np.empty((data.nefc, model.nv))
             mujoco.mju_sparse2dense(
                 efc_J,

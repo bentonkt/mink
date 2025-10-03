@@ -28,6 +28,12 @@ class SE3(MatrixLieGroup):
     tangent_dim: int = 6
     space_dim: int = 3
 
+    def __post_init__(self) -> None:
+        if self.wxyz_xyz.shape != (self.parameters_dim,):
+            raise ValueError(
+                f"Expeced wxyz_xyz to be a length 7 vector but got {self.wxyz_xyz.shape[0]}."
+            )
+
     def __repr__(self) -> str:
         quat = np.round(self.wxyz_xyz[:4], 5)
         xyz = np.round(self.wxyz_xyz[4:], 5)

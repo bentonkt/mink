@@ -250,10 +250,10 @@ class Configuration:
         """
         # Run the composite rigid body inertia (CRB) algorithm to populate the joint
         # space inertia matrix data.qM.
-        if mujoco.mj_version() >= 334:
+        if mujoco.mj_version() >= 334:  # pragma: no branch
             mujoco.mj_makeM(self.model, self.data)
         else:
-            mujoco.mj_crb(self.model, self.data)
+            mujoco.mj_crb(self.model, self.data)  # pragma: no cover
         # data.qM is stored in a custom sparse format and can be converted to dense
         # format using mujoco.mj_fullM.
         M = np.empty((self.nv, self.nv), dtype=np.float64)
