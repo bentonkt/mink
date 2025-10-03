@@ -8,7 +8,7 @@ from absl.testing import absltest, parameterized
 
 from mink.exceptions import InvalidMocapBody
 from mink.lie.base import MatrixLieGroup
-from mink.lie.se3 import SE3
+from mink.lie.se3 import SE3, _getQ
 from mink.lie.so3 import SO3
 
 from .utils import assert_transforms_close
@@ -142,6 +142,12 @@ class TestGroupSpecificOperations(absltest.TestCase):
         rotated_vec = rot.apply(vec)
         np.testing.assert_allclose(rotated_vec, rot.as_matrix() @ vec)
 
+    def test_so3_matmul_with_vector_calls_apply(self):
+        """Using @ with an ndarray should delegate to .apply(...)."""
+        vec = np.random.rand(3)
+        rot = SO3.sample_uniform()
+        np.testing.assert_allclose(rot @ vec, rot.apply(vec))
+
     def test_so3_apply_throws_assertion_error_if_wrong_shape(self):
         rot = SO3.sample_uniform()
         vec = np.random.rand(2)
@@ -178,6 +184,10 @@ class TestGroupSpecificOperations(absltest.TestCase):
 
     # SE3.
 
+    def test_se3_raises_error_if_invalid_shape(self):
+        with self.assertRaises(ValueError):
+            SE3(wxyz_xyz=np.random.rand(2))
+
     def test_se3_equality(self):
         pose_1 = SE3.identity()
         pose_2 = SE3.identity()
@@ -200,6 +210,12 @@ class TestGroupSpecificOperations(absltest.TestCase):
         np.testing.assert_allclose(
             T.apply(v), T.as_matrix()[:3, :3] @ v + T.translation()
         )
+
+    def test_se3_matmul_with_vector_calls_apply(self):
+        """Using @ with an ndarray should delegate to .apply(...)."""
+        vec = np.random.rand(3)
+        T = SE3.sample_uniform()
+        np.testing.assert_allclose(T @ vec, T.apply(vec))
 
     def test_se3_from_mocap_id(self):
         xml_str = """
@@ -333,6 +349,58 @@ class TestGroupSpecificOperations(absltest.TestCase):
         self.assertAlmostEqual(clamped_rpy.roll, original_rpy.roll)
         self.assertAlmostEqual(clamped_rpy.pitch, original_rpy.pitch)
         self.assertAlmostEqual(clamped_rpy.yaw, np.pi)
+
+
+class TestHashAndSetMembership(absltest.TestCase):
+    """Test that SO3 and SE3 objects can be hashed and used in sets."""
+
+    def test_so3_hash_and_set_membership(self):
+        a = SO3.from_rpy_radians(0.1, -0.2, 0.3)
+        b = SO3(wxyz=a.wxyz.copy())
+        c = SO3.from_rpy_radians(0.1, -0.2, 0.31)
+        assert a == b
+        assert hash(a) == hash(b)
+        s = {a, b, c}
+        assert a in s and b in s and c in s
+        assert len(s) == 2
+
+    def test_se3_hash_and_set_membership(self):
+        R = SO3.from_rpy_radians(0.05, 0.02, -0.01)
+        t = np.array([0.3, -0.1, 0.2], dtype=np.float64)
+        a = SE3.from_rotation_and_translation(R, t)
+        b = SE3.from_rotation_and_translation(SO3(wxyz=R.wxyz.copy()), t.copy())
+        c = SE3.from_rotation_and_translation(R, t + np.array([1e-3, 0.0, 0.0]))
+        assert a == b
+        assert hash(a) == hash(b)
+        s = {a, b, c}
+        assert len(s) == 2
+
+
+class TestSE3_getQ(absltest.TestCase):
+    """Covers both small-angle and general branches in mink.lie.se3._getQ."""
+
+    def test__getQ_small_angle_zero(self):
+        # theta == 0 (small-angle branch); with v=0 too, Q should be exactly zero.
+        c_small = np.zeros(6, dtype=np.float64)
+        Q = _getQ(c_small)
+        np.testing.assert_allclose(Q, np.zeros((3, 3), dtype=np.float64))
+
+    def test__getQ_general_branch_nontrivial(self):
+        # Non-zero rotation (general branch).
+        # Use non-zero v to avoid the trivial zero result from the small-angle test.
+        c = np.zeros(6, dtype=np.float64)
+        c[:3] = np.array([0.3, -0.2, 0.1], dtype=np.float64)  # v
+        c[3:] = np.array([0.4, 0.0, 0.0], dtype=np.float64)  # omega (theta ≈ 0.4 > 0)
+
+        Q = _getQ(c)
+        self.assertEqual(Q.shape, (3, 3))
+        self.assertTrue(np.isfinite(Q).all())
+
+        # Sanity: changing v (with same omega) should change Q.
+        c_scaled = c.copy()
+        c_scaled[:3] *= 2.0
+        Q_scaled = _getQ(c_scaled)
+        self.assertGreater(np.linalg.norm(Q - Q_scaled), 1e-9)
 
 
 if __name__ == "__main__":

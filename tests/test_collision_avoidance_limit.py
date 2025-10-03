@@ -133,6 +133,63 @@ class TestCollisionAvoidanceLimit(absltest.TestCase):
 
             np.testing.assert_allclose(jac, efc_J, atol=1e-7)
 
+    def test_qp_upper_bound_branches_with_active_contact(self):
+        # Two free bodies with touching spheres (distance == 0).
+        xml = """
+        <mujoco>
+        <worldbody>
+            <body name="left">
+            <joint type="free"/>
+            <geom name="gL" type="sphere" size="0.01" pos="0 0 0"/>
+            </body>
+            <body name="right">
+            <joint type="free"/>
+            <geom name="gR" type="sphere" size="0.01" pos="0.02 0 0"/>
+            </body>
+        </worldbody>
+        </mujoco>
+        """
+        model = mujoco.MjModel.from_xml_string(xml)
+        cfg = Configuration(model)
+        cfg.update(np.zeros(model.nq))
+
+        detect = 0.5
+        dt = 1e-3
+
+        # hi_bound_dist (0) <= minimum_distance_from_collisions (positive).
+        limit_else = CollisionAvoidanceLimit(
+            model=model,
+            geom_pairs=[(["gL"], ["gR"])],
+            collision_detection_distance=detect,
+            minimum_distance_from_collisions=5e-4,  # 0 <= 5e-4 -> else
+            bound_relaxation=1e-4,
+        )
+        G_else, h_else = limit_else.compute_qp_inequalities(cfg, dt)
+
+        # All rows that correspond to the active pair should be exactly the relaxation.
+        self.assertGreater(h_else.size, 0)
+        self.assertTrue(np.any(np.isfinite(h_else)))
+        self.assertTrue(np.all(h_else[np.isfinite(h_else)] >= 1e-4 - 1e-12))
+
+        # hi_bound_dist (0) > minimum_distance_from_collisions (negative).
+        limit_if = CollisionAvoidanceLimit(
+            model=model,
+            geom_pairs=[(["gL"], ["gR"])],
+            collision_detection_distance=detect,
+            minimum_distance_from_collisions=-5e-3,  # 0 > -5e-3 -> if
+            bound_relaxation=1e-4,
+            gain=0.85,
+        )
+        G_if, h_if = limit_if.compute_qp_inequalities(cfg, dt)
+
+        # h should be strictly larger than relaxation now (gain*dist/dt + relaxation)
+        self.assertGreater(h_if.size, 0)
+        self.assertTrue(np.any(h_if[np.isfinite(h_if)] > 1e-4 + 1e-12))
+
+        # G should be identical for the same geometry, only h changes.
+        self.assertEqual(G_else.shape, G_if.shape)
+        np.testing.assert_allclose(G_else, G_if, atol=0, rtol=0)
+
 
 if __name__ == "__main__":
     absltest.main()
