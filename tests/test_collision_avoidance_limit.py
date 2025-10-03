@@ -134,7 +134,13 @@ class TestCollisionAvoidanceLimit(absltest.TestCase):
             np.testing.assert_allclose(jac, efc_J, atol=1e-7)
 
     def test_qp_upper_bound_branches_with_active_contact(self):
-        # Two free bodies with touching spheres (distance == 0).
+        """Exercise both upper-bound branches with an active contact.
+
+        We place two touching spheres (hi_bound_dist=0) and use a large detection
+        distance so the contact is active. With a positive minimum_distance, h equals
+        the bound_relaxation (else branch); with a negative minimum_distance, h exceeds
+        the relaxation (if branch). G remains identical across both runs.
+        """
         xml = """
         <mujoco>
         <worldbody>
