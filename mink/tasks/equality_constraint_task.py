@@ -140,6 +140,7 @@ class EqualityConstraintTask(Task):
         self._eq_types = model.eq_type[self._eq_ids].copy()
         self._neq_total = len(self._eq_ids)
         self._mask: np.ndarray | None = None
+        self._logger = logging.getLogger(__package__)
 
         super().__init__(cost=np.zeros((1,)), gain=gain, lm_damping=lm_damping)
         self.set_cost(cost)
@@ -239,7 +240,7 @@ class EqualityConstraintTask(Task):
                 )
         else:
             eq_ids = list(range(model.neq))
-            logging.info("Regulating %d equality constraints", len(eq_ids))
+            self._logger.info("Regulating %d equality constraints", len(eq_ids))
 
         # Ensure we have at least 1 constraint.
         if len(eq_ids) == 0:
