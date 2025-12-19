@@ -17,12 +17,13 @@ class DampingTask(PostureTask):
     contributes the following term to the quadratic program:
 
     .. math::
-        \frac{1}{2}\,\Delta \mathbf{q}^\top \Lambda\,\Delta \mathbf{q},
+        \frac{1}{2}\,\Delta \mathbf{q}^\top \Lambda^2\,\Delta \mathbf{q}
+        = \frac{1}{2}\sum_{i=1}^{n_v} \lambda_i^2 \,(\Delta q_i)^2,
 
     where :math:`\Delta \mathbf{q}\in\mathbb{R}^{n_v}` is the vector of joint
-    displacements and :math:`\Lambda = \mathrm{diag}(\lambda_1, \ldots, \lambda_{n_v})`
-    is a diagonal matrix of per-DoF damping weights specified via ``cost``. A larger
-    :math:`\lambda_i` reduces motion in DoF :math:`i`. With no other active
+    displacements and :math:`\lambda_i` is the i-th element of the ``cost`` parameter.
+    The quadratic form uses :math:`\Lambda^2 = \mathrm{diag}(\lambda_1^2, \ldots, \lambda_{n_v}^2)`.
+    A larger :math:`\lambda_i` reduces motion in DoF :math:`i`. With no other active
     tasks, the robot remains at rest. Unlike the `damping` parameter in
     :func:`~.solve_ik`, which is uniformly applied to all DoFs, this task does
     not affect the floating-base coordinates.
