@@ -50,6 +50,53 @@ class TestCollisionAvoidanceLimit(absltest.TestCase):
         limit = CollisionAvoidanceLimit(model=model, geom_pairs=[(["g1"], ["g3"])])
         self.assertListEqual(limit.geom_id_pairs, [(0, 2)])
 
+    def test_geom_pairs_deduplication(self):
+        """Test that duplicate geom pairs are deduplicated."""
+        xml_str = """
+        <mujoco>
+          <worldbody>
+            <body>
+              <joint type="ball" name="ball"/>
+              <geom name="g1" type="sphere" size=".1" mass=".1"/>
+              <body>
+                <joint type="hinge" name="hinge" range="0 1.57"/>
+                <geom name="g2" type="sphere" size=".1" mass=".1"/>
+              </body>
+            </body>
+            <body>
+              <joint type="hinge" name="hinge2" range="0 1.57"/>
+              <geom name="g3" type="sphere" size=".1" mass=".1"/>
+            </body>
+          </worldbody>
+        </mujoco>
+        """
+        model = mujoco.MjModel.from_xml_string(xml_str)
+
+        # Case 1: Duplicate collision pairs.
+        limit = CollisionAvoidanceLimit(
+            model=model, geom_pairs=[(["g1"], ["g3"]), (["g1"], ["g3"])]
+        )
+        # Should have only one pair (0, 2), not two.
+        self.assertListEqual(limit.geom_id_pairs, [(0, 2)])
+        self.assertEqual(len(limit.geom_id_pairs), 1)
+
+        # Case 2: Overlapping geom groups that produce duplicate pairs.
+        limit = CollisionAvoidanceLimit(
+            model=model, geom_pairs=[(["g1", "g2"], ["g3"]), (["g1"], ["g3"])]
+        )
+        # Should deduplicate the (0, 2) pair that appears from both collision pairs.
+        self.assertEqual(len(limit.geom_id_pairs), 2)  # (0, 2) and (1, 2)
+        self.assertIn((0, 2), limit.geom_id_pairs)
+        self.assertIn((1, 2), limit.geom_id_pairs)
+
+        # Case 3: Reversed order should also be deduplicated.
+        limit = CollisionAvoidanceLimit(
+            model=model, geom_pairs=[(["g1"], ["g3"]), (["g3"], ["g1"])]
+        )
+        # Both should produce (0, 2) due to min/max normalization.
+        self.assertListEqual(limit.geom_id_pairs, [(0, 2)])
+        self.assertEqual(len(limit.geom_id_pairs), 1)
+
     def test_dimensions(self):
         g1 = get_body_geom_ids(self.model, self.model.body("wrist_2_link").id)
         g2 = get_body_geom_ids(self.model, self.model.body("upper_arm_link").id)
@@ -198,6 +245,104 @@ class TestCollisionAvoidanceLimit(absltest.TestCase):
         # G should be identical for the same geometry, only h changes.
         self.assertEqual(G_else.shape, G_if.shape)
         np.testing.assert_allclose(G_else, G_if, atol=0, rtol=0)
+
+    def test_constraint_sign_logic_across_distances(self):
+        """Verify constraint sign logic works correctly for separated, touching, and
+        penetrating geoms.
+
+        This test ensures:
+        1. G is non-zero when dist=0
+        2. G remains consistent across separated/touching/penetrating states
+        3. Constraint correctly distinguishes approaching vs separating velocities
+        """
+        xml = """
+        <mujoco>
+        <worldbody>
+            <body name="sphere1">
+                <joint type="free"/>
+                <geom name="g1" type="sphere" size="0.05" pos="0 0 0"/>
+            </body>
+            <body name="sphere2">
+                <joint type="free"/>
+                <geom name="g2" type="sphere" size="0.05" pos="0 0 0"/>
+            </body>
+        </worldbody>
+        </mujoco>
+        """
+        model = mujoco.MjModel.from_xml_string(xml)
+        cfg = Configuration(model)
+
+        limit = CollisionAvoidanceLimit(
+            model=model,
+            geom_pairs=[(["g1"], ["g2"])],
+            minimum_distance_from_collisions=0.01,
+            collision_detection_distance=0.2,
+        )
+
+        # Case 1: Separated geoms (dist > 0).
+        qpos_separated = np.zeros(model.nq)
+        qpos_separated[7:10] = [0.15, 0, 0]  # sphere2 at x=0.15, dist ≈ 0.05m
+        cfg.update(qpos_separated)
+        G_sep, h_sep = limit.compute_qp_inequalities(cfg, dt=0.01)
+        assert G_sep is not None and h_sep is not None
+
+        # Case 2: Touching geoms (dist ≈ 0).
+        qpos_touching = np.zeros(model.nq)
+        qpos_touching[7:10] = [0.1, 0, 0]  # sphere2 at x=0.1, dist ≈ 0
+        cfg.update(qpos_touching)
+        G_touch, h_touch = limit.compute_qp_inequalities(cfg, dt=0.01)
+        assert G_touch is not None and h_touch is not None
+
+        # Case 3: Penetrating geoms (dist < 0)/
+        qpos_penetrating = np.zeros(model.nq)
+        qpos_penetrating[7:10] = [0.05, 0, 0]  # sphere2 at x=0.05, dist < 0
+        cfg.update(qpos_penetrating)
+        G_pen, h_pen = limit.compute_qp_inequalities(cfg, dt=0.01)
+        assert G_pen is not None and h_pen is not None
+
+        # Test 1: G should be non-zero in all cases.
+        self.assertTrue(np.any(G_sep[0] != 0), "G should be non-zero when separated")
+        self.assertTrue(np.any(G_touch[0] != 0), "G should be non-zero when touching")
+        self.assertTrue(np.any(G_pen[0] != 0), "G should be non-zero when penetrating")
+
+        # Test 2: G should be identical across all distance states.
+        # (sign correction compensates for normal flip).
+        np.testing.assert_allclose(G_sep, G_touch, atol=1e-10, rtol=0)
+        np.testing.assert_allclose(G_sep, G_pen, atol=1e-10, rtol=0)
+
+        # Test 3: Verify constraint behavior for approaching vs separating velocities.
+        # Create approaching velocity (sphere2 moves toward sphere1 in -x direction).
+        qd_approaching = np.zeros(model.nv)
+        qd_approaching[6] = -1.0  # -x velocity for sphere2
+
+        # Create separating velocity (sphere2 moves away from sphere1 in +x direction).
+        qd_separating = np.zeros(model.nv)
+        qd_separating[6] = 1.0  # +x velocity for sphere2
+
+        # Constraint is G @ qd <= h.
+        # For approaching: G @ qd should be positive (constraint active).
+        # For separating: G @ qd should be negative (constraint inactive).
+        g_dot_qd_approaching = G_sep[0] @ qd_approaching
+        g_dot_qd_separating = G_sep[0] @ qd_separating
+
+        self.assertGreater(
+            g_dot_qd_approaching,
+            0,
+            "G @ qd should be positive for approaching velocity",
+        )
+        self.assertLess(
+            g_dot_qd_separating, 0, "G @ qd should be negative for separating velocity"
+        )
+
+        # Test 4: Verify constraint is satisfied for separating but may be active for
+        # approaching.
+        self.assertLess(
+            g_dot_qd_separating,
+            h_sep[0],
+            "Separating velocity should satisfy constraint",
+        )
+        # Approaching may or may not satisfy depending on h, but should be measurable.
+        self.assertIsNotNone(g_dot_qd_approaching)
 
 
 if __name__ == "__main__":
