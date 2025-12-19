@@ -19,11 +19,12 @@ class KineticEnergyRegularizationTask(BaseTask):
     program:
 
     .. math::
-        \frac{1}{2}\, \lambda\, \Delta \mathbf{q}^\top M(\mathbf{q})\,\Delta \mathbf{q},
+        \frac{1}{2}\, \lambda\, \Delta \mathbf{q}^\top \frac{M(\mathbf{q})}{(\Delta t)^2}\,\Delta \mathbf{q},
 
     where :math:`\Delta \mathbf{q}\in\mathbb{R}^{n_v}` is the vector of joint
-    displacements, :math:`M(\mathbf{q})` is the joint-space inertia matrix, and
-    :math:`\lambda` is the scalar strength of the regularization.
+    displacements, :math:`M(\mathbf{q})` is the joint-space inertia matrix,
+    :math:`\lambda` is the scalar strength of the regularization, and
+    :math:`\Delta t` is the integration timestep.
 
     .. note::
 
