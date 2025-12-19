@@ -53,7 +53,7 @@ if __name__ == "__main__":
         task = mink.FrameTask(
             frame_name=hand,
             frame_type="site",
-            position_cost=5.0,
+            position_cost=2.0,
             orientation_cost=1.0,
             lm_damping=1.0,
         )
@@ -71,8 +71,8 @@ if __name__ == "__main__":
     collision_avoidance_limit = mink.CollisionAvoidanceLimit(
         model=model,
         geom_pairs=collision_pairs,  # type: ignore
-        minimum_distance_from_collisions=0.05,
-        collision_detection_distance=0.1,
+        minimum_distance_from_collisions=0.005,
+        collision_detection_distance=0.15,
     )
 
     limits = [

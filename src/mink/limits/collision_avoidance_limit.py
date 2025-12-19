@@ -53,7 +53,7 @@ class Contact:
     def inactive(self) -> bool:
         """Returns True if no distance smaller than distmax is detected between geom1
         and geom2."""
-        return self.dist == self.distmax
+        return bool(np.isclose(self.dist, self.distmax))
 
 
 def compute_contact_normal_jacobian(
@@ -206,7 +206,8 @@ class CollisionAvoidanceLimit(Limit):
             jac = compute_contact_normal_jacobian(
                 self.model, configuration.data, contact
             )
-            coefficient_matrix[idx] = -np.sign(hi_bound_dist) * jac
+            sign = -1.0 if hi_bound_dist >= 0 else 1.0
+            coefficient_matrix[idx] = sign * jac
         return Constraint(G=coefficient_matrix, h=upper_bound)
 
     # Private methods.
@@ -275,4 +276,5 @@ class CollisionAvoidanceLimit(Limit):
                 )
                 if weld_body_cond and parent_child_cond and contype_conaffinity_cond:
                     geom_id_pairs.append((min(geom_a, geom_b), max(geom_a, geom_b)))
-        return geom_id_pairs
+        # Deduplicate pairs in case of overlapping geom groups.
+        return list(set(geom_id_pairs))
