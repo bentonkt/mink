@@ -107,7 +107,7 @@ class PostureTask(Task):
 
         .. math::
 
-            e(q) = q^* \ominus q
+            e(q) = q \ominus q^*
 
         Args:
             configuration: Robot configuration :math:`q`.
