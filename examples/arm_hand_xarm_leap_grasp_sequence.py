@@ -36,6 +36,7 @@ from pathlib import Path
 from typing import Iterable
 
 import mujoco
+import mujoco.viewer
 import numpy as np
 
 import mink
@@ -531,8 +532,6 @@ def main() -> None:
     viewer = None
     if not args.no_viewer:
         try:
-            import mujoco.viewer  # imported lazily for headless environments
-
             viewer = mujoco.viewer.launch_passive(
                 model=model, data=data, show_left_ui=False, show_right_ui=False
             )
