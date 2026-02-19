@@ -78,6 +78,8 @@ YCP_XY = [
 APPROACH_HEIGHT_OFFSET = 0.18  # [m] palm up from grasp pose
 LIFT_HEIGHT_OFFSET = 0.22  # [m] additional palm lift after grasp
 PLACE_HEIGHT_OFFSET = 0.00  # [m] palm delta at place (0 = place at grasp pose)
+GRASP_PALM_Z_BIAS = -0.03  # [m] lower palm to ensure enclosure
+CLOSE_PRESS_DZ = -0.015  # [m] small downward press during finger closure
 
 # A small XY bias helps align fingers with the object if needed.
 GRASP_XY_BIAS = np.array([0.00, 0.00], dtype=np.float64)
@@ -476,9 +478,11 @@ def main() -> None:
     R_wp = palm_rotation.as_matrix()
     pos_grasp = obj_pos0 - R_wp @ p_obj_in_palm_nominal
     pos_grasp[:2] += GRASP_XY_BIAS
+    pos_grasp[2] += GRASP_PALM_Z_BIAS
     pos_approach = pos_grasp + np.array([0.0, 0.0, APPROACH_HEIGHT_OFFSET])
     pos_lift = pos_grasp + np.array([0.0, 0.0, LIFT_HEIGHT_OFFSET])
     pos_place = pos_grasp + np.array([0.0, 0.0, PLACE_HEIGHT_OFFSET])
+    pos_close_press = pos_grasp + np.array([0.0, 0.0, CLOSE_PRESS_DZ])
 
     hand_open = leap_synergy_open()
     hand_closed = leap_synergy_power_grasp(GRASP_STRENGTH)
@@ -503,14 +507,14 @@ def main() -> None:
         Stage(
             name="close_fingers",
             palm_pos_start=pos_grasp,
-            palm_pos_end=pos_grasp,
+            palm_pos_end=pos_close_press,
             hand_targets_start=hand_open,
             hand_targets_end=hand_closed,
             duration_s=2.0,
         ),
         Stage(
             name="lift",
-            palm_pos_start=pos_grasp,
+            palm_pos_start=pos_close_press,
             palm_pos_end=pos_lift,
             hand_targets_start=hand_closed,
             hand_targets_end=hand_closed,
