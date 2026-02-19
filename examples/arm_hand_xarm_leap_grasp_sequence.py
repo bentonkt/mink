@@ -64,14 +64,14 @@ TABLE_FRICTION = (1.0, 0.005, 0.0001)
 # "YCP" objects: simple cylinders.
 OBJECT_RADIUS = 0.020
 OBJECT_HALFHEIGHT = 0.040
-OBJECT_MASS = 0.025
-OBJECT_FRICTION = (1.5, 0.005, 0.0001)
+OBJECT_MASS = 0.010
+OBJECT_FRICTION = (2.0, 0.005, 0.0001)
 
 # Hard-coded XY locations (on the table top), Z computed from table/object size.
 YCP_XY = [
-    (0.48, -0.10),
     (0.55, 0.00),
-    (0.48, 0.10),
+    (0.55, -0.12),
+    (0.55, 0.12),
 ]
 
 # Grasp geometry (relative to object center).
@@ -254,6 +254,7 @@ def construct_model() -> mujoco.MjModel:
             mass=OBJECT_MASS,
             friction=OBJECT_FRICTION,
             condim=6,
+            priority=1,
         )
         body.add_site(
             name=f"ycp_{i}_site",
@@ -547,6 +548,7 @@ def main() -> None:
     print(f"Physics dt: {physics_dt:.4f}s | Control dt: {control_dt:.4f}s | substeps: {substeps}")
 
     # Run the scripted sequence.
+    z_max = float(obj_pos0[2])
     for stage in stages:
         print(f"Stage: {stage.name}")
         run_stage(
@@ -564,6 +566,9 @@ def main() -> None:
             viewer=viewer,
             object_freeze_constraint=object_freeze_constraint,
         )
+        z_now = float(data.xpos[obj_id][2])
+        z_max = max(z_max, z_now)
+        print(f"  {obj_name} z={z_now:.3f} (max so far {z_max:.3f})")
 
     # Basic sanity checks (headless-friendly):
     obj_pos_end = data.xpos[obj_id].copy()
