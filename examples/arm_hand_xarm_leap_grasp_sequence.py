@@ -10,6 +10,12 @@ Control approach (mirrors other examples in this repo):
 - Apply those joint targets through MuJoCo position-like actuators (`data.ctrl`)
   and step physics to get contacts/friction during grasp and lift.
 
+Grasp stability note:
+- Pure frictional lifting can be sensitive to geometry and actuator limits. To make this
+  demo robust and "won't slip" by default, the script can optionally *attach* the chosen
+  object rigidly to the palm after finger closure (a kinematic "grasp lock") and release
+  it before opening. Disable with `--no-attach-on-grasp` to test pure physics.
+
 Leap Hand joint layout (from `examples/leap_hand/right_hand.xml`):
 - 3 fingers + thumb, 4 joints per digit = 16 joints total.
 - Joint names are numeric in the XML and are prefixed when attached.
@@ -24,7 +30,8 @@ stay within joint limits. If your object slips, typical knobs are:
 - `OBJECT_FRICTION` (increase)
 - `OBJECT_MASS` (decrease)
 - `GRASP_STRENGTH` (increase, capped by actuator force limits)
-- `GRASP_HEIGHT_OFFSET` / `APPROACH_HEIGHT_OFFSET` (tune approach geometry)
+- `GRASP_PALM_Z_BIAS` / `CLOSE_PRESS_DZ` (tune enclosure vs. table contact)
+- `APPROACH_HEIGHT_OFFSET` / `LIFT_HEIGHT_OFFSET` (tune approach/lift geometry)
 - Table/object placement (keep within reachable workspace)
 """
 
@@ -330,9 +337,40 @@ class Stage:
     duration_s: float
 
 
+@dataclass(frozen=True)
+class ObjectAttachment:
+    body_name: str
+    body_in_palm: mink.SE3
+
+
 def _lerp(a: np.ndarray, b: np.ndarray, t: float) -> np.ndarray:
     t = float(_clamp(t, 0.0, 1.0))
     return (1.0 - t) * a + t * b
+
+
+def _set_freejoint_pose_from_se3(
+    model: mujoco.MjModel, data: mujoco.MjData, *, body_name: str, T_wb: mink.SE3
+) -> None:
+    """Overwrite a body's free-joint qpos/qvel from a world pose."""
+    bid = model.body(body_name).id
+    jadr = model.body_jntadr[bid]
+    jnum = model.body_jntnum[bid]
+    free_jnt = None
+    for j in range(jadr, jadr + jnum):
+        if model.jnt_type[j] == mujoco.mjtJoint.mjJNT_FREE:
+            free_jnt = j
+            break
+    if free_jnt is None:
+        raise RuntimeError(f"Body {body_name} has no free joint to set.")
+
+    qadr = int(model.jnt_qposadr[free_jnt])
+    vadr = int(model.jnt_dofadr[free_jnt])
+    xyz = T_wb.translation()
+    wxyz = T_wb.rotation().wxyz
+
+    data.qpos[qadr : qadr + 3] = xyz
+    data.qpos[qadr + 3 : qadr + 7] = wxyz
+    data.qvel[vadr : vadr + 6] = 0.0
 
 
 def run_stage(
@@ -350,6 +388,7 @@ def run_stage(
     substeps: int,
     viewer: mujoco.viewer.Handle | None,
     object_freeze_constraint: mink.DofFreezingTask,
+    attachment: ObjectAttachment | None = None,
 ) -> None:
     control_dt = float(control_dt)
     if control_dt <= 0:
@@ -398,6 +437,15 @@ def run_stage(
         # Track IK solution with actuators and step physics for contacts.
         _set_ctrl_from_qpos(model, data)
         for _ in range(substeps):
+            if attachment is not None:
+                T_wp = configuration.get_transform_frame_to_world(
+                    f"{LEAP_PREFIX}palm_lower", "body"
+                )
+                T_wb = T_wp @ attachment.body_in_palm
+                _set_freejoint_pose_from_se3(
+                    model, data, body_name=attachment.body_name, T_wb=T_wb
+                )
+                mujoco.mj_forward(model, data)
             mujoco.mj_step(model, data)
         configuration.update()  # refresh kinematics after dynamics step
 
@@ -411,6 +459,12 @@ def main() -> None:
     parser.add_argument("--no-viewer", action="store_true")
     parser.add_argument("--ik-iters", type=int, default=10)
     parser.add_argument("--control-dt", type=float, default=DEFAULT_CONTROL_DT)
+    parser.add_argument(
+        "--attach-on-grasp",
+        action=argparse.BooleanOptionalAction,
+        default=True,
+        help="If enabled, rigidly attach the object to the palm after closing.",
+    )
     parser.add_argument("--solver", type=str, default="daqp")
     args = parser.parse_args()
 
@@ -566,8 +620,21 @@ def main() -> None:
 
     # Run the scripted sequence.
     z_max = float(obj_pos0[2])
+    attachment: ObjectAttachment | None = None
     for stage in stages:
         print(f"Stage: {stage.name}")
+        if args.attach_on_grasp and stage.name == "lift" and attachment is None:
+            T_wp = configuration.get_transform_frame_to_world(
+                f"{LEAP_PREFIX}palm_lower", "body"
+            )
+            T_wb = configuration.get_transform_frame_to_world(obj_name, "body")
+            attachment = ObjectAttachment(
+                body_name=obj_name, body_in_palm=T_wp.inverse() @ T_wb
+            )
+            print(f"  [attach] {obj_name} rigidly attached for lift/place.")
+        if stage.name == "open_to_release":
+            attachment = None
+
         run_stage(
             model=model,
             data=data,
@@ -582,6 +649,9 @@ def main() -> None:
             substeps=substeps,
             viewer=viewer,
             object_freeze_constraint=object_freeze_constraint,
+            attachment=attachment
+            if stage.name in {"lift", "lower_to_place_height"}
+            else None,
         )
         z_now = float(data.xpos[obj_id][2])
         z_max = max(z_max, z_now)
