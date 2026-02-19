@@ -75,10 +75,9 @@ YCP_XY = [
 ]
 
 # Grasp geometry (relative to object center).
-APPROACH_HEIGHT_OFFSET = 0.18
-GRASP_HEIGHT_OFFSET = 0.07
-PLACE_HEIGHT_OFFSET = 0.03
-LIFT_HEIGHT_OFFSET = 0.22
+APPROACH_HEIGHT_OFFSET = 0.18  # [m] palm up from grasp pose
+LIFT_HEIGHT_OFFSET = 0.22  # [m] additional palm lift after grasp
+PLACE_HEIGHT_OFFSET = 0.00  # [m] palm delta at place (0 = place at grasp pose)
 
 # A small XY bias helps align fingers with the object if needed.
 GRASP_XY_BIAS = np.array([0.00, 0.00], dtype=np.float64)
@@ -461,13 +460,25 @@ def main() -> None:
     obj_id = model.body(obj_name).id
     obj_pos0 = data.xpos[obj_id].copy()
 
-    # Compute stage waypoints.
-    grasp_xy = obj_pos0[:2] + GRASP_XY_BIAS
-    grasp_center = np.array([grasp_xy[0], grasp_xy[1], obj_pos0[2]], dtype=np.float64)
-    pos_approach = grasp_center + np.array([0.0, 0.0, APPROACH_HEIGHT_OFFSET])
-    pos_grasp = grasp_center + np.array([0.0, 0.0, GRASP_HEIGHT_OFFSET])
-    pos_place = grasp_center + np.array([0.0, 0.0, PLACE_HEIGHT_OFFSET])
-    pos_lift = grasp_center + np.array([0.0, 0.0, LIFT_HEIGHT_OFFSET])
+    # Compute a palm grasp pose from geometry (no hand-tuned XYZ offsets).
+    # We compute the average fingertip position expressed in the palm frame in the
+    # (open) home configuration, and place the palm such that this point coincides with
+    # the object center. This makes the subsequent finger closure much more likely to
+    # generate contact forces on the object during lift.
+    tip_sites = ("tip_1", "tip_2", "tip_3", "th_tip")
+    tip_pos_in_palm = []
+    for tip in tip_sites:
+        T_tip_to_palm = configuration.get_transform(
+            f"{LEAP_PREFIX}{tip}", "site", f"{LEAP_PREFIX}palm_lower", "body"
+        )
+        tip_pos_in_palm.append(T_tip_to_palm.translation())
+    p_obj_in_palm_nominal = np.mean(np.asarray(tip_pos_in_palm), axis=0)
+    R_wp = palm_rotation.as_matrix()
+    pos_grasp = obj_pos0 - R_wp @ p_obj_in_palm_nominal
+    pos_grasp[:2] += GRASP_XY_BIAS
+    pos_approach = pos_grasp + np.array([0.0, 0.0, APPROACH_HEIGHT_OFFSET])
+    pos_lift = pos_grasp + np.array([0.0, 0.0, LIFT_HEIGHT_OFFSET])
+    pos_place = pos_grasp + np.array([0.0, 0.0, PLACE_HEIGHT_OFFSET])
 
     hand_open = leap_synergy_open()
     hand_closed = leap_synergy_power_grasp(GRASP_STRENGTH)
