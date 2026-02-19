@@ -59,24 +59,25 @@ XARM_HOME_QPOS = [
 # Table: box centered at TABLE_POS with half-extents TABLE_SIZE.
 TABLE_POS = np.array([0.55, 0.00, 0.20], dtype=np.float64)
 TABLE_SIZE = np.array([0.28, 0.38, 0.20], dtype=np.float64)  # top at z=0.40
-TABLE_FRICTION = (1.0, 0.005, 0.0001)
+TABLE_FRICTION = (1.2, 0.01, 0.002)
 
 # "YCP" objects: simple cylinders.
 OBJECT_RADIUS = 0.020
 OBJECT_HALFHEIGHT = 0.040
 OBJECT_MASS = 0.010
-OBJECT_FRICTION = (2.0, 0.005, 0.0001)
+OBJECT_FRICTION = (2.0, 0.01, 0.002)
 
 # Hard-coded XY locations (on the table top), Z computed from table/object size.
 YCP_XY = [
-    (0.55, 0.00),
     (0.55, -0.12),
+    (0.55, 0.00),
     (0.55, 0.12),
 ]
 
 # Grasp geometry (relative to object center).
 APPROACH_HEIGHT_OFFSET = 0.18
 GRASP_HEIGHT_OFFSET = 0.07
+PLACE_HEIGHT_OFFSET = 0.03
 LIFT_HEIGHT_OFFSET = 0.22
 
 # A small XY bias helps align fingers with the object if needed.
@@ -465,6 +466,7 @@ def main() -> None:
     grasp_center = np.array([grasp_xy[0], grasp_xy[1], obj_pos0[2]], dtype=np.float64)
     pos_approach = grasp_center + np.array([0.0, 0.0, APPROACH_HEIGHT_OFFSET])
     pos_grasp = grasp_center + np.array([0.0, 0.0, GRASP_HEIGHT_OFFSET])
+    pos_place = grasp_center + np.array([0.0, 0.0, PLACE_HEIGHT_OFFSET])
     pos_lift = grasp_center + np.array([0.0, 0.0, LIFT_HEIGHT_OFFSET])
 
     hand_open = leap_synergy_open()
@@ -504,24 +506,24 @@ def main() -> None:
             duration_s=2.0,
         ),
         Stage(
-            name="lower_to_table",
+            name="lower_to_place_height",
             palm_pos_start=pos_lift,
-            palm_pos_end=pos_grasp,
+            palm_pos_end=pos_place,
             hand_targets_start=hand_closed,
             hand_targets_end=hand_closed,
             duration_s=2.0,
         ),
         Stage(
             name="open_to_release",
-            palm_pos_start=pos_grasp,
-            palm_pos_end=pos_grasp,
+            palm_pos_start=pos_place,
+            palm_pos_end=pos_place,
             hand_targets_start=hand_closed,
             hand_targets_end=hand_open,
-            duration_s=1.5,
+            duration_s=2.0,
         ),
         Stage(
             name="retreat",
-            palm_pos_start=pos_grasp,
+            palm_pos_start=pos_place,
             palm_pos_end=pos_approach,
             hand_targets_start=hand_open,
             hand_targets_end=hand_open,
