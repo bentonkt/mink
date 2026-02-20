@@ -129,6 +129,12 @@ _GRASP_OVERRIDES: dict[str, str] = {
 
 # Thin/concave assets that benefit from softer contact and lower friction.
 _CONTACT_OVERRIDES: dict[str, ContactParams] = {
+    "072-a_toy_airplane": ContactParams(
+        friction=(0.8, 0.02, 0.001),
+        condim=6,
+        solref=(0.03, 1.0),
+        solimp=(0.88, 0.95, 0.002, 0.5, 2.0),
+    ),
     "031_spoon": ContactParams(
         friction=(0.7, 0.01, 0.001),
         condim=6,

@@ -25,6 +25,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/001_chips_can/tsdf/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/001_chips_can/collision_hull.obj",
+      "bounds_min_m": [
+        -0.0463317,
+        -0.0293541,
+        0.00587082
+      ],
+      "bounds_max_m": [
+        0.0371819,
+        0.0567513,
+        0.246446
+      ],
       "extents_m": [
         0.0835136,
         0.0861054,
@@ -50,22 +60,22 @@
         ]
       },
       "grasp": {
-        "name": "candidate_tall",
+        "name": "candidate_rescue_override",
         "xy_offset": [
-          -0.08,
-          0.0
+          -0.1,
+          -0.02
         ],
-        "hover_z_offset": 0.25,
-        "approach_z_offset": 0.12,
-        "lift_z_offset": 0.36,
-        "grasp_frac": 1.0,
-        "settle_steps": 450,
+        "hover_z_offset": 0.4,
+        "approach_z_offset": 0.28,
+        "lift_z_offset": 0.54,
+        "grasp_frac": 0.92,
+        "settle_steps": 760,
         "hover_steps": 220,
         "approach_steps": 220,
-        "close_steps": 260,
+        "close_steps": 320,
         "lift_steps": 260,
-        "open_steps": 140,
-        "retreat_steps": 180
+        "open_steps": 220,
+        "retreat_steps": 220
       },
       "audit_warnings": []
     },
@@ -92,6 +102,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/002_master_chef_can/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/002_master_chef_can/collision_hull.obj",
+      "bounds_min_m": [
+        -0.068313,
+        -0.060949,
+        -0.000187
+      ],
+      "bounds_max_m": [
+        0.034216,
+        0.041428,
+        0.13999
+      ],
       "extents_m": [
         0.10252900000000001,
         0.102377,
@@ -117,7 +137,7 @@
         ]
       },
       "grasp": {
-        "name": "candidate_default",
+        "name": "default",
         "xy_offset": [
           -0.04,
           0.0
@@ -159,6 +179,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/003_cracker_box/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/003_cracker_box/collision_hull.obj",
+      "bounds_min_m": [
+        -0.048785,
+        -0.09616,
+        -0.003243
+      ],
+      "bounds_max_m": [
+        0.023015,
+        0.067876,
+        0.210194
+      ],
       "extents_m": [
         0.0718,
         0.16403600000000002,
@@ -184,21 +214,21 @@
         ]
       },
       "grasp": {
-        "name": "candidate_tall",
+        "name": "candidate_tall_high",
         "xy_offset": [
           -0.08,
           0.0
         ],
-        "hover_z_offset": 0.25,
-        "approach_z_offset": 0.12,
-        "lift_z_offset": 0.36,
+        "hover_z_offset": 0.3420933,
+        "approach_z_offset": 0.1920933,
+        "lift_z_offset": 0.4420933,
         "grasp_frac": 1.0,
-        "settle_steps": 450,
+        "settle_steps": 760,
         "hover_steps": 220,
         "approach_steps": 220,
         "close_steps": 260,
         "lift_steps": 260,
-        "open_steps": 140,
+        "open_steps": 180,
         "retreat_steps": 180
       },
       "audit_warnings": []
@@ -226,6 +256,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/004_sugar_box/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/004_sugar_box/collision_hull.obj",
+      "bounds_min_m": [
+        -0.032215,
+        -0.063793,
+        3.1e-05
+      ],
+      "bounds_max_m": [
+        0.017281,
+        0.030369,
+        0.176046
+      ],
       "extents_m": [
         0.049496,
         0.094162,
@@ -251,7 +291,7 @@
         ]
       },
       "grasp": {
-        "name": "candidate_tall",
+        "name": "tall",
         "xy_offset": [
           -0.08,
           0.0
@@ -293,6 +333,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/005_tomato_soup_can/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/005_tomato_soup_can/collision_hull.obj",
+      "bounds_min_m": [
+        -0.043124,
+        0.050146,
+        7.9e-05
+      ],
+      "bounds_max_m": [
+        0.024787,
+        0.117889,
+        0.101934
+      ],
       "extents_m": [
         0.067911,
         0.067743,
@@ -318,21 +368,21 @@
         ]
       },
       "grasp": {
-        "name": "candidate_small",
+        "name": "candidate_flat_low_force",
         "xy_offset": [
-          -0.02,
+          -0.04,
           0.0
         ],
         "hover_z_offset": 0.25,
-        "approach_z_offset": 0.1,
+        "approach_z_offset": 0.12,
         "lift_z_offset": 0.34,
-        "grasp_frac": 0.9,
-        "settle_steps": 420,
+        "grasp_frac": 0.85,
+        "settle_steps": 520,
         "hover_steps": 220,
         "approach_steps": 220,
-        "close_steps": 260,
+        "close_steps": 280,
         "lift_steps": 250,
-        "open_steps": 140,
+        "open_steps": 180,
         "retreat_steps": 180
       },
       "audit_warnings": []
@@ -360,6 +410,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/006_mustard_bottle/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/006_mustard_bottle/collision_hull.obj",
+      "bounds_min_m": [
+        -0.063938,
+        -0.056809,
+        -0.003153
+      ],
+      "bounds_max_m": [
+        0.03326,
+        0.009812,
+        0.188148
+      ],
       "extents_m": [
         0.09719799999999999,
         0.066621,
@@ -385,7 +445,7 @@
         ]
       },
       "grasp": {
-        "name": "candidate_tall",
+        "name": "tall",
         "xy_offset": [
           -0.08,
           0.0
@@ -427,6 +487,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/007_tuna_fish_can/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/007_tuna_fish_can/collision_hull.obj",
+      "bounds_min_m": [
+        -0.068828,
+        -0.064902,
+        -0.003218
+      ],
+      "bounds_max_m": [
+        0.016731,
+        0.020638,
+        0.03032
+      ],
       "extents_m": [
         0.085559,
         0.08554,
@@ -452,7 +522,7 @@
         ]
       },
       "grasp": {
-        "name": "candidate_flat",
+        "name": "flat",
         "xy_offset": [
           -0.04,
           0.0
@@ -494,6 +564,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/008_pudding_box/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/008_pudding_box/collision_hull.obj",
+      "bounds_min_m": [
+        -0.068464,
+        -0.045255,
+        -0.000497
+      ],
+      "bounds_max_m": [
+        0.069474,
+        0.083501,
+        0.038392
+      ],
       "extents_m": [
         0.137938,
         0.128756,
@@ -519,7 +599,7 @@
         ]
       },
       "grasp": {
-        "name": "candidate_flat",
+        "name": "flat",
         "xy_offset": [
           -0.04,
           0.0
@@ -561,6 +641,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/009_gelatin_box/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/009_gelatin_box/collision_hull.obj",
+      "bounds_min_m": [
+        -0.067477,
+        -0.058799,
+        -0.000545
+      ],
+      "bounds_max_m": [
+        0.021927,
+        0.042309,
+        0.029529
+      ],
       "extents_m": [
         0.089404,
         0.101108,
@@ -586,21 +676,21 @@
         ]
       },
       "grasp": {
-        "name": "candidate_flat",
+        "name": "candidate_aggressive",
         "xy_offset": [
-          -0.04,
-          0.0
+          -0.1,
+          0.02
         ],
         "hover_z_offset": 0.23,
         "approach_z_offset": 0.09,
-        "lift_z_offset": 0.3,
-        "grasp_frac": 0.85,
-        "settle_steps": 420,
+        "lift_z_offset": 0.31,
+        "grasp_frac": 1.0,
+        "settle_steps": 520,
         "hover_steps": 220,
         "approach_steps": 200,
         "close_steps": 240,
         "lift_steps": 230,
-        "open_steps": 120,
+        "open_steps": 180,
         "retreat_steps": 180
       },
       "audit_warnings": []
@@ -628,6 +718,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/010_potted_meat_can/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/010_potted_meat_can/collision_hull.obj",
+      "bounds_min_m": [
+        -0.083827,
+        -0.056604,
+        -0.003188
+      ],
+      "bounds_max_m": [
+        0.018258,
+        0.003499,
+        0.080355
+      ],
       "extents_m": [
         0.102085,
         0.060103000000000004,
@@ -653,7 +753,7 @@
         ]
       },
       "grasp": {
-        "name": "candidate_default",
+        "name": "default",
         "xy_offset": [
           -0.04,
           0.0
@@ -695,6 +795,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/011_banana/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/011_banana/collision_hull.obj",
+      "bounds_min_m": [
+        -0.042995,
+        -0.096567,
+        -0.000407
+      ],
+      "bounds_max_m": [
+        0.065947,
+        0.08188,
+        0.036333
+      ],
       "extents_m": [
         0.10894200000000001,
         0.178447,
@@ -720,21 +830,21 @@
         ]
       },
       "grasp": {
-        "name": "candidate_small",
+        "name": "candidate_aggressive",
         "xy_offset": [
-          -0.02,
-          0.0
+          -0.1,
+          0.02
         ],
         "hover_z_offset": 0.23,
-        "approach_z_offset": 0.1,
-        "lift_z_offset": 0.3,
-        "grasp_frac": 0.9,
-        "settle_steps": 420,
+        "approach_z_offset": 0.09,
+        "lift_z_offset": 0.31,
+        "grasp_frac": 1.0,
+        "settle_steps": 520,
         "hover_steps": 220,
         "approach_steps": 200,
         "close_steps": 240,
         "lift_steps": 230,
-        "open_steps": 120,
+        "open_steps": 180,
         "retreat_steps": 180
       },
       "audit_warnings": []
@@ -762,6 +872,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/012_strawberry/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/012_strawberry/collision_hull.obj",
+      "bounds_min_m": [
+        -0.023475,
+        -0.006866,
+        -0.000217
+      ],
+      "bounds_max_m": [
+        0.021749,
+        0.03842,
+        0.045458
+      ],
       "extents_m": [
         0.045224,
         0.045286,
@@ -787,16 +907,16 @@
         ]
       },
       "grasp": {
-        "name": "candidate_aggressive",
+        "name": "small",
         "xy_offset": [
-          -0.1,
-          0.02
+          -0.02,
+          0.0
         ],
         "hover_z_offset": 0.22,
         "approach_z_offset": 0.1,
         "lift_z_offset": 0.3,
-        "grasp_frac": 1.0,
-        "settle_steps": 450,
+        "grasp_frac": 0.9,
+        "settle_steps": 360,
         "hover_steps": 220,
         "approach_steps": 210,
         "close_steps": 260,
@@ -829,6 +949,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/013_apple/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/013_apple/collision_hull.obj",
+      "bounds_min_m": [
+        -0.036865,
+        -0.04122,
+        -0.000393
+      ],
+      "bounds_max_m": [
+        0.038583,
+        0.033651,
+        0.071496
+      ],
       "extents_m": [
         0.075448,
         0.074871,
@@ -854,7 +984,7 @@
         ]
       },
       "grasp": {
-        "name": "candidate_default",
+        "name": "default",
         "xy_offset": [
           -0.04,
           0.0
@@ -896,6 +1026,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/014_lemon/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/014_lemon/collision_hull.obj",
+      "bounds_min_m": [
+        -0.040873,
+        -0.007996,
+        -0.000235
+      ],
+      "bounds_max_m": [
+        0.019715,
+        0.051303,
+        0.052782
+      ],
       "extents_m": [
         0.060588,
         0.059299000000000004,
@@ -921,15 +1061,15 @@
         ]
       },
       "grasp": {
-        "name": "candidate_flat",
+        "name": "default",
         "xy_offset": [
           -0.04,
           0.0
         ],
         "hover_z_offset": 0.25,
-        "approach_z_offset": 0.09,
+        "approach_z_offset": 0.12,
         "lift_z_offset": 0.34,
-        "grasp_frac": 0.85,
+        "grasp_frac": 1.0,
         "settle_steps": 420,
         "hover_steps": 220,
         "approach_steps": 220,
@@ -963,6 +1103,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/015_peach/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/015_peach/collision_hull.obj",
+      "bounds_min_m": [
+        -0.045332,
+        -0.025683,
+        -0.000215
+      ],
+      "bounds_max_m": [
+        0.016791,
+        0.036949,
+        0.05843
+      ],
       "extents_m": [
         0.062123,
         0.06263200000000001,
@@ -988,21 +1138,21 @@
         ]
       },
       "grasp": {
-        "name": "candidate_tall",
+        "name": "candidate_aggressive",
         "xy_offset": [
-          -0.08,
-          0.0
+          -0.1,
+          0.02
         ],
         "hover_z_offset": 0.25,
         "approach_z_offset": 0.12,
         "lift_z_offset": 0.34,
         "grasp_frac": 1.0,
-        "settle_steps": 450,
+        "settle_steps": 520,
         "hover_steps": 220,
         "approach_steps": 220,
         "close_steps": 260,
         "lift_steps": 250,
-        "open_steps": 140,
+        "open_steps": 180,
         "retreat_steps": 180
       },
       "audit_warnings": []
@@ -1030,6 +1180,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/016_pear/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/016_pear/collision_hull.obj",
+      "bounds_min_m": [
+        -0.066593,
+        -0.032233,
+        -0.000179
+      ],
+      "bounds_max_m": [
+        -4.7e-05,
+        0.068222,
+        0.065484
+      ],
       "extents_m": [
         0.066546,
         0.100455,
@@ -1055,7 +1215,7 @@
         ]
       },
       "grasp": {
-        "name": "candidate_default",
+        "name": "default",
         "xy_offset": [
           -0.04,
           0.0
@@ -1097,6 +1257,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/017_orange/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/017_orange/collision_hull.obj",
+      "bounds_min_m": [
+        -0.043014,
+        -0.055353,
+        -0.000248
+      ],
+      "bounds_max_m": [
+        0.029144,
+        0.018633,
+        0.071104
+      ],
       "extents_m": [
         0.072158,
         0.073986,
@@ -1122,7 +1292,7 @@
         ]
       },
       "grasp": {
-        "name": "candidate_default",
+        "name": "default",
         "xy_offset": [
           -0.04,
           0.0
@@ -1164,6 +1334,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/018_plum/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/018_plum/collision_hull.obj",
+      "bounds_min_m": [
+        -0.036413,
+        -0.008047,
+        -0.000297
+      ],
+      "bounds_max_m": [
+        0.020777,
+        0.046894,
+        0.052743
+      ],
       "extents_m": [
         0.057190000000000005,
         0.054941,
@@ -1189,7 +1369,7 @@
         ]
       },
       "grasp": {
-        "name": "candidate_small",
+        "name": "small",
         "xy_offset": [
           -0.02,
           0.0
@@ -1231,6 +1411,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/019_pitcher_base/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/019_pitcher_base/collision_hull.obj",
+      "bounds_min_m": [
+        -0.080396,
+        -0.032363,
+        -0.002822
+      ],
+      "bounds_max_m": [
+        0.068738,
+        0.112466,
+        0.239565
+      ],
       "extents_m": [
         0.149134,
         0.14482899999999999,
@@ -1256,22 +1446,22 @@
         ]
       },
       "grasp": {
-        "name": "candidate_small",
+        "name": "candidate_rescue_override",
         "xy_offset": [
-          -0.02,
-          0.0
+          0.02,
+          -0.08
         ],
-        "hover_z_offset": 0.25,
-        "approach_z_offset": 0.1,
-        "lift_z_offset": 0.34,
-        "grasp_frac": 0.9,
-        "settle_steps": 420,
+        "hover_z_offset": 0.42,
+        "approach_z_offset": 0.3,
+        "lift_z_offset": 0.56,
+        "grasp_frac": 1.0,
+        "settle_steps": 760,
         "hover_steps": 220,
         "approach_steps": 220,
-        "close_steps": 260,
+        "close_steps": 320,
         "lift_steps": 250,
-        "open_steps": 140,
-        "retreat_steps": 180
+        "open_steps": 220,
+        "retreat_steps": 220
       },
       "audit_warnings": []
     },
@@ -1298,6 +1488,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/021_bleach_cleanser/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/021_bleach_cleanser/collision_hull.obj",
+      "bounds_min_m": [
+        -0.07288,
+        -0.02214,
+        -0.000452
+      ],
+      "bounds_max_m": [
+        0.029553,
+        0.045559,
+        0.250128
+      ],
       "extents_m": [
         0.102433,
         0.06769900000000001,
@@ -1323,22 +1523,22 @@
         ]
       },
       "grasp": {
-        "name": "candidate_default",
+        "name": "candidate_rescue_override",
         "xy_offset": [
-          -0.04,
-          0.0
+          -0.1,
+          -0.02
         ],
-        "hover_z_offset": 0.25,
-        "approach_z_offset": 0.12,
-        "lift_z_offset": 0.36,
-        "grasp_frac": 1.0,
-        "settle_steps": 450,
+        "hover_z_offset": 0.4,
+        "approach_z_offset": 0.28,
+        "lift_z_offset": 0.54,
+        "grasp_frac": 0.92,
+        "settle_steps": 760,
         "hover_steps": 220,
         "approach_steps": 220,
-        "close_steps": 260,
+        "close_steps": 320,
         "lift_steps": 260,
-        "open_steps": 140,
-        "retreat_steps": 180
+        "open_steps": 220,
+        "retreat_steps": 220
       },
       "audit_warnings": []
     },
@@ -1365,6 +1565,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/022_windex_bottle/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/022_windex_bottle/collision_hull.obj",
+      "bounds_min_m": [
+        -0.023077,
+        -0.035786,
+        -0.000651
+      ],
+      "bounds_max_m": [
+        0.05965,
+        0.059642,
+        0.26915
+      ],
       "extents_m": [
         0.082727,
         0.095428,
@@ -1390,21 +1600,21 @@
         ]
       },
       "grasp": {
-        "name": "candidate_tall",
+        "name": "candidate_aggressive",
         "xy_offset": [
-          -0.08,
-          0.0
+          -0.1,
+          0.02
         ],
-        "hover_z_offset": 0.25,
-        "approach_z_offset": 0.12,
-        "lift_z_offset": 0.36,
+        "hover_z_offset": 0.30537065,
+        "approach_z_offset": 0.17537065000000002,
+        "lift_z_offset": 0.39537065000000005,
         "grasp_frac": 1.0,
-        "settle_steps": 450,
+        "settle_steps": 520,
         "hover_steps": 220,
         "approach_steps": 220,
         "close_steps": 260,
         "lift_steps": 260,
-        "open_steps": 140,
+        "open_steps": 180,
         "retreat_steps": 180
       },
       "audit_warnings": []
@@ -1432,6 +1642,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/023_wine_glass/tsdf/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/023_wine_glass/collision_hull.obj",
+      "bounds_min_m": [
+        -0.224351,
+        0.0880623,
+        0.00697246
+      ],
+      "bounds_max_m": [
+        -0.131115,
+        0.227005,
+        0.105675
+      ],
       "extents_m": [
         0.09323599999999999,
         0.13894270000000003,
@@ -1457,21 +1677,21 @@
         ]
       },
       "grasp": {
-        "name": "candidate_aggressive",
+        "name": "candidate_flat_low_force",
         "xy_offset": [
-          -0.1,
-          0.02
+          -0.04,
+          0.0
         ],
         "hover_z_offset": 0.25,
-        "approach_z_offset": 0.1,
+        "approach_z_offset": 0.12,
         "lift_z_offset": 0.34,
-        "grasp_frac": 1.0,
-        "settle_steps": 450,
+        "grasp_frac": 0.85,
+        "settle_steps": 520,
         "hover_steps": 220,
         "approach_steps": 220,
-        "close_steps": 260,
+        "close_steps": 280,
         "lift_steps": 250,
-        "open_steps": 140,
+        "open_steps": 180,
         "retreat_steps": 180
       },
       "audit_warnings": []
@@ -1499,6 +1719,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/024_bowl/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/024_bowl/collision_hull.obj",
+      "bounds_min_m": [
+        -0.095571,
+        -0.124271,
+        -0.00053
+      ],
+      "bounds_max_m": [
+        0.065892,
+        0.036893,
+        0.054479
+      ],
       "extents_m": [
         0.16146300000000002,
         0.161164,
@@ -1524,7 +1754,7 @@
         ]
       },
       "grasp": {
-        "name": "candidate_default",
+        "name": "default",
         "xy_offset": [
           -0.04,
           0.0
@@ -1566,6 +1796,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/025_mug/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/025_mug/collision_hull.obj",
+      "bounds_min_m": [
+        -0.067349,
+        -0.029226,
+        -0.000532
+      ],
+      "bounds_max_m": [
+        0.049635,
+        0.063905,
+        0.080771
+      ],
       "extents_m": [
         0.116984,
         0.093131,
@@ -1591,7 +1831,7 @@
         ]
       },
       "grasp": {
-        "name": "candidate_default",
+        "name": "default",
         "xy_offset": [
           -0.04,
           0.0
@@ -1633,6 +1873,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/026_sponge/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/026_sponge/collision_hull.obj",
+      "bounds_min_m": [
+        -0.054918,
+        -0.042312,
+        0.000116
+      ],
+      "bounds_max_m": [
+        0.024229,
+        0.069801,
+        0.019123
+      ],
       "extents_m": [
         0.079147,
         0.112113,
@@ -1658,16 +1908,16 @@
         ]
       },
       "grasp": {
-        "name": "candidate_aggressive",
+        "name": "flat",
         "xy_offset": [
-          -0.1,
-          0.02
+          -0.04,
+          0.0
         ],
         "hover_z_offset": 0.23,
-        "approach_z_offset": 0.1,
+        "approach_z_offset": 0.09,
         "lift_z_offset": 0.3,
-        "grasp_frac": 1.0,
-        "settle_steps": 450,
+        "grasp_frac": 0.85,
+        "settle_steps": 420,
         "hover_steps": 220,
         "approach_steps": 200,
         "close_steps": 240,
@@ -1700,6 +1950,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/028_skillet_lid/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/028_skillet_lid/collision_hull.obj",
+      "bounds_min_m": [
+        -0.125259,
+        -0.11029,
+        -0.004978
+      ],
+      "bounds_max_m": [
+        0.143005,
+        0.158863,
+        0.071077
+      ],
       "extents_m": [
         0.268264,
         0.269153,
@@ -1725,21 +1985,21 @@
         ]
       },
       "grasp": {
-        "name": "candidate_small",
+        "name": "candidate_small_lo",
         "xy_offset": [
           -0.02,
           0.0
         ],
         "hover_z_offset": 0.25,
-        "approach_z_offset": 0.1,
+        "approach_z_offset": 0.12,
         "lift_z_offset": 0.34,
-        "grasp_frac": 0.9,
-        "settle_steps": 420,
+        "grasp_frac": 0.92,
+        "settle_steps": 520,
         "hover_steps": 220,
         "approach_steps": 220,
         "close_steps": 260,
         "lift_steps": 250,
-        "open_steps": 140,
+        "open_steps": 180,
         "retreat_steps": 180
       },
       "audit_warnings": []
@@ -1767,6 +2027,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/029_plate/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/029_plate/collision_hull.obj",
+      "bounds_min_m": [
+        -0.141696,
+        -0.130535,
+        -0.003109
+      ],
+      "bounds_max_m": [
+        0.118454,
+        0.130567,
+        0.023614
+      ],
       "extents_m": [
         0.26015,
         0.261102,
@@ -1792,15 +2062,15 @@
         ]
       },
       "grasp": {
-        "name": "candidate_default",
+        "name": "flat",
         "xy_offset": [
           -0.04,
           0.0
         ],
         "hover_z_offset": 0.23,
-        "approach_z_offset": 0.12,
+        "approach_z_offset": 0.09,
         "lift_z_offset": 0.3,
-        "grasp_frac": 1.0,
+        "grasp_frac": 0.85,
         "settle_steps": 420,
         "hover_steps": 220,
         "approach_steps": 200,
@@ -1834,6 +2104,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/030_fork/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/030_fork/collision_hull.obj",
+      "bounds_min_m": [
+        -0.124188,
+        -0.03585,
+        -0.0009
+      ],
+      "bounds_max_m": [
+        0.073368,
+        -0.00874,
+        0.014984
+      ],
       "extents_m": [
         0.197556,
         0.027110000000000002,
@@ -1859,16 +2139,16 @@
         ]
       },
       "grasp": {
-        "name": "candidate_aggressive",
+        "name": "flat",
         "xy_offset": [
-          -0.1,
-          0.02
+          -0.04,
+          0.0
         ],
         "hover_z_offset": 0.23,
-        "approach_z_offset": 0.1,
+        "approach_z_offset": 0.09,
         "lift_z_offset": 0.3,
-        "grasp_frac": 1.0,
-        "settle_steps": 450,
+        "grasp_frac": 0.85,
+        "settle_steps": 420,
         "hover_steps": 220,
         "approach_steps": 200,
         "close_steps": 240,
@@ -1901,6 +2181,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/031_spoon/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/031_spoon/collision_hull.obj",
+      "bounds_min_m": [
+        -0.120113,
+        -0.046514,
+        -0.000613
+      ],
+      "bounds_max_m": [
+        0.065847,
+        0.036415,
+        0.020279
+      ],
       "extents_m": [
         0.18596000000000001,
         0.082929,
@@ -1908,33 +2198,33 @@
       ],
       "contact": {
         "friction": [
-          0.4,
-          0.02,
-          0.01
+          0.7,
+          0.01,
+          0.001
         ],
         "condim": 6,
         "solref": [
-          0.02,
+          0.03,
           1.0
         ],
         "solimp": [
-          0.9,
+          0.88,
           0.95,
-          0.001,
+          0.002,
           0.5,
           2.0
         ]
       },
       "grasp": {
-        "name": "candidate_default",
+        "name": "flat",
         "xy_offset": [
           -0.04,
           0.0
         ],
         "hover_z_offset": 0.23,
-        "approach_z_offset": 0.12,
+        "approach_z_offset": 0.09,
         "lift_z_offset": 0.3,
-        "grasp_frac": 1.0,
+        "grasp_frac": 0.85,
         "settle_steps": 420,
         "hover_steps": 220,
         "approach_steps": 200,
@@ -1968,6 +2258,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/032_knife/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/032_knife/collision_hull.obj",
+      "bounds_min_m": [
+        -0.126843,
+        -0.037718,
+        -0.007389
+      ],
+      "bounds_max_m": [
+        0.087987,
+        -0.017113,
+        0.015225
+      ],
       "extents_m": [
         0.21483000000000002,
         0.020605000000000002,
@@ -1993,7 +2293,7 @@
         ]
       },
       "grasp": {
-        "name": "candidate_flat",
+        "name": "flat",
         "xy_offset": [
           -0.04,
           0.0
@@ -2035,6 +2335,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/033_spatula/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/033_spatula/collision_hull.obj",
+      "bounds_min_m": [
+        -0.179939,
+        -0.15932,
+        -0.000688
+      ],
+      "bounds_max_m": [
+        0.125583,
+        -0.034726,
+        0.032245
+      ],
       "extents_m": [
         0.30552199999999996,
         0.12459399999999998,
@@ -2060,21 +2370,21 @@
         ]
       },
       "grasp": {
-        "name": "candidate_aggressive",
+        "name": "candidate_small_lo",
         "xy_offset": [
-          -0.1,
-          0.02
+          -0.02,
+          0.0
         ],
         "hover_z_offset": 0.23,
-        "approach_z_offset": 0.1,
+        "approach_z_offset": 0.09,
         "lift_z_offset": 0.3,
-        "grasp_frac": 1.0,
-        "settle_steps": 450,
+        "grasp_frac": 0.92,
+        "settle_steps": 520,
         "hover_steps": 220,
         "approach_steps": 200,
         "close_steps": 240,
         "lift_steps": 230,
-        "open_steps": 120,
+        "open_steps": 180,
         "retreat_steps": 180
       },
       "audit_warnings": []
@@ -2102,6 +2412,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/035_power_drill/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/035_power_drill/collision_hull.obj",
+      "bounds_min_m": [
+        -0.138059,
+        -0.08317,
+        -0.003173
+      ],
+      "bounds_max_m": [
+        0.046148,
+        0.104345,
+        0.05412
+      ],
       "extents_m": [
         0.18420699999999998,
         0.187515,
@@ -2127,15 +2447,15 @@
         ]
       },
       "grasp": {
-        "name": "candidate_flat",
+        "name": "default",
         "xy_offset": [
           -0.04,
           0.0
         ],
         "hover_z_offset": 0.25,
-        "approach_z_offset": 0.09,
+        "approach_z_offset": 0.12,
         "lift_z_offset": 0.34,
-        "grasp_frac": 0.85,
+        "grasp_frac": 1.0,
         "settle_steps": 420,
         "hover_steps": 220,
         "approach_steps": 220,
@@ -2169,6 +2489,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/036_wood_block/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/036_wood_block/collision_hull.obj",
+      "bounds_min_m": [
+        -0.028169,
+        -0.061617,
+        -5.7e-05
+      ],
+      "bounds_max_m": [
+        0.075748,
+        0.041847,
+        0.205946
+      ],
       "extents_m": [
         0.103917,
         0.103464,
@@ -2194,22 +2524,22 @@
         ]
       },
       "grasp": {
-        "name": "candidate_small",
+        "name": "candidate_rescue_override",
         "xy_offset": [
-          -0.02,
-          0.0
+          -0.12,
+          -0.02
         ],
-        "hover_z_offset": 0.25,
-        "approach_z_offset": 0.1,
-        "lift_z_offset": 0.36,
-        "grasp_frac": 0.9,
-        "settle_steps": 450,
+        "hover_z_offset": 0.36,
+        "approach_z_offset": 0.24,
+        "lift_z_offset": 0.5,
+        "grasp_frac": 1.0,
+        "settle_steps": 760,
         "hover_steps": 220,
         "approach_steps": 220,
-        "close_steps": 260,
+        "close_steps": 320,
         "lift_steps": 260,
-        "open_steps": 140,
-        "retreat_steps": 180
+        "open_steps": 220,
+        "retreat_steps": 220
       },
       "audit_warnings": []
     },
@@ -2236,6 +2566,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/037_scissors/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/037_scissors/collision_hull.obj",
+      "bounds_min_m": [
+        -0.038018,
+        -0.064823,
+        -0.000362
+      ],
+      "bounds_max_m": [
+        0.058062,
+        0.136701,
+        0.015309
+      ],
       "extents_m": [
         0.09608,
         0.20152399999999998,
@@ -2267,15 +2607,15 @@
           0.02
         ],
         "hover_z_offset": 0.23,
-        "approach_z_offset": 0.1,
-        "lift_z_offset": 0.3,
+        "approach_z_offset": 0.09,
+        "lift_z_offset": 0.31,
         "grasp_frac": 1.0,
-        "settle_steps": 450,
+        "settle_steps": 520,
         "hover_steps": 220,
         "approach_steps": 200,
         "close_steps": 240,
         "lift_steps": 230,
-        "open_steps": 120,
+        "open_steps": 180,
         "retreat_steps": 180
       },
       "audit_warnings": []
@@ -2303,6 +2643,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/038_padlock/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/038_padlock/collision_hull.obj",
+      "bounds_min_m": [
+        -0.051433,
+        -0.031315,
+        -0.000321
+      ],
+      "bounds_max_m": [
+        0.01554,
+        0.03674,
+        0.02882
+      ],
       "extents_m": [
         0.066973,
         0.068055,
@@ -2328,21 +2678,21 @@
         ]
       },
       "grasp": {
-        "name": "candidate_aggressive",
+        "name": "candidate_tall_high",
         "xy_offset": [
-          -0.1,
-          0.02
+          -0.08,
+          0.0
         ],
-        "hover_z_offset": 0.23,
-        "approach_z_offset": 0.1,
-        "lift_z_offset": 0.3,
+        "hover_z_offset": 0.26,
+        "approach_z_offset": 0.11,
+        "lift_z_offset": 0.36,
         "grasp_frac": 1.0,
-        "settle_steps": 450,
+        "settle_steps": 760,
         "hover_steps": 220,
         "approach_steps": 200,
         "close_steps": 240,
         "lift_steps": 230,
-        "open_steps": 120,
+        "open_steps": 180,
         "retreat_steps": 180
       },
       "audit_warnings": []
@@ -2370,6 +2720,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/040_large_marker/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/040_large_marker/collision_hull.obj",
+      "bounds_min_m": [
+        -0.046201,
+        -0.065567,
+        -0.000273
+      ],
+      "bounds_max_m": [
+        -0.025179,
+        0.055402,
+        0.018622
+      ],
       "extents_m": [
         0.021022,
         0.120969,
@@ -2395,21 +2755,21 @@
         ]
       },
       "grasp": {
-        "name": "candidate_tall",
+        "name": "candidate_aggressive",
         "xy_offset": [
-          -0.08,
-          0.0
+          -0.1,
+          0.02
         ],
         "hover_z_offset": 0.23,
-        "approach_z_offset": 0.12,
-        "lift_z_offset": 0.3,
+        "approach_z_offset": 0.09,
+        "lift_z_offset": 0.31,
         "grasp_frac": 1.0,
-        "settle_steps": 450,
+        "settle_steps": 520,
         "hover_steps": 220,
         "approach_steps": 200,
         "close_steps": 240,
         "lift_steps": 230,
-        "open_steps": 120,
+        "open_steps": 180,
         "retreat_steps": 180
       },
       "audit_warnings": []
@@ -2437,6 +2797,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/041_small_marker/tsdf/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/041_small_marker/collision_hull.obj",
+      "bounds_min_m": [
+        -0.00955261,
+        -0.00547053,
+        0.00587082
+      ],
+      "bounds_max_m": [
+        0.0156555,
+        0.0156555,
+        0.115459
+      ],
       "extents_m": [
         0.02520811,
         0.02112603,
@@ -2462,21 +2832,21 @@
         ]
       },
       "grasp": {
-        "name": "candidate_tall",
+        "name": "candidate_aggressive",
         "xy_offset": [
-          -0.08,
-          0.0
+          -0.1,
+          0.02
         ],
         "hover_z_offset": 0.25,
         "approach_z_offset": 0.12,
         "lift_z_offset": 0.34,
         "grasp_frac": 1.0,
-        "settle_steps": 450,
+        "settle_steps": 520,
         "hover_steps": 220,
         "approach_steps": 220,
         "close_steps": 260,
         "lift_steps": 250,
-        "open_steps": 140,
+        "open_steps": 180,
         "retreat_steps": 180
       },
       "audit_warnings": []
@@ -2504,6 +2874,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/042_adjustable_wrench/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/042_adjustable_wrench/collision_hull.obj",
+      "bounds_min_m": [
+        -0.065887,
+        -0.102892,
+        -0.002981
+      ],
+      "bounds_max_m": [
+        0.058912,
+        0.078201,
+        0.011673
+      ],
       "extents_m": [
         0.124799,
         0.181093,
@@ -2529,21 +2909,21 @@
         ]
       },
       "grasp": {
-        "name": "candidate_tall",
+        "name": "candidate_tall_high",
         "xy_offset": [
           -0.08,
           0.0
         ],
-        "hover_z_offset": 0.23,
-        "approach_z_offset": 0.12,
-        "lift_z_offset": 0.3,
+        "hover_z_offset": 0.26,
+        "approach_z_offset": 0.11,
+        "lift_z_offset": 0.36,
         "grasp_frac": 1.0,
-        "settle_steps": 450,
+        "settle_steps": 760,
         "hover_steps": 220,
         "approach_steps": 200,
         "close_steps": 240,
         "lift_steps": 230,
-        "open_steps": 120,
+        "open_steps": 180,
         "retreat_steps": 180
       },
       "audit_warnings": []
@@ -2571,6 +2951,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/043_phillips_screwdriver/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/043_phillips_screwdriver/collision_hull.obj",
+      "bounds_min_m": [
+        -0.140127,
+        -0.050102,
+        -0.000359
+      ],
+      "bounds_max_m": [
+        0.054731,
+        0.056865,
+        0.035156
+      ],
       "extents_m": [
         0.194858,
         0.106967,
@@ -2596,7 +2986,7 @@
         ]
       },
       "grasp": {
-        "name": "candidate_flat",
+        "name": "flat",
         "xy_offset": [
           -0.04,
           0.0
@@ -2638,6 +3028,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/044_flat_screwdriver/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/044_flat_screwdriver/collision_hull.obj",
+      "bounds_min_m": [
+        -0.093428,
+        -0.066777,
+        -0.000407
+      ],
+      "bounds_max_m": [
+        0.068443,
+        0.090108,
+        0.034634
+      ],
       "extents_m": [
         0.161871,
         0.156885,
@@ -2663,7 +3063,7 @@
         ]
       },
       "grasp": {
-        "name": "candidate_flat",
+        "name": "flat",
         "xy_offset": [
           -0.04,
           0.0
@@ -2705,6 +3105,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/048_hammer/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/048_hammer/collision_hull.obj",
+      "bounds_min_m": [
+        -0.128823,
+        -0.189072,
+        -0.000639
+      ],
+      "bounds_max_m": [
+        0.053377,
+        0.14365,
+        0.032223
+      ],
       "extents_m": [
         0.1822,
         0.33272199999999996,
@@ -2730,21 +3140,21 @@
         ]
       },
       "grasp": {
-        "name": "candidate_aggressive",
+        "name": "candidate_left_bias",
         "xy_offset": [
-          -0.1,
+          -0.06,
           0.02
         ],
         "hover_z_offset": 0.23,
-        "approach_z_offset": 0.1,
-        "lift_z_offset": 0.3,
+        "approach_z_offset": 0.09,
+        "lift_z_offset": 0.31,
         "grasp_frac": 1.0,
-        "settle_steps": 450,
+        "settle_steps": 520,
         "hover_steps": 220,
         "approach_steps": 200,
         "close_steps": 240,
         "lift_steps": 230,
-        "open_steps": 120,
+        "open_steps": 180,
         "retreat_steps": 180
       },
       "audit_warnings": []
@@ -2772,6 +3182,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/049_small_clamp/tsdf/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/049_small_clamp/collision_hull.obj",
+      "bounds_min_m": [
+        -0.138943,
+        -0.0234833,
+        0.00782776
+      ],
+      "bounds_max_m": [
+        0.00782776,
+        0.0919762,
+        0.0547943
+      ],
       "extents_m": [
         0.14677076,
         0.11545949999999999,
@@ -2779,39 +3199,39 @@
       ],
       "contact": {
         "friction": [
-          1.0,
-          0.05,
-          0.01
+          0.8,
+          0.02,
+          0.001
         ],
         "condim": 6,
         "solref": [
-          0.02,
+          0.03,
           1.0
         ],
         "solimp": [
-          0.9,
+          0.88,
           0.95,
-          0.001,
+          0.002,
           0.5,
           2.0
         ]
       },
       "grasp": {
-        "name": "candidate_default",
+        "name": "candidate_tall_high",
         "xy_offset": [
-          -0.04,
+          -0.08,
           0.0
         ],
-        "hover_z_offset": 0.25,
+        "hover_z_offset": 0.26,
         "approach_z_offset": 0.12,
-        "lift_z_offset": 0.34,
+        "lift_z_offset": 0.36,
         "grasp_frac": 1.0,
-        "settle_steps": 420,
+        "settle_steps": 760,
         "hover_steps": 220,
         "approach_steps": 220,
         "close_steps": 260,
         "lift_steps": 250,
-        "open_steps": 140,
+        "open_steps": 180,
         "retreat_steps": 180
       },
       "audit_warnings": []
@@ -2839,6 +3259,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/050_medium_clamp/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/050_medium_clamp/collision_hull.obj",
+      "bounds_min_m": [
+        -0.028367,
+        -0.048524,
+        -0.000388
+      ],
+      "bounds_max_m": [
+        0.060559,
+        0.02826,
+        0.025668
+      ],
       "extents_m": [
         0.088926,
         0.07678399999999999,
@@ -2864,21 +3294,21 @@
         ]
       },
       "grasp": {
-        "name": "candidate_aggressive",
+        "name": "candidate_center_mid",
         "xy_offset": [
-          -0.1,
-          0.02
+          -0.05,
+          0.0
         ],
         "hover_z_offset": 0.23,
-        "approach_z_offset": 0.1,
+        "approach_z_offset": 0.09,
         "lift_z_offset": 0.3,
         "grasp_frac": 1.0,
-        "settle_steps": 450,
+        "settle_steps": 520,
         "hover_steps": 220,
         "approach_steps": 200,
         "close_steps": 240,
         "lift_steps": 230,
-        "open_steps": 120,
+        "open_steps": 180,
         "retreat_steps": 180
       },
       "audit_warnings": []
@@ -2906,6 +3336,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/051_large_clamp/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/051_large_clamp/collision_hull.obj",
+      "bounds_min_m": [
+        -0.074614,
+        -0.093748,
+        -0.000352
+      ],
+      "bounds_max_m": [
+        0.045427,
+        0.077326,
+        0.03882
+      ],
       "extents_m": [
         0.12004100000000001,
         0.171074,
@@ -2931,7 +3371,7 @@
         ]
       },
       "grasp": {
-        "name": "candidate_flat",
+        "name": "flat",
         "xy_offset": [
           -0.04,
           0.0
@@ -2973,6 +3413,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/052_extra_large_clamp/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/052_extra_large_clamp/collision_hull.obj",
+      "bounds_min_m": [
+        -0.124682,
+        -0.107259,
+        -0.000399
+      ],
+      "bounds_max_m": [
+        0.085272,
+        0.057085,
+        0.035918
+      ],
       "extents_m": [
         0.209954,
         0.164344,
@@ -2998,21 +3448,21 @@
         ]
       },
       "grasp": {
-        "name": "candidate_aggressive",
+        "name": "candidate_small_lo",
         "xy_offset": [
-          -0.1,
-          0.02
+          -0.02,
+          0.0
         ],
         "hover_z_offset": 0.23,
-        "approach_z_offset": 0.1,
+        "approach_z_offset": 0.09,
         "lift_z_offset": 0.3,
-        "grasp_frac": 1.0,
-        "settle_steps": 450,
+        "grasp_frac": 0.92,
+        "settle_steps": 520,
         "hover_steps": 220,
         "approach_steps": 200,
         "close_steps": 240,
         "lift_steps": 230,
-        "open_steps": 120,
+        "open_steps": 180,
         "retreat_steps": 180
       },
       "audit_warnings": []
@@ -3040,6 +3490,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/053_mini_soccer_ball/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/053_mini_soccer_ball/collision_hull.obj",
+      "bounds_min_m": [
+        -0.0702,
+        -0.052889,
+        -0.000523
+      ],
+      "bounds_max_m": [
+        0.057857,
+        0.074948,
+        0.125064
+      ],
       "extents_m": [
         0.128057,
         0.127837,
@@ -3065,7 +3525,7 @@
         ]
       },
       "grasp": {
-        "name": "candidate_default",
+        "name": "default",
         "xy_offset": [
           -0.04,
           0.0
@@ -3107,6 +3567,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/054_softball/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/054_softball/collision_hull.obj",
+      "bounds_min_m": [
+        -0.067358,
+        -0.037383,
+        -0.000322
+      ],
+      "bounds_max_m": [
+        0.028012,
+        0.058791,
+        0.094269
+      ],
       "extents_m": [
         0.09537,
         0.09617400000000001,
@@ -3132,7 +3602,7 @@
         ]
       },
       "grasp": {
-        "name": "candidate_default",
+        "name": "candidate_flat_low_force",
         "xy_offset": [
           -0.04,
           0.0
@@ -3140,13 +3610,13 @@
         "hover_z_offset": 0.25,
         "approach_z_offset": 0.12,
         "lift_z_offset": 0.34,
-        "grasp_frac": 1.0,
-        "settle_steps": 420,
+        "grasp_frac": 0.85,
+        "settle_steps": 520,
         "hover_steps": 220,
         "approach_steps": 220,
-        "close_steps": 260,
+        "close_steps": 280,
         "lift_steps": 250,
-        "open_steps": 140,
+        "open_steps": 180,
         "retreat_steps": 180
       },
       "audit_warnings": []
@@ -3174,6 +3644,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/055_baseball/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/055_baseball/collision_hull.obj",
+      "bounds_min_m": [
+        -0.04662,
+        -0.085101,
+        -0.000205
+      ],
+      "bounds_max_m": [
+        0.026458,
+        -0.011389,
+        0.072358
+      ],
       "extents_m": [
         0.073078,
         0.073712,
@@ -3199,7 +3679,7 @@
         ]
       },
       "grasp": {
-        "name": "candidate_default",
+        "name": "default",
         "xy_offset": [
           -0.04,
           0.0
@@ -3241,6 +3721,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/056_tennis_ball/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/056_tennis_ball/collision_hull.obj",
+      "bounds_min_m": [
+        -0.025276,
+        -0.077793,
+        -9.7e-05
+      ],
+      "bounds_max_m": [
+        0.041699,
+        -0.010763,
+        0.06636
+      ],
       "extents_m": [
         0.066975,
         0.06703,
@@ -3266,7 +3756,7 @@
         ]
       },
       "grasp": {
-        "name": "candidate_default",
+        "name": "default",
         "xy_offset": [
           -0.04,
           0.0
@@ -3308,6 +3798,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/057_racquetball/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/057_racquetball/collision_hull.obj",
+      "bounds_min_m": [
+        -0.036942,
+        -0.15026,
+        -0.000191
+      ],
+      "bounds_max_m": [
+        0.018836,
+        -0.094204,
+        0.055383
+      ],
       "extents_m": [
         0.055778,
         0.05605600000000001,
@@ -3340,14 +3840,14 @@
         ],
         "hover_z_offset": 0.22,
         "approach_z_offset": 0.1,
-        "lift_z_offset": 0.3,
+        "lift_z_offset": 0.31,
         "grasp_frac": 1.0,
-        "settle_steps": 450,
+        "settle_steps": 520,
         "hover_steps": 220,
         "approach_steps": 210,
         "close_steps": 260,
         "lift_steps": 230,
-        "open_steps": 120,
+        "open_steps": 180,
         "retreat_steps": 180
       },
       "audit_warnings": []
@@ -3375,6 +3875,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/058_golf_ball/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/058_golf_ball/collision_hull.obj",
+      "bounds_min_m": [
+        -0.027879,
+        -0.051798,
+        -0.000244
+      ],
+      "bounds_max_m": [
+        0.0148,
+        -0.009077,
+        0.042131
+      ],
       "extents_m": [
         0.042679,
         0.042720999999999995,
@@ -3400,16 +3910,16 @@
         ]
       },
       "grasp": {
-        "name": "candidate_default",
+        "name": "small",
         "xy_offset": [
-          -0.04,
+          -0.02,
           0.0
         ],
         "hover_z_offset": 0.22,
-        "approach_z_offset": 0.12,
+        "approach_z_offset": 0.1,
         "lift_z_offset": 0.3,
-        "grasp_frac": 1.0,
-        "settle_steps": 420,
+        "grasp_frac": 0.9,
+        "settle_steps": 360,
         "hover_steps": 220,
         "approach_steps": 210,
         "close_steps": 260,
@@ -3442,6 +3952,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/059_chain/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/059_chain/collision_hull.obj",
+      "bounds_min_m": [
+        -0.193108,
+        -0.131971,
+        -0.00014
+      ],
+      "bounds_max_m": [
+        0.117203,
+        0.175214,
+        0.024616
+      ],
       "extents_m": [
         0.310311,
         0.30718500000000004,
@@ -3467,16 +3987,16 @@
         ]
       },
       "grasp": {
-        "name": "candidate_aggressive",
+        "name": "flat",
         "xy_offset": [
-          -0.1,
-          0.02
+          -0.04,
+          0.0
         ],
         "hover_z_offset": 0.23,
-        "approach_z_offset": 0.1,
+        "approach_z_offset": 0.09,
         "lift_z_offset": 0.3,
-        "grasp_frac": 1.0,
-        "settle_steps": 450,
+        "grasp_frac": 0.85,
+        "settle_steps": 420,
         "hover_steps": 220,
         "approach_steps": 200,
         "close_steps": 240,
@@ -3509,6 +4029,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/061_foam_brick/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/061_foam_brick/collision_hull.obj",
+      "bounds_min_m": [
+        -0.044541,
+        -0.021737,
+        -0.000346
+      ],
+      "bounds_max_m": [
+        0.008019,
+        0.056137,
+        0.050847
+      ],
       "extents_m": [
         0.052559999999999996,
         0.077874,
@@ -3534,7 +4064,7 @@
         ]
       },
       "grasp": {
-        "name": "candidate_default",
+        "name": "default",
         "xy_offset": [
           -0.04,
           0.0
@@ -3576,6 +4106,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/062_dice/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/062_dice/collision_hull.obj",
+      "bounds_min_m": [
+        -0.019706,
+        0.000591,
+        -0.000305
+      ],
+      "bounds_max_m": [
+        -0.002548,
+        0.01767,
+        0.017249
+      ],
       "extents_m": [
         0.017158,
         0.017079,
@@ -3601,21 +4141,21 @@
         ]
       },
       "grasp": {
-        "name": "candidate_aggressive",
+        "name": "candidate_tall_high",
         "xy_offset": [
-          -0.1,
-          0.02
+          -0.08,
+          0.0
         ],
-        "hover_z_offset": 0.23,
-        "approach_z_offset": 0.1,
-        "lift_z_offset": 0.3,
+        "hover_z_offset": 0.26,
+        "approach_z_offset": 0.11,
+        "lift_z_offset": 0.36,
         "grasp_frac": 1.0,
-        "settle_steps": 450,
+        "settle_steps": 760,
         "hover_steps": 220,
         "approach_steps": 200,
         "close_steps": 240,
         "lift_steps": 230,
-        "open_steps": 120,
+        "open_steps": 180,
         "retreat_steps": 180
       },
       "audit_warnings": []
@@ -3643,6 +4183,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/063-a_marbles/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/063-a_marbles/collision_hull.obj",
+      "bounds_min_m": [
+        -0.04936,
+        -0.010223,
+        -0.000432
+      ],
+      "bounds_max_m": [
+        0.037443,
+        0.06714,
+        0.071079
+      ],
       "extents_m": [
         0.08680299999999999,
         0.077363,
@@ -3668,7 +4218,7 @@
         ]
       },
       "grasp": {
-        "name": "candidate_default",
+        "name": "default",
         "xy_offset": [
           -0.04,
           0.0
@@ -3710,77 +4260,20 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/063-b_marbles/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/063-b_marbles/collision_hull.obj",
+      "bounds_min_m": [
+        -0.026645,
+        -0.062677,
+        -0.000289
+      ],
+      "bounds_max_m": [
+        0.008369,
+        -0.027645,
+        0.034199
+      ],
       "extents_m": [
         0.035013999999999997,
         0.035031999999999994,
         0.034488
-      ],
-      "contact": {
-        "friction": [
-          1.0,
-          0.05,
-          0.01
-        ],
-        "condim": 6,
-        "solref": [
-          0.02,
-          1.0
-        ],
-        "solimp": [
-          0.9,
-          0.95,
-          0.001,
-          0.5,
-          2.0
-        ]
-      },
-      "grasp": {
-        "name": "candidate_small",
-        "xy_offset": [
-          -0.02,
-          0.0
-        ],
-        "hover_z_offset": 0.23,
-        "approach_z_offset": 0.1,
-        "lift_z_offset": 0.3,
-        "grasp_frac": 0.9,
-        "settle_steps": 420,
-        "hover_steps": 220,
-        "approach_steps": 200,
-        "close_steps": 240,
-        "lift_steps": 230,
-        "open_steps": 120,
-        "retreat_steps": 180
-      },
-      "audit_warnings": []
-    },
-    {
-      "object_id": "063-d_marbles",
-      "mass_kg": 0.003284507388080808,
-      "com_m": [
-        0.0013114105768951328,
-        0.009254459063884418,
-        0.009759403967261923
-      ],
-      "inertia_diag": [
-        1.502187573341163e-07,
-        1.522701448802846e-07,
-        1.8836727264825643e-07
-      ],
-      "full_inertia": [
-        1.5e-07,
-        1.52e-07,
-        1.88e-07,
-        2e-09,
-        3e-09,
-        -3e-09
-      ],
-      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/063-d_marbles/poisson/textured.obj",
-      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/063-d_marbles/collision_hull.obj",
-      "extents_m": [
-        0.0244195,
-        0.0242531,
-        0.01794148
       ],
       "contact": {
         "friction": [
@@ -3808,15 +4301,92 @@
           0.02
         ],
         "hover_z_offset": 0.23,
-        "approach_z_offset": 0.1,
-        "lift_z_offset": 0.3,
+        "approach_z_offset": 0.09,
+        "lift_z_offset": 0.31,
         "grasp_frac": 1.0,
-        "settle_steps": 450,
+        "settle_steps": 520,
         "hover_steps": 220,
         "approach_steps": 200,
         "close_steps": 240,
         "lift_steps": 230,
-        "open_steps": 120,
+        "open_steps": 180,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "063-d_marbles",
+      "mass_kg": 0.003284507388080808,
+      "com_m": [
+        0.0013114105768951328,
+        0.009254459063884418,
+        0.009759403967261923
+      ],
+      "inertia_diag": [
+        1.502187573341163e-07,
+        1.522701448802846e-07,
+        1.8836727264825643e-07
+      ],
+      "full_inertia": [
+        1.5e-07,
+        1.52e-07,
+        1.88e-07,
+        2e-09,
+        3e-09,
+        -3e-09
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/063-d_marbles/poisson/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/063-d_marbles/collision_hull.obj",
+      "bounds_min_m": [
+        -0.010776,
+        -0.0029683,
+        0.00228782
+      ],
+      "bounds_max_m": [
+        0.0136435,
+        0.0212848,
+        0.0202293
+      ],
+      "extents_m": [
+        0.0244195,
+        0.0242531,
+        0.01794148
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_tall_high",
+        "xy_offset": [
+          -0.08,
+          0.0
+        ],
+        "hover_z_offset": 0.26,
+        "approach_z_offset": 0.11,
+        "lift_z_offset": 0.36,
+        "grasp_frac": 1.0,
+        "settle_steps": 760,
+        "hover_steps": 220,
+        "approach_steps": 200,
+        "close_steps": 240,
+        "lift_steps": 230,
+        "open_steps": 180,
         "retreat_steps": 180
       },
       "audit_warnings": []
@@ -3844,6 +4414,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/065-a_cups/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/065-a_cups/collision_hull.obj",
+      "bounds_min_m": [
+        -0.060434,
+        -0.074111,
+        -0.000753
+      ],
+      "bounds_max_m": [
+        -0.003348,
+        -0.016686,
+        0.060763
+      ],
       "extents_m": [
         0.057086000000000005,
         0.057425,
@@ -3869,15 +4449,15 @@
         ]
       },
       "grasp": {
-        "name": "candidate_small",
+        "name": "default",
         "xy_offset": [
-          -0.02,
+          -0.04,
           0.0
         ],
         "hover_z_offset": 0.25,
-        "approach_z_offset": 0.1,
+        "approach_z_offset": 0.12,
         "lift_z_offset": 0.34,
-        "grasp_frac": 0.9,
+        "grasp_frac": 1.0,
         "settle_steps": 420,
         "hover_steps": 220,
         "approach_steps": 220,
@@ -3911,6 +4491,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/065-b_cups/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/065-b_cups/collision_hull.obj",
+      "bounds_min_m": [
+        -0.05826,
+        -0.086844,
+        -0.000624
+      ],
+      "bounds_max_m": [
+        0.002699,
+        -0.0259,
+        0.063341
+      ],
       "extents_m": [
         0.060959,
         0.060944000000000005,
@@ -3936,15 +4526,15 @@
         ]
       },
       "grasp": {
-        "name": "candidate_small",
+        "name": "default",
         "xy_offset": [
-          -0.02,
+          -0.04,
           0.0
         ],
         "hover_z_offset": 0.25,
-        "approach_z_offset": 0.1,
+        "approach_z_offset": 0.12,
         "lift_z_offset": 0.34,
-        "grasp_frac": 0.9,
+        "grasp_frac": 1.0,
         "settle_steps": 420,
         "hover_steps": 220,
         "approach_steps": 220,
@@ -3978,6 +4568,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/065-c_cups/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/065-c_cups/collision_hull.obj",
+      "bounds_min_m": [
+        -0.047994,
+        -0.10007,
+        -0.000552
+      ],
+      "bounds_max_m": [
+        0.01698,
+        -0.034967,
+        0.066004
+      ],
       "extents_m": [
         0.064974,
         0.06510300000000001,
@@ -4003,16 +4603,16 @@
         ]
       },
       "grasp": {
-        "name": "candidate_tall",
+        "name": "default",
         "xy_offset": [
-          -0.08,
+          -0.04,
           0.0
         ],
         "hover_z_offset": 0.25,
         "approach_z_offset": 0.12,
         "lift_z_offset": 0.34,
         "grasp_frac": 1.0,
-        "settle_steps": 450,
+        "settle_steps": 420,
         "hover_steps": 220,
         "approach_steps": 220,
         "close_steps": 260,
@@ -4045,6 +4645,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/065-d_cups/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/065-d_cups/collision_hull.obj",
+      "bounds_min_m": [
+        -0.054955,
+        -0.09799,
+        -0.000594
+      ],
+      "bounds_max_m": [
+        0.015734,
+        -0.027287,
+        0.068336
+      ],
       "extents_m": [
         0.070689,
         0.07070299999999999,
@@ -4070,7 +4680,7 @@
         ]
       },
       "grasp": {
-        "name": "candidate_default",
+        "name": "default",
         "xy_offset": [
           -0.04,
           0.0
@@ -4112,6 +4722,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/065-e_cups/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/065-e_cups/collision_hull.obj",
+      "bounds_min_m": [
+        -0.058872,
+        -0.115742,
+        -0.000702
+      ],
+      "bounds_max_m": [
+        0.016671,
+        -0.040468,
+        0.070076
+      ],
       "extents_m": [
         0.075543,
         0.07527400000000001,
@@ -4137,7 +4757,7 @@
         ]
       },
       "grasp": {
-        "name": "candidate_default",
+        "name": "default",
         "xy_offset": [
           -0.04,
           0.0
@@ -4179,6 +4799,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/065-f_cups/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/065-f_cups/collision_hull.obj",
+      "bounds_min_m": [
+        -0.073323,
+        -0.014448,
+        -0.000479
+      ],
+      "bounds_max_m": [
+        0.007417,
+        0.066424,
+        0.071699
+      ],
       "extents_m": [
         0.08074,
         0.080872,
@@ -4204,7 +4834,7 @@
         ]
       },
       "grasp": {
-        "name": "candidate_default",
+        "name": "default",
         "xy_offset": [
           -0.04,
           0.0
@@ -4246,6 +4876,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/065-g_cups/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/065-g_cups/collision_hull.obj",
+      "bounds_min_m": [
+        -0.028966,
+        -0.015844,
+        -0.000717
+      ],
+      "bounds_max_m": [
+        0.057852,
+        0.071827,
+        0.073247
+      ],
       "extents_m": [
         0.086818,
         0.087671,
@@ -4271,7 +4911,7 @@
         ]
       },
       "grasp": {
-        "name": "candidate_default",
+        "name": "default",
         "xy_offset": [
           -0.04,
           0.0
@@ -4313,6 +4953,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/065-h_cups/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/065-h_cups/collision_hull.obj",
+      "bounds_min_m": [
+        -0.042336,
+        -0.031632,
+        -0.000612
+      ],
+      "bounds_max_m": [
+        0.049159,
+        0.059984,
+        0.074451
+      ],
       "extents_m": [
         0.09149499999999999,
         0.091616,
@@ -4338,7 +4988,7 @@
         ]
       },
       "grasp": {
-        "name": "candidate_default",
+        "name": "default",
         "xy_offset": [
           -0.04,
           0.0
@@ -4380,6 +5030,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/065-i_cups/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/065-i_cups/collision_hull.obj",
+      "bounds_min_m": [
+        -0.060347,
+        -0.046918,
+        -0.000705
+      ],
+      "bounds_max_m": [
+        0.037821,
+        0.051054,
+        0.074849
+      ],
       "extents_m": [
         0.098168,
         0.097972,
@@ -4405,7 +5065,7 @@
         ]
       },
       "grasp": {
-        "name": "candidate_default",
+        "name": "default",
         "xy_offset": [
           -0.04,
           0.0
@@ -4447,6 +5107,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/065-j_cups/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/065-j_cups/collision_hull.obj",
+      "bounds_min_m": [
+        -0.074937,
+        -0.068293,
+        -0.000553
+      ],
+      "bounds_max_m": [
+        0.027466,
+        0.034702,
+        0.074936
+      ],
       "extents_m": [
         0.10240300000000001,
         0.102995,
@@ -4472,7 +5142,7 @@
         ]
       },
       "grasp": {
-        "name": "candidate_default",
+        "name": "default",
         "xy_offset": [
           -0.04,
           0.0
@@ -4514,6 +5184,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/070-a_colored_wood_blocks/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/070-a_colored_wood_blocks/collision_hull.obj",
+      "bounds_min_m": [
+        -0.05157,
+        -0.061382,
+        -0.000626
+      ],
+      "bounds_max_m": [
+        0.090527,
+        0.079793,
+        0.164753
+      ],
       "extents_m": [
         0.142097,
         0.141175,
@@ -4539,16 +5219,16 @@
         ]
       },
       "grasp": {
-        "name": "candidate_aggressive",
+        "name": "default",
         "xy_offset": [
-          -0.1,
-          0.02
+          -0.04,
+          0.0
         ],
         "hover_z_offset": 0.25,
-        "approach_z_offset": 0.1,
+        "approach_z_offset": 0.12,
         "lift_z_offset": 0.34,
         "grasp_frac": 1.0,
-        "settle_steps": 450,
+        "settle_steps": 420,
         "hover_steps": 220,
         "approach_steps": 220,
         "close_steps": 260,
@@ -4581,6 +5261,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/070-b_colored_wood_blocks/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/070-b_colored_wood_blocks/collision_hull.obj",
+      "bounds_min_m": [
+        -0.036205,
+        -0.026357,
+        -0.000232
+      ],
+      "bounds_max_m": [
+        -0.001276,
+        0.008575,
+        0.025615
+      ],
       "extents_m": [
         0.034929,
         0.034932,
@@ -4612,15 +5302,15 @@
           0.02
         ],
         "hover_z_offset": 0.23,
-        "approach_z_offset": 0.1,
-        "lift_z_offset": 0.3,
+        "approach_z_offset": 0.09,
+        "lift_z_offset": 0.31,
         "grasp_frac": 1.0,
-        "settle_steps": 450,
+        "settle_steps": 520,
         "hover_steps": 220,
         "approach_steps": 200,
         "close_steps": 240,
         "lift_steps": 230,
-        "open_steps": 120,
+        "open_steps": 180,
         "retreat_steps": 180
       },
       "audit_warnings": []
@@ -4648,6 +5338,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/071_nine_hole_peg_test/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/071_nine_hole_peg_test/collision_hull.obj",
+      "bounds_min_m": [
+        -0.084628,
+        -0.081916,
+        -0.000323
+      ],
+      "bounds_max_m": [
+        0.082901,
+        0.109196,
+        0.040354
+      ],
       "extents_m": [
         0.16752899999999998,
         0.191112,
@@ -4673,15 +5373,15 @@
         ]
       },
       "grasp": {
-        "name": "candidate_flat",
+        "name": "default",
         "xy_offset": [
           -0.04,
           0.0
         ],
         "hover_z_offset": 0.25,
-        "approach_z_offset": 0.09,
+        "approach_z_offset": 0.12,
         "lift_z_offset": 0.34,
-        "grasp_frac": 0.85,
+        "grasp_frac": 1.0,
         "settle_steps": 420,
         "hover_steps": 220,
         "approach_steps": 220,
@@ -4715,6 +5415,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/072-a_toy_airplane/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/072-a_toy_airplane/collision_hull.obj",
+      "bounds_min_m": [
+        -0.094006,
+        -0.125362,
+        -0.000752
+      ],
+      "bounds_max_m": [
+        0.161178,
+        0.13757,
+        0.182686
+      ],
       "extents_m": [
         0.25518399999999997,
         0.262932,
@@ -4722,34 +5432,34 @@
       ],
       "contact": {
         "friction": [
-          1.0,
-          0.05,
-          0.01
+          0.8,
+          0.02,
+          0.001
         ],
         "condim": 6,
         "solref": [
-          0.02,
+          0.03,
           1.0
         ],
         "solimp": [
-          0.9,
+          0.88,
           0.95,
-          0.001,
+          0.002,
           0.5,
           2.0
         ]
       },
       "grasp": {
-        "name": "candidate_aggressive",
+        "name": "default",
         "xy_offset": [
-          -0.1,
-          0.02
+          -0.04,
+          0.0
         ],
         "hover_z_offset": 0.25,
-        "approach_z_offset": 0.1,
+        "approach_z_offset": 0.12,
         "lift_z_offset": 0.34,
         "grasp_frac": 1.0,
-        "settle_steps": 450,
+        "settle_steps": 420,
         "hover_steps": 220,
         "approach_steps": 220,
         "close_steps": 260,
@@ -4782,6 +5492,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/072-b_toy_airplane/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/072-b_toy_airplane/collision_hull.obj",
+      "bounds_min_m": [
+        -0.109764,
+        -0.086459,
+        -0.000394
+      ],
+      "bounds_max_m": [
+        0.010565,
+        0.095219,
+        0.058886
+      ],
       "extents_m": [
         0.120329,
         0.181678,
@@ -4807,7 +5527,7 @@
         ]
       },
       "grasp": {
-        "name": "candidate_default",
+        "name": "default",
         "xy_offset": [
           -0.04,
           0.0
@@ -4849,6 +5569,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/072-c_toy_airplane/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/072-c_toy_airplane/collision_hull.obj",
+      "bounds_min_m": [
+        -0.048522,
+        -0.011867,
+        -4.7e-05
+      ],
+      "bounds_max_m": [
+        -0.017871,
+        0.018776,
+        0.066675
+      ],
       "extents_m": [
         0.030651,
         0.030643000000000004,
@@ -4874,21 +5604,21 @@
         ]
       },
       "grasp": {
-        "name": "candidate_default",
+        "name": "candidate_tall_high",
         "xy_offset": [
-          -0.04,
+          -0.08,
           0.0
         ],
-        "hover_z_offset": 0.25,
+        "hover_z_offset": 0.26,
         "approach_z_offset": 0.12,
-        "lift_z_offset": 0.34,
+        "lift_z_offset": 0.36,
         "grasp_frac": 1.0,
-        "settle_steps": 420,
+        "settle_steps": 760,
         "hover_steps": 220,
         "approach_steps": 220,
         "close_steps": 260,
         "lift_steps": 250,
-        "open_steps": 140,
+        "open_steps": 180,
         "retreat_steps": 180
       },
       "audit_warnings": []
@@ -4916,6 +5646,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/072-d_toy_airplane/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/072-d_toy_airplane/collision_hull.obj",
+      "bounds_min_m": [
+        -0.037736,
+        -0.013831,
+        -7.4e-05
+      ],
+      "bounds_max_m": [
+        -0.007064,
+        0.016885,
+        0.066338
+      ],
       "extents_m": [
         0.030671999999999998,
         0.030716,
@@ -4941,7 +5681,7 @@
         ]
       },
       "grasp": {
-        "name": "candidate_default",
+        "name": "default",
         "xy_offset": [
           -0.04,
           0.0
@@ -4983,6 +5723,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/072-e_toy_airplane/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/072-e_toy_airplane/collision_hull.obj",
+      "bounds_min_m": [
+        -0.030942,
+        -0.023101,
+        -5.4e-05
+      ],
+      "bounds_max_m": [
+        -0.000184,
+        0.007683,
+        0.066103
+      ],
       "extents_m": [
         0.030758,
         0.030784,
@@ -5008,7 +5758,7 @@
         ]
       },
       "grasp": {
-        "name": "candidate_default",
+        "name": "default",
         "xy_offset": [
           -0.04,
           0.0
@@ -5050,6 +5800,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/072-f_toy_airplane/poisson/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/072-f_toy_airplane/collision_hull.obj",
+      "bounds_min_m": [
+        -0.0103162,
+        -0.00959833,
+        0.0136884
+      ],
+      "bounds_max_m": [
+        0.0151492,
+        0.0153107,
+        0.048847
+      ],
       "extents_m": [
         0.0254654,
         0.02490903,
@@ -5075,21 +5835,21 @@
         ]
       },
       "grasp": {
-        "name": "candidate_flat",
+        "name": "candidate_aggressive",
         "xy_offset": [
-          -0.04,
-          0.0
+          -0.1,
+          0.02
         ],
         "hover_z_offset": 0.23,
         "approach_z_offset": 0.09,
-        "lift_z_offset": 0.3,
-        "grasp_frac": 0.85,
-        "settle_steps": 420,
+        "lift_z_offset": 0.31,
+        "grasp_frac": 1.0,
+        "settle_steps": 520,
         "hover_steps": 220,
         "approach_steps": 200,
         "close_steps": 240,
         "lift_steps": 230,
-        "open_steps": 120,
+        "open_steps": 180,
         "retreat_steps": 180
       },
       "audit_warnings": []
@@ -5117,6 +5877,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/072-h_toy_airplane/tsdf/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/072-h_toy_airplane/collision_hull.obj",
+      "bounds_min_m": [
+        -0.223091,
+        -0.223091,
+        0.00587082
+      ],
+      "bounds_max_m": [
+        0.225048,
+        0.227005,
+        0.108506
+      ],
       "extents_m": [
         0.448139,
         0.45009600000000005,
@@ -5124,39 +5894,39 @@
       ],
       "contact": {
         "friction": [
-          1.0,
-          0.05,
-          0.01
+          0.8,
+          0.02,
+          0.001
         ],
         "condim": 6,
         "solref": [
-          0.02,
+          0.03,
           1.0
         ],
         "solimp": [
-          0.9,
+          0.88,
           0.95,
-          0.001,
+          0.002,
           0.5,
           2.0
         ]
       },
       "grasp": {
-        "name": "candidate_default",
+        "name": "candidate_aggressive",
         "xy_offset": [
-          -0.04,
-          0.0
+          -0.1,
+          0.02
         ],
         "hover_z_offset": 0.25,
         "approach_z_offset": 0.12,
         "lift_z_offset": 0.34,
         "grasp_frac": 1.0,
-        "settle_steps": 420,
+        "settle_steps": 520,
         "hover_steps": 220,
         "approach_steps": 220,
         "close_steps": 260,
         "lift_steps": 250,
-        "open_steps": 140,
+        "open_steps": 180,
         "retreat_steps": 180
       },
       "audit_warnings": []
@@ -5184,6 +5954,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/072-i_toy_airplane/poisson/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/072-i_toy_airplane/collision_hull.obj",
+      "bounds_min_m": [
+        -0.0167346,
+        -0.0147246,
+        0.00273156
+      ],
+      "bounds_max_m": [
+        0.0167273,
+        0.0177821,
+        0.0676008
+      ],
       "extents_m": [
         0.0334619,
         0.0325067,
@@ -5209,7 +5989,7 @@
         ]
       },
       "grasp": {
-        "name": "candidate_default",
+        "name": "candidate_flat_low_force",
         "xy_offset": [
           -0.04,
           0.0
@@ -5217,13 +5997,13 @@
         "hover_z_offset": 0.25,
         "approach_z_offset": 0.12,
         "lift_z_offset": 0.34,
-        "grasp_frac": 1.0,
-        "settle_steps": 420,
+        "grasp_frac": 0.85,
+        "settle_steps": 520,
         "hover_steps": 220,
         "approach_steps": 220,
-        "close_steps": 260,
+        "close_steps": 280,
         "lift_steps": 250,
-        "open_steps": 140,
+        "open_steps": 180,
         "retreat_steps": 180
       },
       "audit_warnings": []
@@ -5251,6 +6031,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/072-j_toy_airplane/poisson/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/072-j_toy_airplane/collision_hull.obj",
+      "bounds_min_m": [
+        -0.0177164,
+        -0.014871,
+        0.00114793
+      ],
+      "bounds_max_m": [
+        0.0165422,
+        0.0204515,
+        0.0607259
+      ],
       "extents_m": [
         0.0342586,
         0.0353225,
@@ -5276,21 +6066,21 @@
         ]
       },
       "grasp": {
-        "name": "candidate_small",
+        "name": "candidate_flat_low_force",
         "xy_offset": [
-          -0.02,
+          -0.04,
           0.0
         ],
         "hover_z_offset": 0.22,
         "approach_z_offset": 0.1,
         "lift_z_offset": 0.3,
-        "grasp_frac": 0.9,
-        "settle_steps": 360,
+        "grasp_frac": 0.85,
+        "settle_steps": 520,
         "hover_steps": 220,
         "approach_steps": 210,
-        "close_steps": 260,
+        "close_steps": 280,
         "lift_steps": 230,
-        "open_steps": 120,
+        "open_steps": 180,
         "retreat_steps": 180
       },
       "audit_warnings": []
@@ -5318,6 +6108,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/072-k_toy_airplane/tsdf/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/072-k_toy_airplane/collision_hull.obj",
+      "bounds_min_m": [
+        -0.0644301,
+        -0.0548978,
+        0.00664753
+      ],
+      "bounds_max_m": [
+        0.0735204,
+        0.0570654,
+        0.123675
+      ],
       "extents_m": [
         0.1379505,
         0.1119632,
@@ -5343,7 +6143,7 @@
         ]
       },
       "grasp": {
-        "name": "candidate_default",
+        "name": "default",
         "xy_offset": [
           -0.04,
           0.0
@@ -5385,6 +6185,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/073-a_lego_duplo/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/073-a_lego_duplo/collision_hull.obj",
+      "bounds_min_m": [
+        -0.048664,
+        -0.025891,
+        -0.000478
+      ],
+      "bounds_max_m": [
+        0.015455,
+        0.006624,
+        0.02345
+      ],
       "extents_m": [
         0.064119,
         0.032515,
@@ -5410,22 +6220,22 @@
         ]
       },
       "grasp": {
-        "name": "candidate_default",
+        "name": "candidate_rescue_override",
         "xy_offset": [
-          -0.04,
+          -0.06,
           0.0
         ],
-        "hover_z_offset": 0.23,
+        "hover_z_offset": 0.24,
         "approach_z_offset": 0.12,
-        "lift_z_offset": 0.3,
+        "lift_z_offset": 0.38,
         "grasp_frac": 1.0,
-        "settle_steps": 420,
+        "settle_steps": 900,
         "hover_steps": 220,
         "approach_steps": 200,
-        "close_steps": 240,
+        "close_steps": 320,
         "lift_steps": 230,
-        "open_steps": 120,
-        "retreat_steps": 180
+        "open_steps": 220,
+        "retreat_steps": 220
       },
       "audit_warnings": []
     },
@@ -5452,6 +6262,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/073-b_lego_duplo/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/073-b_lego_duplo/collision_hull.obj",
+      "bounds_min_m": [
+        -0.038464,
+        -0.03917,
+        -0.000404
+      ],
+      "bounds_max_m": [
+        -0.001576,
+        -0.002411,
+        0.042912
+      ],
       "extents_m": [
         0.036888,
         0.036759,
@@ -5477,16 +6297,16 @@
         ]
       },
       "grasp": {
-        "name": "candidate_aggressive",
+        "name": "small",
         "xy_offset": [
-          -0.1,
-          0.02
+          -0.02,
+          0.0
         ],
         "hover_z_offset": 0.22,
         "approach_z_offset": 0.1,
         "lift_z_offset": 0.3,
-        "grasp_frac": 1.0,
-        "settle_steps": 450,
+        "grasp_frac": 0.9,
+        "settle_steps": 360,
         "hover_steps": 220,
         "approach_steps": 210,
         "close_steps": 260,
@@ -5519,6 +6339,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/073-c_lego_duplo/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/073-c_lego_duplo/collision_hull.obj",
+      "bounds_min_m": [
+        -0.030343,
+        -0.055095,
+        -0.00052
+      ],
+      "bounds_max_m": [
+        0.003553,
+        0.009726,
+        0.023197
+      ],
       "extents_m": [
         0.033895999999999996,
         0.064821,
@@ -5544,21 +6374,21 @@
         ]
       },
       "grasp": {
-        "name": "candidate_aggressive",
+        "name": "candidate_tall_high",
         "xy_offset": [
-          -0.1,
-          0.02
+          -0.08,
+          0.0
         ],
-        "hover_z_offset": 0.23,
-        "approach_z_offset": 0.1,
-        "lift_z_offset": 0.3,
+        "hover_z_offset": 0.26,
+        "approach_z_offset": 0.11,
+        "lift_z_offset": 0.36,
         "grasp_frac": 1.0,
-        "settle_steps": 450,
+        "settle_steps": 760,
         "hover_steps": 220,
         "approach_steps": 200,
         "close_steps": 240,
         "lift_steps": 230,
-        "open_steps": 120,
+        "open_steps": 180,
         "retreat_steps": 180
       },
       "audit_warnings": []
@@ -5586,6 +6416,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/073-d_lego_duplo/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/073-d_lego_duplo/collision_hull.obj",
+      "bounds_min_m": [
+        -0.049441,
+        -0.055868,
+        -0.000422
+      ],
+      "bounds_max_m": [
+        0.005048,
+        0.000318,
+        0.042716
+      ],
       "extents_m": [
         0.054488999999999996,
         0.056186,
@@ -5611,16 +6451,16 @@
         ]
       },
       "grasp": {
-        "name": "candidate_aggressive",
+        "name": "small",
         "xy_offset": [
-          -0.1,
-          0.02
+          -0.02,
+          0.0
         ],
         "hover_z_offset": 0.22,
         "approach_z_offset": 0.1,
         "lift_z_offset": 0.3,
-        "grasp_frac": 1.0,
-        "settle_steps": 450,
+        "grasp_frac": 0.9,
+        "settle_steps": 360,
         "hover_steps": 220,
         "approach_steps": 210,
         "close_steps": 260,
@@ -5653,6 +6493,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/073-e_lego_duplo/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/073-e_lego_duplo/collision_hull.obj",
+      "bounds_min_m": [
+        -0.057824,
+        -0.10007,
+        -0.000384
+      ],
+      "bounds_max_m": [
+        0.011108,
+        -0.000261,
+        0.042802
+      ],
       "extents_m": [
         0.068932,
         0.09980900000000001,
@@ -5678,15 +6528,15 @@
         ]
       },
       "grasp": {
-        "name": "candidate_small",
+        "name": "default",
         "xy_offset": [
-          -0.02,
+          -0.04,
           0.0
         ],
         "hover_z_offset": 0.25,
-        "approach_z_offset": 0.1,
+        "approach_z_offset": 0.12,
         "lift_z_offset": 0.34,
-        "grasp_frac": 0.9,
+        "grasp_frac": 1.0,
         "settle_steps": 420,
         "hover_steps": 220,
         "approach_steps": 220,
@@ -5720,6 +6570,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/073-f_lego_duplo/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/073-f_lego_duplo/collision_hull.obj",
+      "bounds_min_m": [
+        -0.04665,
+        -0.084929,
+        -0.000421
+      ],
+      "bounds_max_m": [
+        -0.010045,
+        -0.048245,
+        0.043001
+      ],
       "extents_m": [
         0.036605,
         0.036684,
@@ -5745,7 +6605,7 @@
         ]
       },
       "grasp": {
-        "name": "candidate_small",
+        "name": "small",
         "xy_offset": [
           -0.02,
           0.0
@@ -5787,6 +6647,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/073-g_lego_duplo/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/073-g_lego_duplo/collision_hull.obj",
+      "bounds_min_m": [
+        -0.08267,
+        -0.183563,
+        -0.001083
+      ],
+      "bounds_max_m": [
+        0.050946,
+        0.120523,
+        0.058915
+      ],
       "extents_m": [
         0.13361599999999998,
         0.304086,
@@ -5812,16 +6682,16 @@
         ]
       },
       "grasp": {
-        "name": "candidate_aggressive",
+        "name": "default",
         "xy_offset": [
-          -0.1,
-          0.02
+          -0.04,
+          0.0
         ],
         "hover_z_offset": 0.25,
-        "approach_z_offset": 0.1,
+        "approach_z_offset": 0.12,
         "lift_z_offset": 0.34,
         "grasp_frac": 1.0,
-        "settle_steps": 450,
+        "settle_steps": 420,
         "hover_steps": 220,
         "approach_steps": 220,
         "close_steps": 260,
@@ -5854,6 +6724,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/073-h_lego_duplo/tsdf/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/073-h_lego_duplo/collision_hull.obj",
+      "bounds_min_m": [
+        -0.033268,
+        -0.0393573,
+        0.00587082
+      ],
+      "bounds_max_m": [
+        0.0371819,
+        0.0339079,
+        0.0241071
+      ],
       "extents_m": [
         0.0704499,
         0.0732652,
@@ -5879,16 +6759,16 @@
         ]
       },
       "grasp": {
-        "name": "candidate_aggressive",
+        "name": "flat",
         "xy_offset": [
-          -0.1,
-          0.02
+          -0.04,
+          0.0
         ],
         "hover_z_offset": 0.23,
-        "approach_z_offset": 0.1,
+        "approach_z_offset": 0.09,
         "lift_z_offset": 0.3,
-        "grasp_frac": 1.0,
-        "settle_steps": 450,
+        "grasp_frac": 0.85,
+        "settle_steps": 420,
         "hover_steps": 220,
         "approach_steps": 200,
         "close_steps": 240,
@@ -5921,6 +6801,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/073-i_lego_duplo/tsdf/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/073-i_lego_duplo/collision_hull.obj",
+      "bounds_min_m": [
+        -0.0301736,
+        -0.0282986,
+        0.00587082
+      ],
+      "bounds_max_m": [
+        0.0273972,
+        0.0199401,
+        0.0432115
+      ],
       "extents_m": [
         0.0575708,
         0.048238699999999995,
@@ -5946,21 +6836,21 @@
         ]
       },
       "grasp": {
-        "name": "candidate_flat",
+        "name": "candidate_tall_high",
         "xy_offset": [
-          -0.04,
+          -0.08,
           0.0
         ],
-        "hover_z_offset": 0.23,
-        "approach_z_offset": 0.09,
-        "lift_z_offset": 0.3,
-        "grasp_frac": 0.85,
-        "settle_steps": 420,
+        "hover_z_offset": 0.26,
+        "approach_z_offset": 0.11,
+        "lift_z_offset": 0.36,
+        "grasp_frac": 1.0,
+        "settle_steps": 760,
         "hover_steps": 220,
         "approach_steps": 200,
         "close_steps": 240,
         "lift_steps": 230,
-        "open_steps": 120,
+        "open_steps": 180,
         "retreat_steps": 180
       },
       "audit_warnings": []
@@ -5988,6 +6878,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/073-j_lego_duplo/tsdf/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/073-j_lego_duplo/collision_hull.obj",
+      "bounds_min_m": [
+        -0.0254402,
+        -0.0176125,
+        0.00587082
+      ],
+      "bounds_max_m": [
+        0.0195694,
+        0.0293541,
+        0.0431784
+      ],
       "extents_m": [
         0.0450096,
         0.0469666,
@@ -6013,7 +6913,7 @@
         ]
       },
       "grasp": {
-        "name": "candidate_flat",
+        "name": "flat",
         "xy_offset": [
           -0.04,
           0.0
@@ -6055,6 +6955,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/073-k_lego_duplo/tsdf/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/073-k_lego_duplo/collision_hull.obj",
+      "bounds_min_m": [
+        -0.0176125,
+        -0.0179439,
+        0.00587082
+      ],
+      "bounds_max_m": [
+        0.0290761,
+        0.0273972,
+        0.0431202
+      ],
       "extents_m": [
         0.0466886,
         0.045341099999999995,
@@ -6080,16 +6990,16 @@
         ]
       },
       "grasp": {
-        "name": "candidate_tall",
+        "name": "flat",
         "xy_offset": [
-          -0.08,
+          -0.04,
           0.0
         ],
         "hover_z_offset": 0.23,
-        "approach_z_offset": 0.12,
+        "approach_z_offset": 0.09,
         "lift_z_offset": 0.3,
-        "grasp_frac": 1.0,
-        "settle_steps": 450,
+        "grasp_frac": 0.85,
+        "settle_steps": 420,
         "hover_steps": 220,
         "approach_steps": 200,
         "close_steps": 240,
@@ -6122,6 +7032,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/073-l_lego_duplo/tsdf/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/073-l_lego_duplo/collision_hull.obj",
+      "bounds_min_m": [
+        -0.0249713,
+        -0.0205535,
+        0.00587082
+      ],
+      "bounds_max_m": [
+        0.0256663,
+        0.031311,
+        0.0433918
+      ],
       "extents_m": [
         0.0506376,
         0.051864499999999994,
@@ -6147,7 +7067,7 @@
         ]
       },
       "grasp": {
-        "name": "candidate_flat",
+        "name": "flat",
         "xy_offset": [
           -0.04,
           0.0
@@ -6189,6 +7109,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/073-m_lego_duplo/tsdf/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/073-m_lego_duplo/collision_hull.obj",
+      "bounds_min_m": [
+        -0.0749407,
+        -0.088329,
+        0.00587082
+      ],
+      "bounds_max_m": [
+        0.101657,
+        0.096524,
+        0.0903305
+      ],
       "extents_m": [
         0.1765977,
         0.184853,
@@ -6214,15 +7144,15 @@
         ]
       },
       "grasp": {
-        "name": "candidate_flat",
+        "name": "default",
         "xy_offset": [
           -0.04,
           0.0
         ],
         "hover_z_offset": 0.25,
-        "approach_z_offset": 0.09,
+        "approach_z_offset": 0.12,
         "lift_z_offset": 0.34,
-        "grasp_frac": 0.85,
+        "grasp_frac": 1.0,
         "settle_steps": 420,
         "hover_steps": 220,
         "approach_steps": 220,
@@ -6256,6 +7186,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/076_timer/tsdf/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/076_timer/collision_hull.obj",
+      "bounds_min_m": [
+        -0.0645834,
+        -0.0647008,
+        0.00587082
+      ],
+      "bounds_max_m": [
+        0.057075,
+        0.0537604,
+        0.0463858
+      ],
       "extents_m": [
         0.1216584,
         0.1184612,
@@ -6281,7 +7221,7 @@
         ]
       },
       "grasp": {
-        "name": "candidate_default",
+        "name": "default",
         "xy_offset": [
           -0.04,
           0.0
@@ -6323,6 +7263,16 @@
       ],
       "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/077_rubiks_cube/google_16k/textured.obj",
       "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/077_rubiks_cube/collision_hull.obj",
+      "bounds_min_m": [
+        -0.053976,
+        -0.038563,
+        -0.000315
+      ],
+      "bounds_max_m": [
+        0.021769,
+        0.037554,
+        0.057624
+      ],
       "extents_m": [
         0.075745,
         0.07611699999999999,
@@ -6348,7 +7298,7 @@
         ]
       },
       "grasp": {
-        "name": "candidate_default",
+        "name": "default",
         "xy_offset": [
           -0.04,
           0.0
