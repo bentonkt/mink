@@ -1,0 +1,6371 @@
+{
+  "ycb_base": "/Users/bentontameling/Dev/ycb-tools/models/ycb",
+  "num_objects": 95,
+  "objects": [
+    {
+      "object_id": "001_chips_can",
+      "mass_kg": 0.205,
+      "com_m": [
+        -0.00545014088063616,
+        0.012553144441953613,
+        0.12038743139797078
+      ],
+      "inertia_diag": [
+        0.0010599234353630808,
+        0.0010580081398524504,
+        0.00016422389800807994
+      ],
+      "full_inertia": [
+        0.001059923,
+        0.001058008,
+        0.000164224,
+        1.216e-06,
+        1.74e-07,
+        5.682e-06
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/001_chips_can/tsdf/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/001_chips_can/collision_hull.obj",
+      "extents_m": [
+        0.0835136,
+        0.0861054,
+        0.24057518
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_tall",
+        "xy_offset": [
+          -0.08,
+          0.0
+        ],
+        "hover_z_offset": 0.25,
+        "approach_z_offset": 0.12,
+        "lift_z_offset": 0.36,
+        "grasp_frac": 1.0,
+        "settle_steps": 450,
+        "hover_steps": 220,
+        "approach_steps": 220,
+        "close_steps": 260,
+        "lift_steps": 260,
+        "open_steps": 140,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "002_master_chef_can",
+      "mass_kg": 0.414,
+      "com_m": [
+        -0.01710841450669583,
+        -0.009808595678595319,
+        0.07006329231661601
+      ],
+      "inertia_diag": [
+        0.0009437247133680048,
+        0.0009431906569899285,
+        0.0005373833685553631
+      ],
+      "full_inertia": [
+        0.000943725,
+        0.000943191,
+        0.000537383,
+        -4.4e-08,
+        -6.09e-07,
+        -4.46e-07
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/002_master_chef_can/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/002_master_chef_can/collision_hull.obj",
+      "extents_m": [
+        0.10252900000000001,
+        0.102377,
+        0.140177
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_default",
+        "xy_offset": [
+          -0.04,
+          0.0
+        ],
+        "hover_z_offset": 0.25,
+        "approach_z_offset": 0.12,
+        "lift_z_offset": 0.34,
+        "grasp_frac": 1.0,
+        "settle_steps": 420,
+        "hover_steps": 220,
+        "approach_steps": 220,
+        "close_steps": 260,
+        "lift_steps": 250,
+        "open_steps": 140,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "003_cracker_box",
+      "mass_kg": 0.411,
+      "com_m": [
+        -0.01365787205385354,
+        -0.013876332673514163,
+        0.10302055942722288
+      ],
+      "inertia_diag": [
+        0.002384030782118511,
+        0.0016686001273485296,
+        0.001027116232331038
+      ],
+      "full_inertia": [
+        0.002384031,
+        0.0016686,
+        0.001027116,
+        3.62e-07,
+        9.136e-06,
+        -1.558e-06
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/003_cracker_box/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/003_cracker_box/collision_hull.obj",
+      "extents_m": [
+        0.0718,
+        0.16403600000000002,
+        0.213437
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_tall",
+        "xy_offset": [
+          -0.08,
+          0.0
+        ],
+        "hover_z_offset": 0.25,
+        "approach_z_offset": 0.12,
+        "lift_z_offset": 0.36,
+        "grasp_frac": 1.0,
+        "settle_steps": 450,
+        "hover_steps": 220,
+        "approach_steps": 220,
+        "close_steps": 260,
+        "lift_steps": 260,
+        "open_steps": 140,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "004_sugar_box",
+      "mass_kg": 0.514,
+      "com_m": [
+        -0.00782698001821091,
+        -0.016661942610890212,
+        0.0869128235860861
+      ],
+      "inertia_diag": [
+        0.0016317164323209688,
+        0.0013648874717824958,
+        0.00041906741234449483
+      ],
+      "full_inertia": [
+        0.001631716,
+        0.001364887,
+        0.000419067,
+        -9.457e-06,
+        4.7894e-05,
+        -1.5654e-05
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/004_sugar_box/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/004_sugar_box/collision_hull.obj",
+      "extents_m": [
+        0.049496,
+        0.094162,
+        0.176015
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_tall",
+        "xy_offset": [
+          -0.08,
+          0.0
+        ],
+        "hover_z_offset": 0.25,
+        "approach_z_offset": 0.12,
+        "lift_z_offset": 0.36,
+        "grasp_frac": 1.0,
+        "settle_steps": 450,
+        "hover_steps": 220,
+        "approach_steps": 220,
+        "close_steps": 260,
+        "lift_steps": 260,
+        "open_steps": 140,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "005_tomato_soup_can",
+      "mass_kg": 0.349,
+      "com_m": [
+        -0.00930366197139878,
+        0.0839831690572798,
+        0.05140540196930274
+      ],
+      "inertia_diag": [
+        0.0003956868443707375,
+        0.0003963730525334551,
+        0.00019544332041721067
+      ],
+      "full_inertia": [
+        0.000395687,
+        0.000396373,
+        0.000195443,
+        1.66e-07,
+        -1.57e-07,
+        2e-08
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/005_tomato_soup_can/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/005_tomato_soup_can/collision_hull.obj",
+      "extents_m": [
+        0.067911,
+        0.067743,
+        0.101855
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_small",
+        "xy_offset": [
+          -0.02,
+          0.0
+        ],
+        "hover_z_offset": 0.25,
+        "approach_z_offset": 0.1,
+        "lift_z_offset": 0.34,
+        "grasp_frac": 0.9,
+        "settle_steps": 420,
+        "hover_steps": 220,
+        "approach_steps": 220,
+        "close_steps": 260,
+        "lift_steps": 250,
+        "open_steps": 140,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "006_mustard_bottle",
+      "mass_kg": 0.603,
+      "com_m": [
+        -0.01506582255528657,
+        -0.02309281620962691,
+        0.07657678106120851
+      ],
+      "inertia_diag": [
+        0.0014976582108662795,
+        0.0016474686109246497,
+        0.00045392644406941633
+      ],
+      "full_inertia": [
+        0.001497658,
+        0.001647469,
+        0.000453926,
+        7.6887e-05,
+        -4.808e-06,
+        -6.455e-06
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/006_mustard_bottle/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/006_mustard_bottle/collision_hull.obj",
+      "extents_m": [
+        0.09719799999999999,
+        0.066621,
+        0.191301
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_tall",
+        "xy_offset": [
+          -0.08,
+          0.0
+        ],
+        "hover_z_offset": 0.25,
+        "approach_z_offset": 0.12,
+        "lift_z_offset": 0.36,
+        "grasp_frac": 1.0,
+        "settle_steps": 450,
+        "hover_steps": 220,
+        "approach_steps": 220,
+        "close_steps": 260,
+        "lift_steps": 260,
+        "open_steps": 140,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "007_tuna_fish_can",
+      "mass_kg": 0.171,
+      "com_m": [
+        -0.026075278158614896,
+        -0.022134441209114435,
+        0.013729333808184984
+      ],
+      "inertia_diag": [
+        9.189889962745317e-05,
+        9.198057092315802e-05,
+        0.00015238362976267015
+      ],
+      "full_inertia": [
+        9.1899e-05,
+        9.1981e-05,
+        0.000152384,
+        -0.0,
+        8.4e-08,
+        2.1e-08
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/007_tuna_fish_can/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/007_tuna_fish_can/collision_hull.obj",
+      "extents_m": [
+        0.085559,
+        0.08554,
+        0.033538
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_flat",
+        "xy_offset": [
+          -0.04,
+          0.0
+        ],
+        "hover_z_offset": 0.23,
+        "approach_z_offset": 0.09,
+        "lift_z_offset": 0.3,
+        "grasp_frac": 0.85,
+        "settle_steps": 420,
+        "hover_steps": 220,
+        "approach_steps": 200,
+        "close_steps": 240,
+        "lift_steps": 230,
+        "open_steps": 120,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "008_pudding_box",
+      "mass_kg": 0.187,
+      "com_m": [
+        0.0013628021622045308,
+        0.0189910388264037,
+        0.018472686665684256
+      ],
+      "inertia_diag": [
+        0.00015484714225306846,
+        0.00019191546773062257,
+        0.0003063783180597842
+      ],
+      "full_inertia": [
+        0.000154847,
+        0.000191915,
+        0.000306378,
+        -2.8398e-05,
+        -4.502e-06,
+        -1.323e-06
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/008_pudding_box/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/008_pudding_box/collision_hull.obj",
+      "extents_m": [
+        0.137938,
+        0.128756,
+        0.038889
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_flat",
+        "xy_offset": [
+          -0.04,
+          0.0
+        ],
+        "hover_z_offset": 0.23,
+        "approach_z_offset": 0.09,
+        "lift_z_offset": 0.3,
+        "grasp_frac": 0.85,
+        "settle_steps": 420,
+        "hover_steps": 220,
+        "approach_steps": 200,
+        "close_steps": 240,
+        "lift_steps": 230,
+        "open_steps": 120,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "009_gelatin_box",
+      "mass_kg": 0.097,
+      "com_m": [
+        -0.02240981398964406,
+        -0.00807910845927446,
+        0.014002303499293493
+      ],
+      "inertia_diag": [
+        6.634512883195367e-05,
+        4.921192435800194e-05,
+        0.00010278644226741025
+      ],
+      "full_inertia": [
+        6.6345e-05,
+        4.9212e-05,
+        0.000102786,
+        4.344e-06,
+        -5.7e-08,
+        -3.3e-07
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/009_gelatin_box/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/009_gelatin_box/collision_hull.obj",
+      "extents_m": [
+        0.089404,
+        0.101108,
+        0.030074
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_flat",
+        "xy_offset": [
+          -0.04,
+          0.0
+        ],
+        "hover_z_offset": 0.23,
+        "approach_z_offset": 0.09,
+        "lift_z_offset": 0.3,
+        "grasp_frac": 0.85,
+        "settle_steps": 420,
+        "hover_steps": 220,
+        "approach_steps": 200,
+        "close_steps": 240,
+        "lift_steps": 230,
+        "open_steps": 120,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "010_potted_meat_can",
+      "mass_kg": 0.37,
+      "com_m": [
+        -0.032864693134021565,
+        -0.026363851190909778,
+        0.03982268344074708
+      ],
+      "inertia_diag": [
+        0.000297091016130088,
+        0.0004833884131820223,
+        0.00035678359889877156
+      ],
+      "full_inertia": [
+        0.000297091,
+        0.000483388,
+        0.000356784,
+        -1.033e-05,
+        2.2e-07,
+        8.33e-07
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/010_potted_meat_can/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/010_potted_meat_can/collision_hull.obj",
+      "extents_m": [
+        0.102085,
+        0.060103000000000004,
+        0.08354299999999999
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_default",
+        "xy_offset": [
+          -0.04,
+          0.0
+        ],
+        "hover_z_offset": 0.25,
+        "approach_z_offset": 0.12,
+        "lift_z_offset": 0.34,
+        "grasp_frac": 1.0,
+        "settle_steps": 420,
+        "hover_steps": 220,
+        "approach_steps": 220,
+        "close_steps": 260,
+        "lift_steps": 250,
+        "open_steps": 140,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "011_banana",
+      "mass_kg": 0.066,
+      "com_m": [
+        -0.0006710178735391482,
+        0.005194163445345944,
+        0.015295016784443055
+      ],
+      "inertia_diag": [
+        0.00012437572896510643,
+        3.887228210709219e-05,
+        0.0001529541989949624
+      ],
+      "full_inertia": [
+        0.000124376,
+        3.8872e-05,
+        0.000152954,
+        -4.0548e-05,
+        3.218e-06,
+        3.98e-07
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/011_banana/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/011_banana/collision_hull.obj",
+      "extents_m": [
+        0.10894200000000001,
+        0.178447,
+        0.036739999999999995
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_small",
+        "xy_offset": [
+          -0.02,
+          0.0
+        ],
+        "hover_z_offset": 0.23,
+        "approach_z_offset": 0.1,
+        "lift_z_offset": 0.3,
+        "grasp_frac": 0.9,
+        "settle_steps": 420,
+        "hover_steps": 220,
+        "approach_steps": 200,
+        "close_steps": 240,
+        "lift_steps": 230,
+        "open_steps": 120,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "012_strawberry",
+      "mass_kg": 0.018,
+      "com_m": [
+        -0.0014726017817989785,
+        0.015500708849736708,
+        0.02110392698822812
+      ],
+      "inertia_diag": [
+        3.8036514348278696e-06,
+        3.874554357759646e-06,
+        3.834031889300812e-06
+      ],
+      "full_inertia": [
+        3.804e-06,
+        3.875e-06,
+        3.834e-06,
+        -3.62e-07,
+        -1e-08,
+        -1.16e-07
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/012_strawberry/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/012_strawberry/collision_hull.obj",
+      "extents_m": [
+        0.045224,
+        0.045286,
+        0.045675
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_aggressive",
+        "xy_offset": [
+          -0.1,
+          0.02
+        ],
+        "hover_z_offset": 0.22,
+        "approach_z_offset": 0.1,
+        "lift_z_offset": 0.3,
+        "grasp_frac": 1.0,
+        "settle_steps": 450,
+        "hover_steps": 220,
+        "approach_steps": 210,
+        "close_steps": 260,
+        "lift_steps": 230,
+        "open_steps": 120,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "013_apple",
+      "mass_kg": 0.068,
+      "com_m": [
+        0.0012699770565694564,
+        -0.0038815756989430115,
+        0.03636596177660359
+      ],
+      "inertia_diag": [
+        4.2278210663237875e-05,
+        4.29510023338903e-05,
+        4.134779488413046e-05
+      ],
+      "full_inertia": [
+        4.2278e-05,
+        4.2951e-05,
+        4.1348e-05,
+        6.3e-08,
+        1.6e-07,
+        -9.7e-08
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/013_apple/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/013_apple/collision_hull.obj",
+      "extents_m": [
+        0.075448,
+        0.074871,
+        0.07188900000000001
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_default",
+        "xy_offset": [
+          -0.04,
+          0.0
+        ],
+        "hover_z_offset": 0.25,
+        "approach_z_offset": 0.12,
+        "lift_z_offset": 0.34,
+        "grasp_frac": 1.0,
+        "settle_steps": 420,
+        "hover_steps": 220,
+        "approach_steps": 220,
+        "close_steps": 260,
+        "lift_steps": 250,
+        "open_steps": 140,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "014_lemon",
+      "mass_kg": 0.029,
+      "com_m": [
+        -0.01080793799490684,
+        0.020965891193027168,
+        0.026214560185893587
+      ],
+      "inertia_diag": [
+        9.168841909074804e-06,
+        9.468133813717832e-06,
+        1.0294513570401384e-05
+      ],
+      "full_inertia": [
+        9.169e-06,
+        9.468e-06,
+        1.0295e-05,
+        -9.81e-07,
+        4.5e-08,
+        7e-09
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/014_lemon/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/014_lemon/collision_hull.obj",
+      "extents_m": [
+        0.060588,
+        0.059299000000000004,
+        0.053017
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_flat",
+        "xy_offset": [
+          -0.04,
+          0.0
+        ],
+        "hover_z_offset": 0.25,
+        "approach_z_offset": 0.09,
+        "lift_z_offset": 0.34,
+        "grasp_frac": 0.85,
+        "settle_steps": 420,
+        "hover_steps": 220,
+        "approach_steps": 220,
+        "close_steps": 260,
+        "lift_steps": 250,
+        "open_steps": 140,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "015_peach",
+      "mass_kg": 0.033,
+      "com_m": [
+        -0.01484474861275112,
+        0.006638215760101495,
+        0.028337962564487486
+      ],
+      "inertia_diag": [
+        1.2315570124159505e-05,
+        1.201905666237639e-05,
+        1.2737888676171373e-05
+      ],
+      "full_inertia": [
+        1.2316e-05,
+        1.2019e-05,
+        1.2738e-05,
+        -4.69e-07,
+        9.1e-08,
+        -1.22e-07
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/015_peach/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/015_peach/collision_hull.obj",
+      "extents_m": [
+        0.062123,
+        0.06263200000000001,
+        0.058645
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_tall",
+        "xy_offset": [
+          -0.08,
+          0.0
+        ],
+        "hover_z_offset": 0.25,
+        "approach_z_offset": 0.12,
+        "lift_z_offset": 0.34,
+        "grasp_frac": 1.0,
+        "settle_steps": 450,
+        "hover_steps": 220,
+        "approach_steps": 220,
+        "close_steps": 260,
+        "lift_steps": 250,
+        "open_steps": 140,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "016_pear",
+      "mass_kg": 0.049,
+      "com_m": [
+        -0.03235450129490816,
+        0.012253282674399407,
+        0.029566376324357945
+      ],
+      "inertia_diag": [
+        3.371639237997879e-05,
+        2.1577903873414964e-05,
+        3.2281783955837914e-05
+      ],
+      "full_inertia": [
+        3.3716e-05,
+        2.1578e-05,
+        3.2282e-05,
+        -1.024e-06,
+        5.6e-08,
+        4.419e-06
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/016_pear/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/016_pear/collision_hull.obj",
+      "extents_m": [
+        0.066546,
+        0.100455,
+        0.065663
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_default",
+        "xy_offset": [
+          -0.04,
+          0.0
+        ],
+        "hover_z_offset": 0.25,
+        "approach_z_offset": 0.12,
+        "lift_z_offset": 0.34,
+        "grasp_frac": 1.0,
+        "settle_steps": 420,
+        "hover_steps": 220,
+        "approach_steps": 220,
+        "close_steps": 260,
+        "lift_steps": 250,
+        "open_steps": 140,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "017_orange",
+      "mass_kg": 0.047,
+      "com_m": [
+        -0.007136249804599345,
+        -0.018374164361657223,
+        0.03356913305679878
+      ],
+      "inertia_diag": [
+        2.54052726203735e-05,
+        2.4800997120596574e-05,
+        2.4932372693108635e-05
+      ],
+      "full_inertia": [
+        2.5405e-05,
+        2.4801e-05,
+        2.4932e-05,
+        -8.7e-08,
+        1.84e-07,
+        -7.9e-08
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/017_orange/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/017_orange/collision_hull.obj",
+      "extents_m": [
+        0.072158,
+        0.073986,
+        0.071352
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_default",
+        "xy_offset": [
+          -0.04,
+          0.0
+        ],
+        "hover_z_offset": 0.25,
+        "approach_z_offset": 0.12,
+        "lift_z_offset": 0.34,
+        "grasp_frac": 1.0,
+        "settle_steps": 420,
+        "hover_steps": 220,
+        "approach_steps": 220,
+        "close_steps": 260,
+        "lift_steps": 250,
+        "open_steps": 140,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "018_plum",
+      "mass_kg": 0.025,
+      "com_m": [
+        -0.007697139169536086,
+        0.01939388448510027,
+        0.023581168661735815
+      ],
+      "inertia_diag": [
+        7.369096134158351e-06,
+        7.749623588489458e-06,
+        7.758276567532572e-06
+      ],
+      "full_inertia": [
+        7.369e-06,
+        7.75e-06,
+        7.758e-06,
+        -6e-08,
+        -5.4e-08,
+        1.16e-07
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/018_plum/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/018_plum/collision_hull.obj",
+      "extents_m": [
+        0.057190000000000005,
+        0.054941,
+        0.05304
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_small",
+        "xy_offset": [
+          -0.02,
+          0.0
+        ],
+        "hover_z_offset": 0.22,
+        "approach_z_offset": 0.1,
+        "lift_z_offset": 0.3,
+        "grasp_frac": 0.9,
+        "settle_steps": 360,
+        "hover_steps": 220,
+        "approach_steps": 210,
+        "close_steps": 260,
+        "lift_steps": 230,
+        "open_steps": 120,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "019_pitcher_base",
+      "mass_kg": 0.178,
+      "com_m": [
+        -0.009331750529070492,
+        0.03756076500361689,
+        0.12754329947560608
+      ],
+      "inertia_diag": [
+        0.0009757872636552997,
+        0.0009824990557308988,
+        0.0004070302174025373
+      ],
+      "full_inertia": [
+        0.000975787,
+        0.000982499,
+        0.00040703,
+        -5.6219e-05,
+        -8.647e-06,
+        -1.2463e-05
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/019_pitcher_base/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/019_pitcher_base/collision_hull.obj",
+      "extents_m": [
+        0.149134,
+        0.14482899999999999,
+        0.242387
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_small",
+        "xy_offset": [
+          -0.02,
+          0.0
+        ],
+        "hover_z_offset": 0.25,
+        "approach_z_offset": 0.1,
+        "lift_z_offset": 0.34,
+        "grasp_frac": 0.9,
+        "settle_steps": 420,
+        "hover_steps": 220,
+        "approach_steps": 220,
+        "close_steps": 260,
+        "lift_steps": 250,
+        "open_steps": 140,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "021_bleach_cleanser",
+      "mass_kg": 1.131,
+      "com_m": [
+        -0.017506516107378748,
+        0.011594340679970689,
+        0.10253327855898828
+      ],
+      "inertia_diag": [
+        0.005149981948870799,
+        0.005519122144220382,
+        0.0009436994628995039
+      ],
+      "full_inertia": [
+        0.005149982,
+        0.005519122,
+        0.000943699,
+        2.97e-06,
+        -0.000298639,
+        2.728e-06
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/021_bleach_cleanser/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/021_bleach_cleanser/collision_hull.obj",
+      "extents_m": [
+        0.102433,
+        0.06769900000000001,
+        0.25058
+      ],
+      "contact": {
+        "friction": [
+          0.8,
+          0.04,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_default",
+        "xy_offset": [
+          -0.04,
+          0.0
+        ],
+        "hover_z_offset": 0.25,
+        "approach_z_offset": 0.12,
+        "lift_z_offset": 0.36,
+        "grasp_frac": 1.0,
+        "settle_steps": 450,
+        "hover_steps": 220,
+        "approach_steps": 220,
+        "close_steps": 260,
+        "lift_steps": 260,
+        "open_steps": 140,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "022_windex_bottle",
+      "mass_kg": 1.022,
+      "com_m": [
+        0.016981423363495014,
+        0.010352422555873705,
+        0.12099094857232083
+      ],
+      "inertia_diag": [
+        0.005574674629645567,
+        0.005349000587595528,
+        0.0008670822983676909
+      ],
+      "full_inertia": [
+        0.005574675,
+        0.005349001,
+        0.000867082,
+        -7.3099e-05,
+        -1.6066e-05,
+        -8.803e-06
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/022_windex_bottle/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/022_windex_bottle/collision_hull.obj",
+      "extents_m": [
+        0.082727,
+        0.095428,
+        0.269801
+      ],
+      "contact": {
+        "friction": [
+          0.8,
+          0.04,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_tall",
+        "xy_offset": [
+          -0.08,
+          0.0
+        ],
+        "hover_z_offset": 0.25,
+        "approach_z_offset": 0.12,
+        "lift_z_offset": 0.36,
+        "grasp_frac": 1.0,
+        "settle_steps": 450,
+        "hover_steps": 220,
+        "approach_steps": 220,
+        "close_steps": 260,
+        "lift_steps": 260,
+        "open_steps": 140,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "023_wine_glass",
+      "mass_kg": 0.133,
+      "com_m": [
+        -0.18652901215034634,
+        0.16650971547101945,
+        0.05110092944476192
+      ],
+      "inertia_diag": [
+        0.00021705014397914582,
+        0.00011794997919954009,
+        0.00021795977407856808
+      ],
+      "full_inertia": [
+        0.00021705,
+        0.00011795,
+        0.00021796,
+        9.5879e-05,
+        5.477e-05,
+        -8.9654e-05
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/023_wine_glass/tsdf/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/023_wine_glass/collision_hull.obj",
+      "extents_m": [
+        0.09323599999999999,
+        0.13894270000000003,
+        0.09870254
+      ],
+      "contact": {
+        "friction": [
+          0.3,
+          0.01,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_aggressive",
+        "xy_offset": [
+          -0.1,
+          0.02
+        ],
+        "hover_z_offset": 0.25,
+        "approach_z_offset": 0.1,
+        "lift_z_offset": 0.34,
+        "grasp_frac": 1.0,
+        "settle_steps": 450,
+        "hover_steps": 220,
+        "approach_steps": 220,
+        "close_steps": 260,
+        "lift_steps": 250,
+        "open_steps": 140,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "024_bowl",
+      "mass_kg": 0.147,
+      "com_m": [
+        -0.014741757395522125,
+        -0.043737654970395785,
+        0.03129275595158048
+      ],
+      "inertia_diag": [
+        0.00020799562191174825,
+        0.00020842822390985613,
+        0.00035168832356077963
+      ],
+      "full_inertia": [
+        0.000207996,
+        0.000208428,
+        0.000351688,
+        -4e-09,
+        1.51e-07,
+        1.418e-06
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/024_bowl/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/024_bowl/collision_hull.obj",
+      "extents_m": [
+        0.16146300000000002,
+        0.161164,
+        0.055009
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_default",
+        "xy_offset": [
+          -0.04,
+          0.0
+        ],
+        "hover_z_offset": 0.25,
+        "approach_z_offset": 0.12,
+        "lift_z_offset": 0.34,
+        "grasp_frac": 1.0,
+        "settle_steps": 420,
+        "hover_steps": 220,
+        "approach_steps": 220,
+        "close_steps": 260,
+        "lift_steps": 250,
+        "open_steps": 140,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "025_mug",
+      "mass_kg": 0.118,
+      "com_m": [
+        -0.01596881351202064,
+        0.01711805421116555,
+        0.04235541111873702
+      ],
+      "inertia_diag": [
+        0.000113152593167668,
+        0.00013669047556032177,
+        0.00012776020783431563
+      ],
+      "full_inertia": [
+        0.000113153,
+        0.00013669,
+        0.00012776,
+        1.143e-06,
+        2.15e-07,
+        -6.2e-08
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/025_mug/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/025_mug/collision_hull.obj",
+      "extents_m": [
+        0.116984,
+        0.093131,
+        0.081303
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_default",
+        "xy_offset": [
+          -0.04,
+          0.0
+        ],
+        "hover_z_offset": 0.25,
+        "approach_z_offset": 0.12,
+        "lift_z_offset": 0.34,
+        "grasp_frac": 1.0,
+        "settle_steps": 420,
+        "hover_steps": 220,
+        "approach_steps": 220,
+        "close_steps": 260,
+        "lift_steps": 250,
+        "open_steps": 140,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "026_sponge",
+      "mass_kg": 0.006,
+      "com_m": [
+        -0.016106132760739748,
+        0.012537307999280985,
+        0.009232393045436826
+      ],
+      "inertia_diag": [
+        5.4595847844823404e-06,
+        2.759030466857186e-06,
+        7.937420219114816e-06
+      ],
+      "full_inertia": [
+        5.46e-06,
+        2.759e-06,
+        7.937e-06,
+        -2.4e-08,
+        -5.9e-08,
+        -4.9e-08
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/026_sponge/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/026_sponge/collision_hull.obj",
+      "extents_m": [
+        0.079147,
+        0.112113,
+        0.019007
+      ],
+      "contact": {
+        "friction": [
+          2.5,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_aggressive",
+        "xy_offset": [
+          -0.1,
+          0.02
+        ],
+        "hover_z_offset": 0.23,
+        "approach_z_offset": 0.1,
+        "lift_z_offset": 0.3,
+        "grasp_frac": 1.0,
+        "settle_steps": 450,
+        "hover_steps": 220,
+        "approach_steps": 200,
+        "close_steps": 240,
+        "lift_steps": 230,
+        "open_steps": 120,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "028_skillet_lid",
+      "mass_kg": 0.652,
+      "com_m": [
+        0.008456466865732279,
+        0.02381736865098252,
+        0.019355483660135113
+      ],
+      "inertia_diag": [
+        0.0022819402486004454,
+        0.002379841143832872,
+        0.004315611211646979
+      ],
+      "full_inertia": [
+        0.00228194,
+        0.002379841,
+        0.004315611,
+        4.1443e-05,
+        1.6449e-05,
+        -1.4461e-05
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/028_skillet_lid/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/028_skillet_lid/collision_hull.obj",
+      "extents_m": [
+        0.268264,
+        0.269153,
+        0.076055
+      ],
+      "contact": {
+        "friction": [
+          0.5,
+          0.03,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_small",
+        "xy_offset": [
+          -0.02,
+          0.0
+        ],
+        "hover_z_offset": 0.25,
+        "approach_z_offset": 0.1,
+        "lift_z_offset": 0.34,
+        "grasp_frac": 0.9,
+        "settle_steps": 420,
+        "hover_steps": 220,
+        "approach_steps": 220,
+        "close_steps": 260,
+        "lift_steps": 250,
+        "open_steps": 140,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "029_plate",
+      "mass_kg": 0.279,
+      "com_m": [
+        -0.01108532812777095,
+        0.0003902260412363997,
+        0.012118642615039008
+      ],
+      "inertia_diag": [
+        0.000915754465205233,
+        0.0009127663718937215,
+        0.0017999716091503884
+      ],
+      "full_inertia": [
+        0.000915754,
+        0.000912766,
+        0.001799972,
+        -1.562e-06,
+        -2.771e-06,
+        -2.965e-06
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/029_plate/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/029_plate/collision_hull.obj",
+      "extents_m": [
+        0.26015,
+        0.261102,
+        0.026723
+      ],
+      "contact": {
+        "friction": [
+          0.5,
+          0.03,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_default",
+        "xy_offset": [
+          -0.04,
+          0.0
+        ],
+        "hover_z_offset": 0.23,
+        "approach_z_offset": 0.12,
+        "lift_z_offset": 0.3,
+        "grasp_frac": 1.0,
+        "settle_steps": 420,
+        "hover_steps": 220,
+        "approach_steps": 200,
+        "close_steps": 240,
+        "lift_steps": 230,
+        "open_steps": 120,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "030_fork",
+      "mass_kg": 0.034,
+      "com_m": [
+        -0.01977401808197633,
+        -0.02201816711013321,
+        0.005918857032995112
+      ],
+      "inertia_diag": [
+        1.633906675816194e-06,
+        9.202273168885346e-05,
+        9.283344628544647e-05
+      ],
+      "full_inertia": [
+        1.634e-06,
+        9.2023e-05,
+        9.2833e-05,
+        -9.37e-07,
+        -2.059e-06,
+        7.9e-08
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/030_fork/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/030_fork/collision_hull.obj",
+      "extents_m": [
+        0.197556,
+        0.027110000000000002,
+        0.015884000000000002
+      ],
+      "contact": {
+        "friction": [
+          0.4,
+          0.02,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_aggressive",
+        "xy_offset": [
+          -0.1,
+          0.02
+        ],
+        "hover_z_offset": 0.23,
+        "approach_z_offset": 0.1,
+        "lift_z_offset": 0.3,
+        "grasp_frac": 1.0,
+        "settle_steps": 450,
+        "hover_steps": 220,
+        "approach_steps": 200,
+        "close_steps": 240,
+        "lift_steps": 230,
+        "open_steps": 120,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "031_spoon",
+      "mass_kg": 0.03,
+      "com_m": [
+        -0.036857646529144354,
+        -0.0038099974792116815,
+        0.008894857998412053
+      ],
+      "inertia_diag": [
+        1.0629649398060855e-05,
+        6.513601940966285e-05,
+        7.446402930229355e-05
+      ],
+      "full_inertia": [
+        1.063e-05,
+        6.5136e-05,
+        7.4464e-05,
+        2.2385e-05,
+        9.91e-07,
+        -3.44e-07
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/031_spoon/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/031_spoon/collision_hull.obj",
+      "extents_m": [
+        0.18596000000000001,
+        0.082929,
+        0.020891999999999997
+      ],
+      "contact": {
+        "friction": [
+          0.4,
+          0.02,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_default",
+        "xy_offset": [
+          -0.04,
+          0.0
+        ],
+        "hover_z_offset": 0.23,
+        "approach_z_offset": 0.12,
+        "lift_z_offset": 0.3,
+        "grasp_frac": 1.0,
+        "settle_steps": 420,
+        "hover_steps": 220,
+        "approach_steps": 200,
+        "close_steps": 240,
+        "lift_steps": 230,
+        "open_steps": 120,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "032_knife",
+      "mass_kg": 0.031,
+      "com_m": [
+        -0.008823562113505531,
+        -0.028037744224966,
+        0.0037866477463526496
+      ],
+      "inertia_diag": [
+        1.2881608850592981e-06,
+        9.795201028828589e-05,
+        9.803262407954377e-05
+      ],
+      "full_inertia": [
+        1.288e-06,
+        9.7952e-05,
+        9.8033e-05,
+        3.73e-07,
+        -4.769e-06,
+        7.8e-08
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/032_knife/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/032_knife/collision_hull.obj",
+      "extents_m": [
+        0.21483000000000002,
+        0.020605000000000002,
+        0.022614000000000002
+      ],
+      "contact": {
+        "friction": [
+          0.4,
+          0.02,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_flat",
+        "xy_offset": [
+          -0.04,
+          0.0
+        ],
+        "hover_z_offset": 0.23,
+        "approach_z_offset": 0.09,
+        "lift_z_offset": 0.3,
+        "grasp_frac": 0.85,
+        "settle_steps": 420,
+        "hover_steps": 220,
+        "approach_steps": 200,
+        "close_steps": 240,
+        "lift_steps": 230,
+        "open_steps": 120,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "033_spatula",
+      "mass_kg": 0.21030136795677648,
+      "com_m": [
+        -0.008352602701130965,
+        -0.08832170839710267,
+        0.013440513037848776
+      ],
+      "inertia_diag": [
+        0.0001381223742928361,
+        0.0009652975439379217,
+        0.0010783058037231576
+      ],
+      "full_inertia": [
+        0.000138122,
+        0.000965298,
+        0.001078306,
+        0.000237849,
+        2.4886e-05,
+        -6.546e-06
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/033_spatula/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/033_spatula/collision_hull.obj",
+      "extents_m": [
+        0.30552199999999996,
+        0.12459399999999998,
+        0.032933000000000004
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_aggressive",
+        "xy_offset": [
+          -0.1,
+          0.02
+        ],
+        "hover_z_offset": 0.23,
+        "approach_z_offset": 0.1,
+        "lift_z_offset": 0.3,
+        "grasp_frac": 1.0,
+        "settle_steps": 450,
+        "hover_steps": 220,
+        "approach_steps": 200,
+        "close_steps": 240,
+        "lift_steps": 230,
+        "open_steps": 120,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "035_power_drill",
+      "mass_kg": 0.774939366665992,
+      "com_m": [
+        -0.037552029660784865,
+        0.014246809925661663,
+        0.024106596435574265
+      ],
+      "inertia_diag": [
+        0.0021584990041965692,
+        0.0014978697627587307,
+        0.00333265195909326
+      ],
+      "full_inertia": [
+        0.002158499,
+        0.00149787,
+        0.003332652,
+        0.00014391,
+        2.9816e-05,
+        4.2169e-05
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/035_power_drill/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/035_power_drill/collision_hull.obj",
+      "extents_m": [
+        0.18420699999999998,
+        0.187515,
+        0.057293000000000004
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_flat",
+        "xy_offset": [
+          -0.04,
+          0.0
+        ],
+        "hover_z_offset": 0.25,
+        "approach_z_offset": 0.09,
+        "lift_z_offset": 0.34,
+        "grasp_frac": 0.85,
+        "settle_steps": 420,
+        "hover_steps": 220,
+        "approach_steps": 220,
+        "close_steps": 260,
+        "lift_steps": 250,
+        "open_steps": 140,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "036_wood_block",
+      "mass_kg": 0.9631149248959687,
+      "com_m": [
+        0.02352450602097065,
+        -0.010402907712630317,
+        0.10290508326572292
+      ],
+      "inertia_diag": [
+        0.0039987358389607435,
+        0.004010694868647396,
+        0.0012486373249262106
+      ],
+      "full_inertia": [
+        0.003998736,
+        0.004010695,
+        0.001248637,
+        7.305e-06,
+        1.9869e-05,
+        1.7713e-05
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/036_wood_block/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/036_wood_block/collision_hull.obj",
+      "extents_m": [
+        0.103917,
+        0.103464,
+        0.206003
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_small",
+        "xy_offset": [
+          -0.02,
+          0.0
+        ],
+        "hover_z_offset": 0.25,
+        "approach_z_offset": 0.1,
+        "lift_z_offset": 0.36,
+        "grasp_frac": 0.9,
+        "settle_steps": 450,
+        "hover_steps": 220,
+        "approach_steps": 220,
+        "close_steps": 260,
+        "lift_steps": 260,
+        "open_steps": 140,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "037_scissors",
+      "mass_kg": 0.0771114241676491,
+      "com_m": [
+        0.016110821002888142,
+        0.008343501695341734,
+        0.007314083754314351
+      ],
+      "inertia_diag": [
+        0.00013441306476314334,
+        3.8529410713122695e-05,
+        0.00017068283349645042
+      ],
+      "full_inertia": [
+        0.000134413,
+        3.8529e-05,
+        0.000170683,
+        -2.9581e-05,
+        -4.64e-07,
+        -7.76e-07
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/037_scissors/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/037_scissors/collision_hull.obj",
+      "extents_m": [
+        0.09608,
+        0.20152399999999998,
+        0.015671
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_aggressive",
+        "xy_offset": [
+          -0.1,
+          0.02
+        ],
+        "hover_z_offset": 0.23,
+        "approach_z_offset": 0.1,
+        "lift_z_offset": 0.3,
+        "grasp_frac": 1.0,
+        "settle_steps": 450,
+        "hover_steps": 220,
+        "approach_steps": 200,
+        "close_steps": 240,
+        "lift_steps": 230,
+        "open_steps": 120,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "038_padlock",
+      "mass_kg": 0.03775429020024271,
+      "com_m": [
+        -0.019059670999261667,
+        0.005557251858070278,
+        0.013349696471170902
+      ],
+      "inertia_diag": [
+        9.94976598924765e-06,
+        1.0011177126553922e-05,
+        1.625472605218694e-05
+      ],
+      "full_inertia": [
+        9.95e-06,
+        1.0011e-05,
+        1.6255e-05,
+        -1.285e-06,
+        -6.15e-07,
+        -8e-08
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/038_padlock/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/038_padlock/collision_hull.obj",
+      "extents_m": [
+        0.066973,
+        0.068055,
+        0.029140999999999997
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_aggressive",
+        "xy_offset": [
+          -0.1,
+          0.02
+        ],
+        "hover_z_offset": 0.23,
+        "approach_z_offset": 0.1,
+        "lift_z_offset": 0.3,
+        "grasp_frac": 1.0,
+        "settle_steps": 450,
+        "hover_steps": 220,
+        "approach_steps": 200,
+        "close_steps": 240,
+        "lift_steps": 230,
+        "open_steps": 120,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "040_large_marker",
+      "mass_kg": 0.0196261925900488,
+      "com_m": [
+        -0.035744395515972915,
+        -0.006432725175428807,
+        0.009023244734905962
+      ],
+      "inertia_diag": [
+        2.3095338469243398e-05,
+        8.691348822535987e-07,
+        2.3112429645768058e-05
+      ],
+      "full_inertia": [
+        2.3095e-05,
+        8.69e-07,
+        2.3112e-05,
+        4.84e-07,
+        3e-09,
+        -6e-09
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/040_large_marker/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/040_large_marker/collision_hull.obj",
+      "extents_m": [
+        0.021022,
+        0.120969,
+        0.018895
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_tall",
+        "xy_offset": [
+          -0.08,
+          0.0
+        ],
+        "hover_z_offset": 0.23,
+        "approach_z_offset": 0.12,
+        "lift_z_offset": 0.3,
+        "grasp_frac": 1.0,
+        "settle_steps": 450,
+        "hover_steps": 220,
+        "approach_steps": 200,
+        "close_steps": 240,
+        "lift_steps": 230,
+        "open_steps": 120,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "041_small_marker",
+      "mass_kg": 0.013011083191689794,
+      "com_m": [
+        0.0022848518225016016,
+        0.004271561431276542,
+        0.05117180719822888
+      ],
+      "inertia_diag": [
+        1.0448510247847074e-05,
+        1.0482098393124164e-05,
+        5.826681509312119e-07
+      ],
+      "full_inertia": [
+        1.0449e-05,
+        1.0482e-05,
+        5.83e-07,
+        -6.9e-08,
+        9.18e-07,
+        5.32e-07
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/041_small_marker/tsdf/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/041_small_marker/collision_hull.obj",
+      "extents_m": [
+        0.02520811,
+        0.02112603,
+        0.10958818000000001
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_tall",
+        "xy_offset": [
+          -0.08,
+          0.0
+        ],
+        "hover_z_offset": 0.25,
+        "approach_z_offset": 0.12,
+        "lift_z_offset": 0.34,
+        "grasp_frac": 1.0,
+        "settle_steps": 450,
+        "hover_steps": 220,
+        "approach_steps": 220,
+        "close_steps": 260,
+        "lift_steps": 250,
+        "open_steps": 140,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "042_adjustable_wrench",
+      "mass_kg": 0.0464584182275027,
+      "com_m": [
+        0.004394122136069874,
+        -0.029187794865117942,
+        0.003812058044318074
+      ],
+      "inertia_diag": [
+        8.15557938600603e-05,
+        3.4501762474732075e-05,
+        0.00011517749862385497
+      ],
+      "full_inertia": [
+        8.1556e-05,
+        3.4502e-05,
+        0.000115177,
+        4.3147e-05,
+        -8.1e-07,
+        1.745e-06
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/042_adjustable_wrench/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/042_adjustable_wrench/collision_hull.obj",
+      "extents_m": [
+        0.124799,
+        0.181093,
+        0.014654
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_tall",
+        "xy_offset": [
+          -0.08,
+          0.0
+        ],
+        "hover_z_offset": 0.23,
+        "approach_z_offset": 0.12,
+        "lift_z_offset": 0.3,
+        "grasp_frac": 1.0,
+        "settle_steps": 450,
+        "hover_steps": 220,
+        "approach_steps": 200,
+        "close_steps": 240,
+        "lift_steps": 230,
+        "open_steps": 120,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "043_phillips_screwdriver",
+      "mass_kg": 0.0679573716089554,
+      "com_m": [
+        -0.013976607444670198,
+        0.013874377608642697,
+        0.01560602459252323
+      ],
+      "inertia_diag": [
+        3.6103916750351606e-05,
+        0.00011960173960118884,
+        0.00014749003945425314
+      ],
+      "full_inertia": [
+        3.6104e-05,
+        0.000119602,
+        0.00014749,
+        -5.5959e-05,
+        -5.281e-06,
+        -2.663e-06
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/043_phillips_screwdriver/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/043_phillips_screwdriver/collision_hull.obj",
+      "extents_m": [
+        0.194858,
+        0.106967,
+        0.035515
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_flat",
+        "xy_offset": [
+          -0.04,
+          0.0
+        ],
+        "hover_z_offset": 0.23,
+        "approach_z_offset": 0.09,
+        "lift_z_offset": 0.3,
+        "grasp_frac": 0.85,
+        "settle_steps": 420,
+        "hover_steps": 220,
+        "approach_steps": 200,
+        "close_steps": 240,
+        "lift_steps": 230,
+        "open_steps": 120,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "044_flat_screwdriver",
+      "mass_kg": 0.0680308544110493,
+      "com_m": [
+        0.009917511211187372,
+        -0.009838562855341494,
+        0.015485016463108148
+      ],
+      "inertia_diag": [
+        7.503308232106145e-05,
+        8.001513797131155e-05,
+        0.00014683041503530056
+      ],
+      "full_inertia": [
+        7.5033e-05,
+        8.0015e-05,
+        0.00014683,
+        6.9429e-05,
+        -3.934e-06,
+        3.788e-06
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/044_flat_screwdriver/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/044_flat_screwdriver/collision_hull.obj",
+      "extents_m": [
+        0.161871,
+        0.156885,
+        0.035040999999999996
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_flat",
+        "xy_offset": [
+          -0.04,
+          0.0
+        ],
+        "hover_z_offset": 0.23,
+        "approach_z_offset": 0.09,
+        "lift_z_offset": 0.3,
+        "grasp_frac": 0.85,
+        "settle_steps": 420,
+        "hover_steps": 220,
+        "approach_steps": 200,
+        "close_steps": 240,
+        "lift_steps": 230,
+        "open_steps": 120,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "048_hammer",
+      "mass_kg": 0.5002269707977582,
+      "com_m": [
+        -0.036554342896080456,
+        -0.0033628755458698176,
+        0.015128859933093602
+      ],
+      "inertia_diag": [
+        0.0032428540417552385,
+        0.0008439357488797969,
+        0.004011826275597833
+      ],
+      "full_inertia": [
+        0.003242854,
+        0.000843936,
+        0.004011826,
+        0.001060125,
+        9.11e-06,
+        -9.161e-06
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/048_hammer/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/048_hammer/collision_hull.obj",
+      "extents_m": [
+        0.1822,
+        0.33272199999999996,
+        0.032862
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_aggressive",
+        "xy_offset": [
+          -0.1,
+          0.02
+        ],
+        "hover_z_offset": 0.23,
+        "approach_z_offset": 0.1,
+        "lift_z_offset": 0.3,
+        "grasp_frac": 1.0,
+        "settle_steps": 450,
+        "hover_steps": 220,
+        "approach_steps": 200,
+        "close_steps": 240,
+        "lift_steps": 230,
+        "open_steps": 120,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "049_small_clamp",
+      "mass_kg": 0.03319566427556655,
+      "com_m": [
+        -0.04054509709329053,
+        0.02672133444138243,
+        0.025806144292501824
+      ],
+      "inertia_diag": [
+        2.1602274177956876e-05,
+        3.751661779696481e-05,
+        5.220471517295575e-05
+      ],
+      "full_inertia": [
+        2.1602e-05,
+        3.7517e-05,
+        5.2205e-05,
+        2.3323e-05,
+        -6.837e-06,
+        3.221e-06
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/049_small_clamp/tsdf/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/049_small_clamp/collision_hull.obj",
+      "extents_m": [
+        0.14677076,
+        0.11545949999999999,
+        0.04696654
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_default",
+        "xy_offset": [
+          -0.04,
+          0.0
+        ],
+        "hover_z_offset": 0.25,
+        "approach_z_offset": 0.12,
+        "lift_z_offset": 0.34,
+        "grasp_frac": 1.0,
+        "settle_steps": 420,
+        "hover_steps": 220,
+        "approach_steps": 220,
+        "close_steps": 260,
+        "lift_steps": 250,
+        "open_steps": 140,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "050_medium_clamp",
+      "mass_kg": 0.0453999092107747,
+      "com_m": [
+        0.022004659941134506,
+        -0.01384900222122807,
+        0.012588535363890777
+      ],
+      "inertia_diag": [
+        1.2994490052601513e-05,
+        2.0592112368713877e-05,
+        3.0599567586054155e-05
+      ],
+      "full_inertia": [
+        1.2994e-05,
+        2.0592e-05,
+        3.06e-05,
+        -1.042e-06,
+        -8.8e-08,
+        9.1e-08
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/050_medium_clamp/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/050_medium_clamp/collision_hull.obj",
+      "extents_m": [
+        0.088926,
+        0.07678399999999999,
+        0.026056
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_aggressive",
+        "xy_offset": [
+          -0.1,
+          0.02
+        ],
+        "hover_z_offset": 0.23,
+        "approach_z_offset": 0.1,
+        "lift_z_offset": 0.3,
+        "grasp_frac": 1.0,
+        "settle_steps": 450,
+        "hover_steps": 220,
+        "approach_steps": 200,
+        "close_steps": 240,
+        "lift_steps": 230,
+        "open_steps": 120,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "051_large_clamp",
+      "mass_kg": 0.2259111754944052,
+      "com_m": [
+        -0.0063068299988155675,
+        0.0011397865846670453,
+        0.018824346989749427
+      ],
+      "inertia_diag": [
+        0.0003931337401712447,
+        0.0001763513949390775,
+        0.0005340532580441633
+      ],
+      "full_inertia": [
+        0.000393134,
+        0.000176351,
+        0.000534053,
+        3.2339e-05,
+        1.6271e-05,
+        -1.8169e-05
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/051_large_clamp/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/051_large_clamp/collision_hull.obj",
+      "extents_m": [
+        0.12004100000000001,
+        0.171074,
+        0.039172
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_flat",
+        "xy_offset": [
+          -0.04,
+          0.0
+        ],
+        "hover_z_offset": 0.23,
+        "approach_z_offset": 0.09,
+        "lift_z_offset": 0.3,
+        "grasp_frac": 0.85,
+        "settle_steps": 420,
+        "hover_steps": 220,
+        "approach_steps": 200,
+        "close_steps": 240,
+        "lift_steps": 230,
+        "open_steps": 120,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "052_extra_large_clamp",
+      "mass_kg": 0.36054866791929197,
+      "com_m": [
+        -0.004565328083823941,
+        -0.033159788586134276,
+        0.01778120540878292
+      ],
+      "inertia_diag": [
+        0.00047204910184551693,
+        0.0009233446628179791,
+        0.0013452507792859345
+      ],
+      "full_inertia": [
+        0.000472049,
+        0.000923345,
+        0.001345251,
+        -5.4328e-05,
+        1.533e-06,
+        -6.134e-06
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/052_extra_large_clamp/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/052_extra_large_clamp/collision_hull.obj",
+      "extents_m": [
+        0.209954,
+        0.164344,
+        0.036316999999999995
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_aggressive",
+        "xy_offset": [
+          -0.1,
+          0.02
+        ],
+        "hover_z_offset": 0.23,
+        "approach_z_offset": 0.1,
+        "lift_z_offset": 0.3,
+        "grasp_frac": 1.0,
+        "settle_steps": 450,
+        "hover_steps": 220,
+        "approach_steps": 200,
+        "close_steps": 240,
+        "lift_steps": 230,
+        "open_steps": 120,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "053_mini_soccer_ball",
+      "mass_kg": 0.6320855686093009,
+      "com_m": [
+        -0.00590863100295564,
+        0.011524254005770618,
+        0.06131213420737195
+      ],
+      "inertia_diag": [
+        0.0010082648081474524,
+        0.0010095735235917808,
+        0.0010094209464349571
+      ],
+      "full_inertia": [
+        0.001008265,
+        0.001009574,
+        0.001009421,
+        5.661e-06,
+        1.0993e-05,
+        2.1226e-05
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/053_mini_soccer_ball/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/053_mini_soccer_ball/collision_hull.obj",
+      "extents_m": [
+        0.128057,
+        0.127837,
+        0.125587
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_default",
+        "xy_offset": [
+          -0.04,
+          0.0
+        ],
+        "hover_z_offset": 0.25,
+        "approach_z_offset": 0.12,
+        "lift_z_offset": 0.34,
+        "grasp_frac": 1.0,
+        "settle_steps": 420,
+        "hover_steps": 220,
+        "approach_steps": 220,
+        "close_steps": 260,
+        "lift_steps": 250,
+        "open_steps": 140,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "054_softball",
+      "mass_kg": 0.27935572240305817,
+      "com_m": [
+        -0.019652029684830652,
+        0.010866950082270158,
+        0.0468090793455665
+      ],
+      "inertia_diag": [
+        0.00025878521086865894,
+        0.00025686233467282527,
+        0.000259666073177458
+      ],
+      "full_inertia": [
+        0.000258785,
+        0.000256862,
+        0.000259666,
+        2.07e-07,
+        -1.31e-07,
+        2.54e-07
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/054_softball/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/054_softball/collision_hull.obj",
+      "extents_m": [
+        0.09537,
+        0.09617400000000001,
+        0.09459100000000001
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_default",
+        "xy_offset": [
+          -0.04,
+          0.0
+        ],
+        "hover_z_offset": 0.25,
+        "approach_z_offset": 0.12,
+        "lift_z_offset": 0.34,
+        "grasp_frac": 1.0,
+        "settle_steps": 420,
+        "hover_steps": 220,
+        "approach_steps": 220,
+        "close_steps": 260,
+        "lift_steps": 250,
+        "open_steps": 140,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "055_baseball",
+      "mass_kg": 0.1222628670859646,
+      "com_m": [
+        -0.009949458588475898,
+        -0.048116387360215264,
+        0.03593047146896532
+      ],
+      "inertia_diag": [
+        6.517418248966907e-05,
+        6.530033789399063e-05,
+        6.512106894252659e-05
+      ],
+      "full_inertia": [
+        6.5174e-05,
+        6.53e-05,
+        6.5121e-05,
+        -2.3e-08,
+        1.7e-08,
+        -2.97e-07
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/055_baseball/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/055_baseball/collision_hull.obj",
+      "extents_m": [
+        0.073078,
+        0.073712,
+        0.072563
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_default",
+        "xy_offset": [
+          -0.04,
+          0.0
+        ],
+        "hover_z_offset": 0.25,
+        "approach_z_offset": 0.12,
+        "lift_z_offset": 0.34,
+        "grasp_frac": 1.0,
+        "settle_steps": 420,
+        "hover_steps": 220,
+        "approach_steps": 220,
+        "close_steps": 260,
+        "lift_steps": 250,
+        "open_steps": 140,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "056_tennis_ball",
+      "mass_kg": 0.0940503629502946,
+      "com_m": [
+        0.008237606664225267,
+        -0.04420139690390652,
+        0.032885077981474053
+      ],
+      "inertia_diag": [
+        4.207528367545601e-05,
+        4.2037071408591264e-05,
+        4.216535559601686e-05
+      ],
+      "full_inertia": [
+        4.2075e-05,
+        4.2037e-05,
+        4.2165e-05,
+        -7e-09,
+        -8.8e-08,
+        -4.2e-08
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/056_tennis_ball/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/056_tennis_ball/collision_hull.obj",
+      "extents_m": [
+        0.066975,
+        0.06703,
+        0.066457
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_default",
+        "xy_offset": [
+          -0.04,
+          0.0
+        ],
+        "hover_z_offset": 0.25,
+        "approach_z_offset": 0.12,
+        "lift_z_offset": 0.34,
+        "grasp_frac": 1.0,
+        "settle_steps": 420,
+        "hover_steps": 220,
+        "approach_steps": 220,
+        "close_steps": 260,
+        "lift_steps": 250,
+        "open_steps": 140,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "057_racquetball",
+      "mass_kg": 0.0546375393391835,
+      "com_m": [
+        -0.009070968492675384,
+        -0.12221657317905714,
+        0.027571224300643432
+      ],
+      "inertia_diag": [
+        1.7056225968952304e-05,
+        1.695497157364209e-05,
+        1.7061287079562272e-05
+      ],
+      "full_inertia": [
+        1.7056e-05,
+        1.6955e-05,
+        1.7061e-05,
+        1.5e-08,
+        -0.0,
+        -2.6e-08
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/057_racquetball/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/057_racquetball/collision_hull.obj",
+      "extents_m": [
+        0.055778,
+        0.05605600000000001,
+        0.055574
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_aggressive",
+        "xy_offset": [
+          -0.1,
+          0.02
+        ],
+        "hover_z_offset": 0.22,
+        "approach_z_offset": 0.1,
+        "lift_z_offset": 0.3,
+        "grasp_frac": 1.0,
+        "settle_steps": 450,
+        "hover_steps": 220,
+        "approach_steps": 210,
+        "close_steps": 260,
+        "lift_steps": 230,
+        "open_steps": 120,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "058_golf_ball",
+      "mass_kg": 0.024234471993490603,
+      "com_m": [
+        -0.006527870135192949,
+        -0.03041787112991904,
+        0.02091976027983879
+      ],
+      "inertia_diag": [
+        4.385537533716969e-06,
+        4.388522077164345e-06,
+        4.401046859495325e-06
+      ],
+      "full_inertia": [
+        4.386e-06,
+        4.389e-06,
+        4.401e-06,
+        -1e-09,
+        1e-09,
+        -1e-09
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/058_golf_ball/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/058_golf_ball/collision_hull.obj",
+      "extents_m": [
+        0.042679,
+        0.042720999999999995,
+        0.042375
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_default",
+        "xy_offset": [
+          -0.04,
+          0.0
+        ],
+        "hover_z_offset": 0.22,
+        "approach_z_offset": 0.12,
+        "lift_z_offset": 0.3,
+        "grasp_frac": 1.0,
+        "settle_steps": 420,
+        "hover_steps": 220,
+        "approach_steps": 210,
+        "close_steps": 260,
+        "lift_steps": 230,
+        "open_steps": 120,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "059_chain",
+      "mass_kg": 0.7287083363584792,
+      "com_m": [
+        -0.03266332371266196,
+        0.014719242914302981,
+        0.010849180770623938
+      ],
+      "inertia_diag": [
+        0.0035378453648241513,
+        0.0031599739584832697,
+        0.006639968113949647
+      ],
+      "full_inertia": [
+        0.003537845,
+        0.003159974,
+        0.006639968,
+        -0.000361198,
+        -4.2778e-05,
+        -6.526e-06
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/059_chain/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/059_chain/collision_hull.obj",
+      "extents_m": [
+        0.310311,
+        0.30718500000000004,
+        0.024756
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_aggressive",
+        "xy_offset": [
+          -0.1,
+          0.02
+        ],
+        "hover_z_offset": 0.23,
+        "approach_z_offset": 0.1,
+        "lift_z_offset": 0.3,
+        "grasp_frac": 1.0,
+        "settle_steps": 450,
+        "hover_steps": 220,
+        "approach_steps": 200,
+        "close_steps": 240,
+        "lift_steps": 230,
+        "open_steps": 120,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "061_foam_brick",
+      "mass_kg": 0.11844428630910209,
+      "com_m": [
+        -0.018622082617704087,
+        0.016973435136194513,
+        0.025103592408814605
+      ],
+      "inertia_diag": [
+        8.184967597308435e-05,
+        5.111552762473609e-05,
+        8.267736396042749e-05
+      ],
+      "full_inertia": [
+        8.185e-05,
+        5.1116e-05,
+        8.2677e-05,
+        -4.41e-07,
+        5.9e-08,
+        6.24e-07
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/061_foam_brick/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/061_foam_brick/collision_hull.obj",
+      "extents_m": [
+        0.052559999999999996,
+        0.077874,
+        0.051193
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_default",
+        "xy_offset": [
+          -0.04,
+          0.0
+        ],
+        "hover_z_offset": 0.25,
+        "approach_z_offset": 0.12,
+        "lift_z_offset": 0.34,
+        "grasp_frac": 1.0,
+        "settle_steps": 420,
+        "hover_steps": 220,
+        "approach_steps": 220,
+        "close_steps": 260,
+        "lift_steps": 250,
+        "open_steps": 140,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "062_dice",
+      "mass_kg": 0.0026274743750274,
+      "com_m": [
+        -0.01122473010167092,
+        0.009193421209537441,
+        0.00841560124355312
+      ],
+      "inertia_diag": [
+        1.1487426557064441e-07,
+        1.1546473418731007e-07,
+        1.0919770720345569e-07
+      ],
+      "full_inertia": [
+        1.15e-07,
+        1.15e-07,
+        1.09e-07,
+        0.0,
+        -0.0,
+        0.0
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/062_dice/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/062_dice/collision_hull.obj",
+      "extents_m": [
+        0.017158,
+        0.017079,
+        0.017554
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_aggressive",
+        "xy_offset": [
+          -0.1,
+          0.02
+        ],
+        "hover_z_offset": 0.23,
+        "approach_z_offset": 0.1,
+        "lift_z_offset": 0.3,
+        "grasp_frac": 1.0,
+        "settle_steps": 450,
+        "hover_steps": 220,
+        "approach_steps": 200,
+        "close_steps": 240,
+        "lift_steps": 230,
+        "open_steps": 120,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "063-a_marbles",
+      "mass_kg": 0.11702274917841689,
+      "com_m": [
+        -0.003711519749499354,
+        0.028399274752607475,
+        0.024060668829222018
+      ],
+      "inertia_diag": [
+        5.9544754604759556e-05,
+        6.293687795310541e-05,
+        7.253431233947084e-05
+      ],
+      "full_inertia": [
+        5.9545e-05,
+        6.2937e-05,
+        7.2534e-05,
+        1e-08,
+        -2.535e-06,
+        -4.18e-07
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/063-a_marbles/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/063-a_marbles/collision_hull.obj",
+      "extents_m": [
+        0.08680299999999999,
+        0.077363,
+        0.071511
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_default",
+        "xy_offset": [
+          -0.04,
+          0.0
+        ],
+        "hover_z_offset": 0.25,
+        "approach_z_offset": 0.12,
+        "lift_z_offset": 0.34,
+        "grasp_frac": 1.0,
+        "settle_steps": 420,
+        "hover_steps": 220,
+        "approach_steps": 220,
+        "close_steps": 260,
+        "lift_steps": 250,
+        "open_steps": 140,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "063-b_marbles",
+      "mass_kg": 0.013228169430151697,
+      "com_m": [
+        -0.009108449986064684,
+        -0.04510821212970337,
+        0.016854386446195895
+      ],
+      "inertia_diag": [
+        1.589719269489451e-06,
+        1.597252191693038e-06,
+        1.6172573997486097e-06
+      ],
+      "full_inertia": [
+        1.59e-06,
+        1.597e-06,
+        1.617e-06,
+        -4e-09,
+        -2e-09,
+        -4e-09
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/063-b_marbles/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/063-b_marbles/collision_hull.obj",
+      "extents_m": [
+        0.035013999999999997,
+        0.035031999999999994,
+        0.034488
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_small",
+        "xy_offset": [
+          -0.02,
+          0.0
+        ],
+        "hover_z_offset": 0.23,
+        "approach_z_offset": 0.1,
+        "lift_z_offset": 0.3,
+        "grasp_frac": 0.9,
+        "settle_steps": 420,
+        "hover_steps": 220,
+        "approach_steps": 200,
+        "close_steps": 240,
+        "lift_steps": 230,
+        "open_steps": 120,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "063-d_marbles",
+      "mass_kg": 0.003284507388080808,
+      "com_m": [
+        0.0013114105768951328,
+        0.009254459063884418,
+        0.009759403967261923
+      ],
+      "inertia_diag": [
+        1.502187573341163e-07,
+        1.522701448802846e-07,
+        1.8836727264825643e-07
+      ],
+      "full_inertia": [
+        1.5e-07,
+        1.52e-07,
+        1.88e-07,
+        2e-09,
+        3e-09,
+        -3e-09
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/063-d_marbles/poisson/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/063-d_marbles/collision_hull.obj",
+      "extents_m": [
+        0.0244195,
+        0.0242531,
+        0.01794148
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_aggressive",
+        "xy_offset": [
+          -0.1,
+          0.02
+        ],
+        "hover_z_offset": 0.23,
+        "approach_z_offset": 0.1,
+        "lift_z_offset": 0.3,
+        "grasp_frac": 1.0,
+        "settle_steps": 450,
+        "hover_steps": 220,
+        "approach_steps": 200,
+        "close_steps": 240,
+        "lift_steps": 230,
+        "open_steps": 120,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "065-a_cups",
+      "mass_kg": 0.0749969829119991,
+      "com_m": [
+        -0.032004212119868584,
+        -0.04531176571367341,
+        0.03292448836561815
+      ],
+      "inertia_diag": [
+        3.488706266634277e-05,
+        3.4867580958205984e-05,
+        2.50397880563382e-05
+      ],
+      "full_inertia": [
+        3.4887e-05,
+        3.4868e-05,
+        2.504e-05,
+        -1e-08,
+        -6e-09,
+        1.1e-08
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/065-a_cups/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/065-a_cups/collision_hull.obj",
+      "extents_m": [
+        0.057086000000000005,
+        0.057425,
+        0.061515999999999994
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_small",
+        "xy_offset": [
+          -0.02,
+          0.0
+        ],
+        "hover_z_offset": 0.25,
+        "approach_z_offset": 0.1,
+        "lift_z_offset": 0.34,
+        "grasp_frac": 0.9,
+        "settle_steps": 420,
+        "hover_steps": 220,
+        "approach_steps": 220,
+        "close_steps": 260,
+        "lift_steps": 250,
+        "open_steps": 140,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "065-b_cups",
+      "mass_kg": 0.0898293053186807,
+      "com_m": [
+        -0.027818921566939936,
+        -0.056218080288573426,
+        0.034089181103884286
+      ],
+      "inertia_diag": [
+        4.635200281657643e-05,
+        4.634314020617999e-05,
+        3.4358801873797044e-05
+      ],
+      "full_inertia": [
+        4.6352e-05,
+        4.6343e-05,
+        3.4359e-05,
+        1e-09,
+        2.8e-08,
+        4.1e-08
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/065-b_cups/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/065-b_cups/collision_hull.obj",
+      "extents_m": [
+        0.060959,
+        0.060944000000000005,
+        0.063965
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_small",
+        "xy_offset": [
+          -0.02,
+          0.0
+        ],
+        "hover_z_offset": 0.25,
+        "approach_z_offset": 0.1,
+        "lift_z_offset": 0.34,
+        "grasp_frac": 0.9,
+        "settle_steps": 420,
+        "hover_steps": 220,
+        "approach_steps": 220,
+        "close_steps": 260,
+        "lift_steps": 250,
+        "open_steps": 140,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "065-c_cups",
+      "mass_kg": 0.11051918048510949,
+      "com_m": [
+        -0.015477518628030866,
+        -0.06745768405629193,
+        0.035163947617457024
+      ],
+      "inertia_diag": [
+        6.401531029956026e-05,
+        6.394337878307597e-05,
+        4.963267460325159e-05
+      ],
+      "full_inertia": [
+        6.4015e-05,
+        6.3943e-05,
+        4.9633e-05,
+        3.5e-08,
+        2.8e-08,
+        8.7e-08
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/065-c_cups/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/065-c_cups/collision_hull.obj",
+      "extents_m": [
+        0.064974,
+        0.06510300000000001,
+        0.06655599999999999
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_tall",
+        "xy_offset": [
+          -0.08,
+          0.0
+        ],
+        "hover_z_offset": 0.25,
+        "approach_z_offset": 0.12,
+        "lift_z_offset": 0.34,
+        "grasp_frac": 1.0,
+        "settle_steps": 450,
+        "hover_steps": 220,
+        "approach_steps": 220,
+        "close_steps": 260,
+        "lift_steps": 250,
+        "open_steps": 140,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "065-d_cups",
+      "mass_kg": 0.1342197131982656,
+      "com_m": [
+        -0.01969810447553233,
+        -0.06261635236412122,
+        0.036448288050284876
+      ],
+      "inertia_diag": [
+        8.649967627813922e-05,
+        8.65091650998081e-05,
+        7.063990291397303e-05
+      ],
+      "full_inertia": [
+        8.65e-05,
+        8.6509e-05,
+        7.064e-05,
+        -9.2e-08,
+        -3.8e-08,
+        2.3e-08
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/065-d_cups/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/065-d_cups/collision_hull.obj",
+      "extents_m": [
+        0.070689,
+        0.07070299999999999,
+        0.06892999999999999
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_default",
+        "xy_offset": [
+          -0.04,
+          0.0
+        ],
+        "hover_z_offset": 0.25,
+        "approach_z_offset": 0.12,
+        "lift_z_offset": 0.34,
+        "grasp_frac": 1.0,
+        "settle_steps": 420,
+        "hover_steps": 220,
+        "approach_steps": 220,
+        "close_steps": 260,
+        "lift_steps": 250,
+        "open_steps": 140,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "065-e_cups",
+      "mass_kg": 0.1593092689399283,
+      "com_m": [
+        -0.02115872648982821,
+        -0.07815273731253135,
+        0.03712965976455534
+      ],
+      "inertia_diag": [
+        0.00011239954310056747,
+        0.0001125325282847435,
+        9.680421653164596e-05
+      ],
+      "full_inertia": [
+        0.0001124,
+        0.000112533,
+        9.6804e-05,
+        5.3e-08,
+        1e-08,
+        -0.0
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/065-e_cups/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/065-e_cups/collision_hull.obj",
+      "extents_m": [
+        0.075543,
+        0.07527400000000001,
+        0.070778
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_default",
+        "xy_offset": [
+          -0.04,
+          0.0
+        ],
+        "hover_z_offset": 0.25,
+        "approach_z_offset": 0.12,
+        "lift_z_offset": 0.34,
+        "grasp_frac": 1.0,
+        "settle_steps": 420,
+        "hover_steps": 220,
+        "approach_steps": 220,
+        "close_steps": 260,
+        "lift_steps": 250,
+        "open_steps": 140,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "065-f_cups",
+      "mass_kg": 0.1857218531127876,
+      "com_m": [
+        -0.03305146853886643,
+        0.02611791637800103,
+        0.03809561470796141
+      ],
+      "inertia_diag": [
+        0.0001425825090382147,
+        0.00014223666521073143,
+        0.00012898055845846223
+      ],
+      "full_inertia": [
+        0.000142583,
+        0.000142237,
+        0.000128981,
+        1.09e-07,
+        -1e-08,
+        7.9e-08
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/065-f_cups/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/065-f_cups/collision_hull.obj",
+      "extents_m": [
+        0.08074,
+        0.080872,
+        0.07217799999999999
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_default",
+        "xy_offset": [
+          -0.04,
+          0.0
+        ],
+        "hover_z_offset": 0.25,
+        "approach_z_offset": 0.12,
+        "lift_z_offset": 0.34,
+        "grasp_frac": 1.0,
+        "settle_steps": 420,
+        "hover_steps": 220,
+        "approach_steps": 220,
+        "close_steps": 260,
+        "lift_steps": 250,
+        "open_steps": 140,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "065-g_cups",
+      "mass_kg": 0.21976018824020532,
+      "com_m": [
+        0.014421741127778413,
+        0.02792176346704294,
+        0.03888506902572438
+      ],
+      "inertia_diag": [
+        0.0001852204963395735,
+        0.0001846650413650775,
+        0.00017649023325198583
+      ],
+      "full_inertia": [
+        0.00018522,
+        0.000184665,
+        0.00017649,
+        -1.1e-08,
+        3e-08,
+        7.2e-08
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/065-g_cups/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/065-g_cups/collision_hull.obj",
+      "extents_m": [
+        0.086818,
+        0.087671,
+        0.073964
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_default",
+        "xy_offset": [
+          -0.04,
+          0.0
+        ],
+        "hover_z_offset": 0.25,
+        "approach_z_offset": 0.12,
+        "lift_z_offset": 0.34,
+        "grasp_frac": 1.0,
+        "settle_steps": 420,
+        "hover_steps": 220,
+        "approach_steps": 220,
+        "close_steps": 260,
+        "lift_steps": 250,
+        "open_steps": 140,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "065-h_cups",
+      "mass_kg": 0.2483694092587331,
+      "com_m": [
+        0.0033829282415914603,
+        0.014210342370030169,
+        0.03943008867475429
+      ],
+      "inertia_diag": [
+        0.00022377234927925497,
+        0.00022346937726483063,
+        0.00022191824815739815
+      ],
+      "full_inertia": [
+        0.000223772,
+        0.000223469,
+        0.000221918,
+        4e-07,
+        -1.1e-08,
+        -3.03e-07
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/065-h_cups/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/065-h_cups/collision_hull.obj",
+      "extents_m": [
+        0.09149499999999999,
+        0.091616,
+        0.075063
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_default",
+        "xy_offset": [
+          -0.04,
+          0.0
+        ],
+        "hover_z_offset": 0.25,
+        "approach_z_offset": 0.12,
+        "lift_z_offset": 0.34,
+        "grasp_frac": 1.0,
+        "settle_steps": 420,
+        "hover_steps": 220,
+        "approach_steps": 220,
+        "close_steps": 260,
+        "lift_steps": 250,
+        "open_steps": 140,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "065-i_cups",
+      "mass_kg": 0.2837940301958469,
+      "com_m": [
+        -0.01127843864988708,
+        0.0021032570332886443,
+        0.03990043970825178
+      ],
+      "inertia_diag": [
+        0.0002745402897995573,
+        0.00027442261909035377,
+        0.0002885299751415925
+      ],
+      "full_inertia": [
+        0.00027454,
+        0.000274423,
+        0.00028853,
+        -2.37e-07,
+        1.25e-07,
+        3.2e-07
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/065-i_cups/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/065-i_cups/collision_hull.obj",
+      "extents_m": [
+        0.098168,
+        0.097972,
+        0.075554
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_default",
+        "xy_offset": [
+          -0.04,
+          0.0
+        ],
+        "hover_z_offset": 0.25,
+        "approach_z_offset": 0.12,
+        "lift_z_offset": 0.34,
+        "grasp_frac": 1.0,
+        "settle_steps": 420,
+        "hover_steps": 220,
+        "approach_steps": 220,
+        "close_steps": 260,
+        "lift_steps": 250,
+        "open_steps": 140,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "065-j_cups",
+      "mass_kg": 0.3133476648416261,
+      "com_m": [
+        -0.023752661086847975,
+        -0.01680915431094213,
+        0.039847744145661536
+      ],
+      "inertia_diag": [
+        0.0003200493163425373,
+        0.0003194400539714646,
+        0.00035103784531481484
+      ],
+      "full_inertia": [
+        0.000320049,
+        0.00031944,
+        0.000351038,
+        -4.68e-07,
+        3.55e-07,
+        -2.5e-08
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/065-j_cups/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/065-j_cups/collision_hull.obj",
+      "extents_m": [
+        0.10240300000000001,
+        0.102995,
+        0.075489
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_default",
+        "xy_offset": [
+          -0.04,
+          0.0
+        ],
+        "hover_z_offset": 0.25,
+        "approach_z_offset": 0.12,
+        "lift_z_offset": 0.34,
+        "grasp_frac": 1.0,
+        "settle_steps": 420,
+        "hover_steps": 220,
+        "approach_steps": 220,
+        "close_steps": 260,
+        "lift_steps": 250,
+        "open_steps": 140,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "070-a_colored_wood_blocks",
+      "mass_kg": 1.7550647735474258,
+      "com_m": [
+        0.02008866540417374,
+        0.008894880241936486,
+        0.07995269452538803
+      ],
+      "inertia_diag": [
+        0.0062821079766494535,
+        0.006220075720305367,
+        0.0051604853107501784
+      ],
+      "full_inertia": [
+        0.006282108,
+        0.006220076,
+        0.005160485,
+        -2.4694e-05,
+        2.427e-05,
+        -6.196e-06
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/070-a_colored_wood_blocks/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/070-a_colored_wood_blocks/collision_hull.obj",
+      "extents_m": [
+        0.142097,
+        0.141175,
+        0.165379
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_aggressive",
+        "xy_offset": [
+          -0.1,
+          0.02
+        ],
+        "hover_z_offset": 0.25,
+        "approach_z_offset": 0.1,
+        "lift_z_offset": 0.34,
+        "grasp_frac": 1.0,
+        "settle_steps": 450,
+        "hover_steps": 220,
+        "approach_steps": 220,
+        "close_steps": 260,
+        "lift_steps": 250,
+        "open_steps": 140,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "070-b_colored_wood_blocks",
+      "mass_kg": 0.010124909430089701,
+      "com_m": [
+        -0.0188041064521584,
+        -0.008872071842972722,
+        0.01266205290121614
+      ],
+      "inertia_diag": [
+        1.1077537700538465e-06,
+        1.1044859340588876e-06,
+        1.1074884755580874e-06
+      ],
+      "full_inertia": [
+        1.108e-06,
+        1.104e-06,
+        1.107e-06,
+        1e-09,
+        -3e-09,
+        3e-09
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/070-b_colored_wood_blocks/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/070-b_colored_wood_blocks/collision_hull.obj",
+      "extents_m": [
+        0.034929,
+        0.034932,
+        0.025847
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_aggressive",
+        "xy_offset": [
+          -0.1,
+          0.02
+        ],
+        "hover_z_offset": 0.23,
+        "approach_z_offset": 0.1,
+        "lift_z_offset": 0.3,
+        "grasp_frac": 1.0,
+        "settle_steps": 450,
+        "hover_steps": 220,
+        "approach_steps": 200,
+        "close_steps": 240,
+        "lift_steps": 230,
+        "open_steps": 120,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "071_nine_hole_peg_test",
+      "mass_kg": 0.42247593681285084,
+      "com_m": [
+        -0.000307336345416305,
+        0.018598220405021192,
+        0.02001190909891123
+      ],
+      "inertia_diag": [
+        0.0007513337820281206,
+        0.000598361635162393,
+        0.0012391860474788444
+      ],
+      "full_inertia": [
+        0.000751334,
+        0.000598362,
+        0.001239186,
+        1.1709e-05,
+        3.63e-07,
+        -1.692e-06
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/071_nine_hole_peg_test/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/071_nine_hole_peg_test/collision_hull.obj",
+      "extents_m": [
+        0.16752899999999998,
+        0.191112,
+        0.040677
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_flat",
+        "xy_offset": [
+          -0.04,
+          0.0
+        ],
+        "hover_z_offset": 0.25,
+        "approach_z_offset": 0.09,
+        "lift_z_offset": 0.34,
+        "grasp_frac": 0.85,
+        "settle_steps": 420,
+        "hover_steps": 220,
+        "approach_steps": 220,
+        "close_steps": 260,
+        "lift_steps": 250,
+        "open_steps": 140,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "072-a_toy_airplane",
+      "mass_kg": 3.831248159311861,
+      "com_m": [
+        0.03641376836779619,
+        0.021110594509681155,
+        0.08523355016821867
+      ],
+      "inertia_diag": [
+        0.021331255987987578,
+        0.01880998324813819,
+        0.026550906107611547
+      ],
+      "full_inertia": [
+        0.021331256,
+        0.018809983,
+        0.026550906,
+        0.00015393,
+        1.0547e-05,
+        -0.001061249
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/072-a_toy_airplane/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/072-a_toy_airplane/collision_hull.obj",
+      "extents_m": [
+        0.25518399999999997,
+        0.262932,
+        0.183438
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_aggressive",
+        "xy_offset": [
+          -0.1,
+          0.02
+        ],
+        "hover_z_offset": 0.25,
+        "approach_z_offset": 0.1,
+        "lift_z_offset": 0.34,
+        "grasp_frac": 1.0,
+        "settle_steps": 450,
+        "hover_steps": 220,
+        "approach_steps": 220,
+        "close_steps": 260,
+        "lift_steps": 250,
+        "open_steps": 140,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "072-b_toy_airplane",
+      "mass_kg": 0.32577086288968493,
+      "com_m": [
+        -0.05818386255128009,
+        0.00841232274122769,
+        0.023949152523673835
+      ],
+      "inertia_diag": [
+        0.0005389189179475818,
+        0.0002918257352388494,
+        0.0007187739279039117
+      ],
+      "full_inertia": [
+        0.000538919,
+        0.000291826,
+        0.000718774,
+        -2.7851e-05,
+        -3.0808e-05,
+        -1.7404e-05
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/072-b_toy_airplane/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/072-b_toy_airplane/collision_hull.obj",
+      "extents_m": [
+        0.120329,
+        0.181678,
+        0.05928
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_default",
+        "xy_offset": [
+          -0.04,
+          0.0
+        ],
+        "hover_z_offset": 0.25,
+        "approach_z_offset": 0.12,
+        "lift_z_offset": 0.34,
+        "grasp_frac": 1.0,
+        "settle_steps": 420,
+        "hover_steps": 220,
+        "approach_steps": 220,
+        "close_steps": 260,
+        "lift_steps": 250,
+        "open_steps": 140,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "072-c_toy_airplane",
+      "mass_kg": 0.0266436125652837,
+      "com_m": [
+        -0.0334402092975021,
+        0.003410124465327895,
+        0.031849540529600706
+      ],
+      "inertia_diag": [
+        1.1040968392883802e-05,
+        1.1044700983909016e-05,
+        2.852637302195567e-06
+      ],
+      "full_inertia": [
+        1.1041e-05,
+        1.1045e-05,
+        2.853e-06,
+        7e-09,
+        6.7e-08,
+        2.1e-08
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/072-c_toy_airplane/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/072-c_toy_airplane/collision_hull.obj",
+      "extents_m": [
+        0.030651,
+        0.030643000000000004,
+        0.066722
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_default",
+        "xy_offset": [
+          -0.04,
+          0.0
+        ],
+        "hover_z_offset": 0.25,
+        "approach_z_offset": 0.12,
+        "lift_z_offset": 0.34,
+        "grasp_frac": 1.0,
+        "settle_steps": 420,
+        "hover_steps": 220,
+        "approach_steps": 220,
+        "close_steps": 260,
+        "lift_steps": 250,
+        "open_steps": 140,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "072-d_toy_airplane",
+      "mass_kg": 0.0168837618869901,
+      "com_m": [
+        -0.022307954046755764,
+        0.001531020751501579,
+        0.02194446720703162
+      ],
+      "inertia_diag": [
+        4.613879741053837e-06,
+        4.61159084876607e-06,
+        1.5436398925540305e-06
+      ],
+      "full_inertia": [
+        4.614e-06,
+        4.612e-06,
+        1.544e-06,
+        -0.0,
+        -8e-09,
+        1e-09
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/072-d_toy_airplane/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/072-d_toy_airplane/collision_hull.obj",
+      "extents_m": [
+        0.030671999999999998,
+        0.030716,
+        0.066412
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_default",
+        "xy_offset": [
+          -0.04,
+          0.0
+        ],
+        "hover_z_offset": 0.25,
+        "approach_z_offset": 0.12,
+        "lift_z_offset": 0.34,
+        "grasp_frac": 1.0,
+        "settle_steps": 420,
+        "hover_steps": 220,
+        "approach_steps": 220,
+        "close_steps": 260,
+        "lift_steps": 250,
+        "open_steps": 140,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "072-e_toy_airplane",
+      "mass_kg": 0.016983141189286302,
+      "com_m": [
+        -0.015417533925546659,
+        -0.007725653506870077,
+        0.0219623046122716
+      ],
+      "inertia_diag": [
+        4.632040288869182e-06,
+        4.556697306100837e-06,
+        1.5741704249949812e-06
+      ],
+      "full_inertia": [
+        4.632e-06,
+        4.557e-06,
+        1.574e-06,
+        1.2e-08,
+        -2.9e-08,
+        9e-09
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/072-e_toy_airplane/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/072-e_toy_airplane/collision_hull.obj",
+      "extents_m": [
+        0.030758,
+        0.030784,
+        0.066157
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_default",
+        "xy_offset": [
+          -0.04,
+          0.0
+        ],
+        "hover_z_offset": 0.25,
+        "approach_z_offset": 0.12,
+        "lift_z_offset": 0.34,
+        "grasp_frac": 1.0,
+        "settle_steps": 420,
+        "hover_steps": 220,
+        "approach_steps": 220,
+        "close_steps": 260,
+        "lift_steps": 250,
+        "open_steps": 140,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "072-f_toy_airplane",
+      "mass_kg": 0.005839514664314823,
+      "com_m": [
+        0.002385977810869083,
+        0.002729158365208187,
+        0.0345961375549001
+      ],
+      "inertia_diag": [
+        4.737694465188366e-07,
+        4.791901188173183e-07,
+        3.460990494472135e-07
+      ],
+      "full_inertia": [
+        4.74e-07,
+        4.79e-07,
+        3.46e-07,
+        1e-09,
+        -1e-09,
+        4e-09
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/072-f_toy_airplane/poisson/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/072-f_toy_airplane/collision_hull.obj",
+      "extents_m": [
+        0.0254654,
+        0.02490903,
+        0.0351586
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_flat",
+        "xy_offset": [
+          -0.04,
+          0.0
+        ],
+        "hover_z_offset": 0.23,
+        "approach_z_offset": 0.09,
+        "lift_z_offset": 0.3,
+        "grasp_frac": 0.85,
+        "settle_steps": 420,
+        "hover_steps": 220,
+        "approach_steps": 200,
+        "close_steps": 240,
+        "lift_steps": 230,
+        "open_steps": 120,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "072-h_toy_airplane",
+      "mass_kg": 3.9789489406273795,
+      "com_m": [
+        -0.06405831487581087,
+        0.05358143442137552,
+        0.061558424883613724
+      ],
+      "inertia_diag": [
+        0.04550032604533181,
+        0.04364931333193176,
+        0.0858660306602925
+      ],
+      "full_inertia": [
+        0.045500326,
+        0.043649313,
+        0.085866031,
+        -0.023207528,
+        0.001237673,
+        0.000268812
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/072-h_toy_airplane/tsdf/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/072-h_toy_airplane/collision_hull.obj",
+      "extents_m": [
+        0.448139,
+        0.45009600000000005,
+        0.10263518
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_default",
+        "xy_offset": [
+          -0.04,
+          0.0
+        ],
+        "hover_z_offset": 0.25,
+        "approach_z_offset": 0.12,
+        "lift_z_offset": 0.34,
+        "grasp_frac": 1.0,
+        "settle_steps": 420,
+        "hover_steps": 220,
+        "approach_steps": 220,
+        "close_steps": 260,
+        "lift_steps": 250,
+        "open_steps": 140,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "072-i_toy_airplane",
+      "mass_kg": 0.028464078291672083,
+      "com_m": [
+        -9.231660086305532e-05,
+        0.0012232376957461097,
+        0.03473527234342129
+      ],
+      "inertia_diag": [
+        1.0130246495165438e-05,
+        1.0160617666580303e-05,
+        3.5130978943239097e-06
+      ],
+      "full_inertia": [
+        1.013e-05,
+        1.0161e-05,
+        3.513e-06,
+        1.29e-07,
+        1.17e-07,
+        6.5e-08
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/072-i_toy_airplane/poisson/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/072-i_toy_airplane/collision_hull.obj",
+      "extents_m": [
+        0.0334619,
+        0.0325067,
+        0.06486924000000001
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_default",
+        "xy_offset": [
+          -0.04,
+          0.0
+        ],
+        "hover_z_offset": 0.25,
+        "approach_z_offset": 0.12,
+        "lift_z_offset": 0.34,
+        "grasp_frac": 1.0,
+        "settle_steps": 420,
+        "hover_steps": 220,
+        "approach_steps": 220,
+        "close_steps": 260,
+        "lift_steps": 250,
+        "open_steps": 140,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "072-j_toy_airplane",
+      "mass_kg": 0.018995197123264355,
+      "com_m": [
+        -0.00022734978125914566,
+        0.0025896782283906304,
+        0.02452712691355204
+      ],
+      "inertia_diag": [
+        4.71590162112231e-06,
+        4.647993984469604e-06,
+        2.020243625852708e-06
+      ],
+      "full_inertia": [
+        4.716e-06,
+        4.648e-06,
+        2.02e-06,
+        -8e-09,
+        -4.2e-08,
+        6.1e-08
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/072-j_toy_airplane/poisson/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/072-j_toy_airplane/collision_hull.obj",
+      "extents_m": [
+        0.0342586,
+        0.0353225,
+        0.05957797
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_small",
+        "xy_offset": [
+          -0.02,
+          0.0
+        ],
+        "hover_z_offset": 0.22,
+        "approach_z_offset": 0.1,
+        "lift_z_offset": 0.3,
+        "grasp_frac": 0.9,
+        "settle_steps": 360,
+        "hover_steps": 220,
+        "approach_steps": 210,
+        "close_steps": 260,
+        "lift_steps": 230,
+        "open_steps": 120,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "072-k_toy_airplane",
+      "mass_kg": 0.3703733507793431,
+      "com_m": [
+        0.0037875940678799777,
+        0.0012000948932319076,
+        0.07904085933275552
+      ],
+      "inertia_diag": [
+        0.00043504511479542903,
+        0.0005936865574079636,
+        0.0005091359871092117
+      ],
+      "full_inertia": [
+        0.000435045,
+        0.000593687,
+        0.000509136,
+        -0.000127649,
+        -4.534e-06,
+        7.977e-06
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/072-k_toy_airplane/tsdf/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/072-k_toy_airplane/collision_hull.obj",
+      "extents_m": [
+        0.1379505,
+        0.1119632,
+        0.11702747
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_default",
+        "xy_offset": [
+          -0.04,
+          0.0
+        ],
+        "hover_z_offset": 0.25,
+        "approach_z_offset": 0.12,
+        "lift_z_offset": 0.34,
+        "grasp_frac": 1.0,
+        "settle_steps": 420,
+        "hover_steps": 220,
+        "approach_steps": 220,
+        "close_steps": 260,
+        "lift_steps": 250,
+        "open_steps": 140,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "073-a_lego_duplo",
+      "mass_kg": 0.0233032074800261,
+      "com_m": [
+        -0.016551543338786577,
+        -0.009584927145920548,
+        0.009779985869170001
+      ],
+      "inertia_diag": [
+        2.8819469989135313e-06,
+        6.965514711576265e-06,
+        7.972519755286425e-06
+      ],
+      "full_inertia": [
+        2.882e-06,
+        6.966e-06,
+        7.973e-06,
+        2.5e-08,
+        5e-09,
+        -2e-09
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/073-a_lego_duplo/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/073-a_lego_duplo/collision_hull.obj",
+      "extents_m": [
+        0.064119,
+        0.032515,
+        0.023927999999999998
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_default",
+        "xy_offset": [
+          -0.04,
+          0.0
+        ],
+        "hover_z_offset": 0.23,
+        "approach_z_offset": 0.12,
+        "lift_z_offset": 0.3,
+        "grasp_frac": 1.0,
+        "settle_steps": 420,
+        "hover_steps": 220,
+        "approach_steps": 200,
+        "close_steps": 240,
+        "lift_steps": 230,
+        "open_steps": 120,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "073-b_lego_duplo",
+      "mass_kg": 0.026007930705122098,
+      "com_m": [
+        -0.020092459625770682,
+        -0.020774534536105668,
+        0.020706472394985447
+      ],
+      "inertia_diag": [
+        6.040520036822122e-06,
+        6.047314700807771e-06,
+        4.37567708464876e-06
+      ],
+      "full_inertia": [
+        6.041e-06,
+        6.047e-06,
+        4.376e-06,
+        4e-09,
+        1.2e-08,
+        -2e-09
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/073-b_lego_duplo/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/073-b_lego_duplo/collision_hull.obj",
+      "extents_m": [
+        0.036888,
+        0.036759,
+        0.043316
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_aggressive",
+        "xy_offset": [
+          -0.1,
+          0.02
+        ],
+        "hover_z_offset": 0.22,
+        "approach_z_offset": 0.1,
+        "lift_z_offset": 0.3,
+        "grasp_frac": 1.0,
+        "settle_steps": 450,
+        "hover_steps": 220,
+        "approach_steps": 210,
+        "close_steps": 260,
+        "lift_steps": 230,
+        "open_steps": 120,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "073-c_lego_duplo",
+      "mass_kg": 0.027989601443718697,
+      "com_m": [
+        -0.013346337841003204,
+        -0.022619022681984995,
+        0.01099844610247316
+      ],
+      "inertia_diag": [
+        1.0562174077484994e-05,
+        3.5466020417510566e-06,
+        1.1665274308648356e-05
+      ],
+      "full_inertia": [
+        1.0562e-05,
+        3.547e-06,
+        1.1665e-05,
+        1.81e-07,
+        -8e-09,
+        2.6e-08
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/073-c_lego_duplo/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/073-c_lego_duplo/collision_hull.obj",
+      "extents_m": [
+        0.033895999999999996,
+        0.064821,
+        0.023717
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_aggressive",
+        "xy_offset": [
+          -0.1,
+          0.02
+        ],
+        "hover_z_offset": 0.23,
+        "approach_z_offset": 0.1,
+        "lift_z_offset": 0.3,
+        "grasp_frac": 1.0,
+        "settle_steps": 450,
+        "hover_steps": 220,
+        "approach_steps": 200,
+        "close_steps": 240,
+        "lift_steps": 230,
+        "open_steps": 120,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "073-d_lego_duplo",
+      "mass_kg": 0.0341632047683396,
+      "com_m": [
+        -0.020509283814025177,
+        -0.029590994479723846,
+        0.019178263633055956
+      ],
+      "inertia_diag": [
+        9.149723496968636e-06,
+        8.795895030961588e-06,
+        8.361286198259909e-06
+      ],
+      "full_inertia": [
+        9.15e-06,
+        8.796e-06,
+        8.361e-06,
+        1.272e-06,
+        -6.49e-07,
+        7.3e-07
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/073-d_lego_duplo/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/073-d_lego_duplo/collision_hull.obj",
+      "extents_m": [
+        0.054488999999999996,
+        0.056186,
+        0.043137999999999996
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_aggressive",
+        "xy_offset": [
+          -0.1,
+          0.02
+        ],
+        "hover_z_offset": 0.22,
+        "approach_z_offset": 0.1,
+        "lift_z_offset": 0.3,
+        "grasp_frac": 1.0,
+        "settle_steps": 450,
+        "hover_steps": 220,
+        "approach_steps": 210,
+        "close_steps": 260,
+        "lift_steps": 230,
+        "open_steps": 120,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "073-e_lego_duplo",
+      "mass_kg": 0.0682489319614394,
+      "com_m": [
+        -0.02330002931904829,
+        -0.05006462842727328,
+        0.01926357182748546
+      ],
+      "inertia_diag": [
+        4.5294891816751215e-05,
+        2.1861724290048e-05,
+        4.792224451364105e-05
+      ],
+      "full_inertia": [
+        4.5295e-05,
+        2.1862e-05,
+        4.7922e-05,
+        1.3916e-05,
+        -3e-08,
+        2.1e-08
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/073-e_lego_duplo/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/073-e_lego_duplo/collision_hull.obj",
+      "extents_m": [
+        0.068932,
+        0.09980900000000001,
+        0.043186
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_small",
+        "xy_offset": [
+          -0.02,
+          0.0
+        ],
+        "hover_z_offset": 0.25,
+        "approach_z_offset": 0.1,
+        "lift_z_offset": 0.34,
+        "grasp_frac": 0.9,
+        "settle_steps": 420,
+        "hover_steps": 220,
+        "approach_steps": 220,
+        "close_steps": 260,
+        "lift_steps": 250,
+        "open_steps": 140,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "073-f_lego_duplo",
+      "mass_kg": 0.026386771389616,
+      "com_m": [
+        -0.028365805814857193,
+        -0.06652883378339258,
+        0.020802530967800686
+      ],
+      "inertia_diag": [
+        6.1913245487245715e-06,
+        6.181619751132645e-06,
+        4.487910849529569e-06
+      ],
+      "full_inertia": [
+        6.191e-06,
+        6.182e-06,
+        4.488e-06,
+        -0.0,
+        1e-09,
+        -4e-09
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/073-f_lego_duplo/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/073-f_lego_duplo/collision_hull.obj",
+      "extents_m": [
+        0.036605,
+        0.036684,
+        0.043421999999999995
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_small",
+        "xy_offset": [
+          -0.02,
+          0.0
+        ],
+        "hover_z_offset": 0.22,
+        "approach_z_offset": 0.1,
+        "lift_z_offset": 0.3,
+        "grasp_frac": 0.9,
+        "settle_steps": 360,
+        "hover_steps": 220,
+        "approach_steps": 210,
+        "close_steps": 260,
+        "lift_steps": 230,
+        "open_steps": 120,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "073-g_lego_duplo",
+      "mass_kg": 0.8713477690239056,
+      "com_m": [
+        -0.014098759262997048,
+        -0.05239082316343641,
+        0.02574914711161112
+      ],
+      "inertia_diag": [
+        0.004613681425030131,
+        0.001072874637817465,
+        0.005285745448634113
+      ],
+      "full_inertia": [
+        0.004613681,
+        0.001072875,
+        0.005285745,
+        -0.000151206,
+        1.1369e-05,
+        5.106e-05
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/073-g_lego_duplo/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/073-g_lego_duplo/collision_hull.obj",
+      "extents_m": [
+        0.13361599999999998,
+        0.304086,
+        0.059998
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_aggressive",
+        "xy_offset": [
+          -0.1,
+          0.02
+        ],
+        "hover_z_offset": 0.25,
+        "approach_z_offset": 0.1,
+        "lift_z_offset": 0.34,
+        "grasp_frac": 1.0,
+        "settle_steps": 450,
+        "hover_steps": 220,
+        "approach_steps": 220,
+        "close_steps": 260,
+        "lift_steps": 250,
+        "open_steps": 140,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "073-h_lego_duplo",
+      "mass_kg": 0.030096695579785355,
+      "com_m": [
+        0.002179351407877267,
+        -0.002702743984361966,
+        0.014261505621481547
+      ],
+      "inertia_diag": [
+        9.67468751983575e-06,
+        7.688904095534186e-06,
+        1.5848213984726573e-05
+      ],
+      "full_inertia": [
+        9.675e-06,
+        7.689e-06,
+        1.5848e-05,
+        -3.729e-06,
+        2.5e-08,
+        -1.1e-08
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/073-h_lego_duplo/tsdf/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/073-h_lego_duplo/collision_hull.obj",
+      "extents_m": [
+        0.0704499,
+        0.0732652,
+        0.01823628
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_aggressive",
+        "xy_offset": [
+          -0.1,
+          0.02
+        ],
+        "hover_z_offset": 0.23,
+        "approach_z_offset": 0.1,
+        "lift_z_offset": 0.3,
+        "grasp_frac": 1.0,
+        "settle_steps": 450,
+        "hover_steps": 220,
+        "approach_steps": 200,
+        "close_steps": 240,
+        "lift_steps": 230,
+        "open_steps": 120,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "073-i_lego_duplo",
+      "mass_kg": 0.03438724225871972,
+      "com_m": [
+        -0.0008046997854626696,
+        -0.003552741396208047,
+        0.022942550338337007
+      ],
+      "inertia_diag": [
+        7.67383694019339e-06,
+        8.552245225276985e-06,
+        8.804012172103797e-06
+      ],
+      "full_inertia": [
+        7.674e-06,
+        8.552e-06,
+        8.804e-06,
+        7.6e-08,
+        -0.0,
+        -1.1e-07
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/073-i_lego_duplo/tsdf/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/073-i_lego_duplo/collision_hull.obj",
+      "extents_m": [
+        0.0575708,
+        0.048238699999999995,
+        0.03734068
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_flat",
+        "xy_offset": [
+          -0.04,
+          0.0
+        ],
+        "hover_z_offset": 0.23,
+        "approach_z_offset": 0.09,
+        "lift_z_offset": 0.3,
+        "grasp_frac": 0.85,
+        "settle_steps": 420,
+        "hover_steps": 220,
+        "approach_steps": 200,
+        "close_steps": 240,
+        "lift_steps": 230,
+        "open_steps": 120,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "073-j_lego_duplo",
+      "mass_kg": 0.03300067300861158,
+      "com_m": [
+        -0.0023032826711726438,
+        0.005026505157777702,
+        0.02316944273479875
+      ],
+      "inertia_diag": [
+        7.65395154543381e-06,
+        7.52014332894747e-06,
+        8.125938861189819e-06
+      ],
+      "full_inertia": [
+        7.654e-06,
+        7.52e-06,
+        8.126e-06,
+        -7.3e-08,
+        -2.7e-08,
+        2.6e-08
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/073-j_lego_duplo/tsdf/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/073-j_lego_duplo/collision_hull.obj",
+      "extents_m": [
+        0.0450096,
+        0.0469666,
+        0.03730758
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_flat",
+        "xy_offset": [
+          -0.04,
+          0.0
+        ],
+        "hover_z_offset": 0.23,
+        "approach_z_offset": 0.09,
+        "lift_z_offset": 0.3,
+        "grasp_frac": 0.85,
+        "settle_steps": 420,
+        "hover_steps": 220,
+        "approach_steps": 200,
+        "close_steps": 240,
+        "lift_steps": 230,
+        "open_steps": 120,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "073-k_lego_duplo",
+      "mass_kg": 0.032633258802574644,
+      "com_m": [
+        0.004700337601535105,
+        0.004332442514765775,
+        0.02326235594400731
+      ],
+      "inertia_diag": [
+        7.448653810533609e-06,
+        7.416595711493297e-06,
+        8.06459647211935e-06
+      ],
+      "full_inertia": [
+        7.449e-06,
+        7.417e-06,
+        8.065e-06,
+        1.26e-07,
+        -2e-08,
+        1.32e-07
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/073-k_lego_duplo/tsdf/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/073-k_lego_duplo/collision_hull.obj",
+      "extents_m": [
+        0.0466886,
+        0.045341099999999995,
+        0.03724938
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_tall",
+        "xy_offset": [
+          -0.08,
+          0.0
+        ],
+        "hover_z_offset": 0.23,
+        "approach_z_offset": 0.12,
+        "lift_z_offset": 0.3,
+        "grasp_frac": 1.0,
+        "settle_steps": 450,
+        "hover_steps": 220,
+        "approach_steps": 200,
+        "close_steps": 240,
+        "lift_steps": 230,
+        "open_steps": 120,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "073-l_lego_duplo",
+      "mass_kg": 0.03311752523425213,
+      "com_m": [
+        0.0019933962188217456,
+        0.004048066746847457,
+        0.02322178390777378
+      ],
+      "inertia_diag": [
+        7.77069128034624e-06,
+        7.492836550569732e-06,
+        8.060651458655903e-06
+      ],
+      "full_inertia": [
+        7.771e-06,
+        7.493e-06,
+        8.061e-06,
+        -7e-08,
+        -2.3e-08,
+        1.03e-07
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/073-l_lego_duplo/tsdf/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/073-l_lego_duplo/collision_hull.obj",
+      "extents_m": [
+        0.0506376,
+        0.051864499999999994,
+        0.03752098
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_flat",
+        "xy_offset": [
+          -0.04,
+          0.0
+        ],
+        "hover_z_offset": 0.23,
+        "approach_z_offset": 0.09,
+        "lift_z_offset": 0.3,
+        "grasp_frac": 0.85,
+        "settle_steps": 420,
+        "hover_steps": 220,
+        "approach_steps": 200,
+        "close_steps": 240,
+        "lift_steps": 230,
+        "open_steps": 120,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "073-m_lego_duplo",
+      "mass_kg": 0.6773814105483942,
+      "com_m": [
+        0.011642816087017296,
+        0.0005566678720479337,
+        0.03490519409686505
+      ],
+      "inertia_diag": [
+        0.0014336303566315149,
+        0.0011395196799017229,
+        0.002157589617034462
+      ],
+      "full_inertia": [
+        0.00143363,
+        0.00113952,
+        0.00215759,
+        -0.000275892,
+        4.7764e-05,
+        8.1232e-05
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/073-m_lego_duplo/tsdf/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/073-m_lego_duplo/collision_hull.obj",
+      "extents_m": [
+        0.1765977,
+        0.184853,
+        0.08445968
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_flat",
+        "xy_offset": [
+          -0.04,
+          0.0
+        ],
+        "hover_z_offset": 0.25,
+        "approach_z_offset": 0.09,
+        "lift_z_offset": 0.34,
+        "grasp_frac": 0.85,
+        "settle_steps": 420,
+        "hover_steps": 220,
+        "approach_steps": 220,
+        "close_steps": 260,
+        "lift_steps": 250,
+        "open_steps": 140,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "076_timer",
+      "mass_kg": 0.14597236021565232,
+      "com_m": [
+        -0.008456796675105691,
+        -0.009933797449855876,
+        0.021577606085848352
+      ],
+      "inertia_diag": [
+        0.00010511733226485391,
+        0.00010833919428681085,
+        0.00018439763628634684
+      ],
+      "full_inertia": [
+        0.000105117,
+        0.000108339,
+        0.000184398,
+        8.023e-06,
+        7.438e-06,
+        8.713e-06
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/076_timer/tsdf/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/076_timer/collision_hull.obj",
+      "extents_m": [
+        0.1216584,
+        0.1184612,
+        0.04051498
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_default",
+        "xy_offset": [
+          -0.04,
+          0.0
+        ],
+        "hover_z_offset": 0.25,
+        "approach_z_offset": 0.12,
+        "lift_z_offset": 0.34,
+        "grasp_frac": 1.0,
+        "settle_steps": 420,
+        "hover_steps": 220,
+        "approach_steps": 220,
+        "close_steps": 260,
+        "lift_steps": 250,
+        "open_steps": 140,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    },
+    {
+      "object_id": "077_rubiks_cube",
+      "mass_kg": 0.11408465003810278,
+      "com_m": [
+        -0.016200286834052304,
+        -0.0004832020332385633,
+        0.0285967598053006
+      ],
+      "inertia_diag": [
+        6.235770527508235e-05,
+        6.213952226367185e-05,
+        6.25338944038736e-05
+      ],
+      "full_inertia": [
+        6.2358e-05,
+        6.214e-05,
+        6.2534e-05,
+        2.16e-07,
+        -1.6e-08,
+        3.6e-08
+      ],
+      "mesh_visual": "/Users/bentontameling/Dev/ycb-tools/models/ycb/077_rubiks_cube/google_16k/textured.obj",
+      "mesh_collision": "/Users/bentontameling/Dev/ycb-tools/models/ycb/077_rubiks_cube/collision_hull.obj",
+      "extents_m": [
+        0.075745,
+        0.07611699999999999,
+        0.057939000000000004
+      ],
+      "contact": {
+        "friction": [
+          1.0,
+          0.05,
+          0.01
+        ],
+        "condim": 6,
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      "grasp": {
+        "name": "candidate_default",
+        "xy_offset": [
+          -0.04,
+          0.0
+        ],
+        "hover_z_offset": 0.25,
+        "approach_z_offset": 0.12,
+        "lift_z_offset": 0.34,
+        "grasp_frac": 1.0,
+        "settle_steps": 420,
+        "hover_steps": 220,
+        "approach_steps": 220,
+        "close_steps": 260,
+        "lift_steps": 250,
+        "open_steps": 140,
+        "retreat_steps": 180
+      },
+      "audit_warnings": []
+    }
+  ]
+}
